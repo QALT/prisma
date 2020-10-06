@@ -2,9 +2,17 @@
 
 ## Command
 
-`make start` | `make` | Start the Docker Compose services.
-`make stop` | N/A. | Stop the Docker Compose services.
-`make restart` | N/A. | restart the Docker Compose services.
+```
+┌──────────────┬───────┬──────────────────────────────────────┐
+│ Command      │ Alias │ Description                          │
+├──────────────┼───────┼──────────────────────────────────────┤
+│ make start   │ make  │ Start the Docker Compose services.   │
+├──────────────┼───────┼──────────────────────────────────────┤
+│ make stop    │ N/A.  │ Stop the Docker Compose services.    │
+├──────────────┼───────┼──────────────────────────────────────┤
+│ make restart │ N/A.  │ Restart the Docker Compose services. │
+└──────────────┴───────┴──────────────────────────────────────┘
+```
 
 ## Yarn
 
