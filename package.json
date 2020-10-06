@@ -1,0 +1,15 @@
+{
+  "name": "prisma",
+  "version": "0.1.0",
+  "description": "Prisma backend for the ESGI 2020 Prisma course's project.",
+  "main": "index.js",
+  "repository": "https://github.com/QALT/prisma#readme",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@prisma/cli": "^2.8.0",
+    "@types/node": "^14.11.5",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
