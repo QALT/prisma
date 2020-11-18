@@ -1,0 +1,15 @@
+# import User, Query.user, Query.users,Mutation.updateUser, Mutation.deleteUser, from "./generated/prisma.graphql"
+
+type Query {
+    me: User
+}
+
+type Mutation {
+    signup(name: String!, email: String!, phone: String, password: String!): AuthPayload!
+    login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+ token: String!
+ user: User!
+}
