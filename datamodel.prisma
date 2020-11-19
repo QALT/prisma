@@ -1,14 +1,15 @@
 type User {
   	id: ID! @id
-  	name: String!
   	email: String! @unique
   	password: String!
-	role: Role @default(value: USER)
+	firstname: String,
+	lastname: String,
+	role: Role @default(value: ROLE_USER)
 	createdAt: DateTime! @createdAt
 	updatedAt: DateTime! @updatedAt
 }
 
 enum Role {
-	USER
-	ADMIN
+	ROLE_USER
+	ROLE_ADMIN
 }

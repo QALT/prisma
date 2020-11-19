@@ -11,4 +11,4 @@ async function users (parent, args, ctx, info) {
 module.exports = {
     user,
     users
-  }
+}

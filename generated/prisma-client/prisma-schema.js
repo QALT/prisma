@@ -49,8 +49,8 @@ type Query {
 }
 
 enum Role {
-  USER
-  ADMIN
+  ROLE_USER
+  ROLE_ADMIN
 }
 
 type Subscription {
@@ -59,9 +59,10 @@ type Subscription {
 
 type User {
   id: ID!
-  name: String!
   email: String!
   password: String!
+  firstname: String
+  lastname: String
   role: Role
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -75,9 +76,10 @@ type UserConnection {
 
 input UserCreateInput {
   id: ID
-  name: String!
   email: String!
   password: String!
+  firstname: String
+  lastname: String
   role: Role
 }
 
@@ -89,12 +91,14 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
   email_ASC
   email_DESC
   password_ASC
   password_DESC
+  firstname_ASC
+  firstname_DESC
+  lastname_ASC
+  lastname_DESC
   role_ASC
   role_DESC
   createdAt_ASC
@@ -105,9 +109,10 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  name: String!
   email: String!
   password: String!
+  firstname: String
+  lastname: String
   role: Role
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -132,16 +137,18 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
-  name: String
   email: String
   password: String
+  firstname: String
+  lastname: String
   role: Role
 }
 
 input UserUpdateManyMutationInput {
-  name: String
   email: String
   password: String
+  firstname: String
+  lastname: String
   role: Role
 }
 
@@ -160,20 +167,6 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]
@@ -202,6 +195,34 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  firstname: String
+  firstname_not: String
+  firstname_in: [String!]
+  firstname_not_in: [String!]
+  firstname_lt: String
+  firstname_lte: String
+  firstname_gt: String
+  firstname_gte: String
+  firstname_contains: String
+  firstname_not_contains: String
+  firstname_starts_with: String
+  firstname_not_starts_with: String
+  firstname_ends_with: String
+  firstname_not_ends_with: String
+  lastname: String
+  lastname_not: String
+  lastname_in: [String!]
+  lastname_not_in: [String!]
+  lastname_lt: String
+  lastname_lte: String
+  lastname_gt: String
+  lastname_gte: String
+  lastname_contains: String
+  lastname_not_contains: String
+  lastname_starts_with: String
+  lastname_not_starts_with: String
+  lastname_ends_with: String
+  lastname_not_ends_with: String
   role: Role
   role_not: Role
   role_in: [Role!]

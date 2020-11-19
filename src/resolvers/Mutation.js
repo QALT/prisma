@@ -2,8 +2,8 @@ const { createUser, updateUser } = require('./Mutations/mutationUser')
 const { login, signup } = require('./auth')
 
 const Mutation = {
-    createUser,
-    updateUser,
+    // createUser,
+    // updateUser,
 
     login,
     signup
