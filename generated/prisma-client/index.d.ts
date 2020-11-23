@@ -16,6 +16,15 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
+  address: (where?: AddressWhereInput) => Promise<boolean>;
+  application: (where?: ApplicationWhereInput) => Promise<boolean>;
+  degree: (where?: DegreeWhereInput) => Promise<boolean>;
+  message: (where?: MessageWhereInput) => Promise<boolean>;
+  offer: (where?: OfferWhereInput) => Promise<boolean>;
+  presentationPage: (where?: PresentationPageWhereInput) => Promise<boolean>;
+  report: (where?: ReportWhereInput) => Promise<boolean>;
+  study: (where?: StudyWhereInput) => Promise<boolean>;
+  tag: (where?: TagWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
 }
 
@@ -38,6 +47,181 @@ export interface Prisma {
    * Queries
    */
 
+  address: (where: AddressWhereUniqueInput) => AddressNullablePromise;
+  addresses: (args?: {
+    where?: AddressWhereInput;
+    orderBy?: AddressOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Address>;
+  addressesConnection: (args?: {
+    where?: AddressWhereInput;
+    orderBy?: AddressOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => AddressConnectionPromise;
+  application: (
+    where: ApplicationWhereUniqueInput
+  ) => ApplicationNullablePromise;
+  applications: (args?: {
+    where?: ApplicationWhereInput;
+    orderBy?: ApplicationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Application>;
+  applicationsConnection: (args?: {
+    where?: ApplicationWhereInput;
+    orderBy?: ApplicationOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ApplicationConnectionPromise;
+  degree: (where: DegreeWhereUniqueInput) => DegreeNullablePromise;
+  degrees: (args?: {
+    where?: DegreeWhereInput;
+    orderBy?: DegreeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Degree>;
+  degreesConnection: (args?: {
+    where?: DegreeWhereInput;
+    orderBy?: DegreeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => DegreeConnectionPromise;
+  message: (where: MessageWhereUniqueInput) => MessageNullablePromise;
+  messages: (args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Message>;
+  messagesConnection: (args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => MessageConnectionPromise;
+  offer: (where: OfferWhereUniqueInput) => OfferNullablePromise;
+  offers: (args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Offer>;
+  offersConnection: (args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => OfferConnectionPromise;
+  presentationPage: (
+    where: PresentationPageWhereUniqueInput
+  ) => PresentationPageNullablePromise;
+  presentationPages: (args?: {
+    where?: PresentationPageWhereInput;
+    orderBy?: PresentationPageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<PresentationPage>;
+  presentationPagesConnection: (args?: {
+    where?: PresentationPageWhereInput;
+    orderBy?: PresentationPageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => PresentationPageConnectionPromise;
+  report: (where: ReportWhereUniqueInput) => ReportNullablePromise;
+  reports: (args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Report>;
+  reportsConnection: (args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ReportConnectionPromise;
+  study: (where: StudyWhereUniqueInput) => StudyNullablePromise;
+  studies: (args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Study>;
+  studiesConnection: (args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => StudyConnectionPromise;
+  tag: (where: TagWhereUniqueInput) => TagNullablePromise;
+  tags: (args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Tag>;
+  tagsConnection: (args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => TagConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
   users: (args?: {
     where?: UserWhereInput;
@@ -63,6 +247,158 @@ export interface Prisma {
    * Mutations
    */
 
+  createAddress: (data: AddressCreateInput) => AddressPromise;
+  updateAddress: (args: {
+    data: AddressUpdateInput;
+    where: AddressWhereUniqueInput;
+  }) => AddressPromise;
+  updateManyAddresses: (args: {
+    data: AddressUpdateManyMutationInput;
+    where?: AddressWhereInput;
+  }) => BatchPayloadPromise;
+  upsertAddress: (args: {
+    where: AddressWhereUniqueInput;
+    create: AddressCreateInput;
+    update: AddressUpdateInput;
+  }) => AddressPromise;
+  deleteAddress: (where: AddressWhereUniqueInput) => AddressPromise;
+  deleteManyAddresses: (where?: AddressWhereInput) => BatchPayloadPromise;
+  createApplication: (data: ApplicationCreateInput) => ApplicationPromise;
+  updateApplication: (args: {
+    data: ApplicationUpdateInput;
+    where: ApplicationWhereUniqueInput;
+  }) => ApplicationPromise;
+  updateManyApplications: (args: {
+    data: ApplicationUpdateManyMutationInput;
+    where?: ApplicationWhereInput;
+  }) => BatchPayloadPromise;
+  upsertApplication: (args: {
+    where: ApplicationWhereUniqueInput;
+    create: ApplicationCreateInput;
+    update: ApplicationUpdateInput;
+  }) => ApplicationPromise;
+  deleteApplication: (where: ApplicationWhereUniqueInput) => ApplicationPromise;
+  deleteManyApplications: (
+    where?: ApplicationWhereInput
+  ) => BatchPayloadPromise;
+  createDegree: (data: DegreeCreateInput) => DegreePromise;
+  updateDegree: (args: {
+    data: DegreeUpdateInput;
+    where: DegreeWhereUniqueInput;
+  }) => DegreePromise;
+  updateManyDegrees: (args: {
+    data: DegreeUpdateManyMutationInput;
+    where?: DegreeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertDegree: (args: {
+    where: DegreeWhereUniqueInput;
+    create: DegreeCreateInput;
+    update: DegreeUpdateInput;
+  }) => DegreePromise;
+  deleteDegree: (where: DegreeWhereUniqueInput) => DegreePromise;
+  deleteManyDegrees: (where?: DegreeWhereInput) => BatchPayloadPromise;
+  createMessage: (data: MessageCreateInput) => MessagePromise;
+  updateMessage: (args: {
+    data: MessageUpdateInput;
+    where: MessageWhereUniqueInput;
+  }) => MessagePromise;
+  updateManyMessages: (args: {
+    data: MessageUpdateManyMutationInput;
+    where?: MessageWhereInput;
+  }) => BatchPayloadPromise;
+  upsertMessage: (args: {
+    where: MessageWhereUniqueInput;
+    create: MessageCreateInput;
+    update: MessageUpdateInput;
+  }) => MessagePromise;
+  deleteMessage: (where: MessageWhereUniqueInput) => MessagePromise;
+  deleteManyMessages: (where?: MessageWhereInput) => BatchPayloadPromise;
+  createOffer: (data: OfferCreateInput) => OfferPromise;
+  updateOffer: (args: {
+    data: OfferUpdateInput;
+    where: OfferWhereUniqueInput;
+  }) => OfferPromise;
+  updateManyOffers: (args: {
+    data: OfferUpdateManyMutationInput;
+    where?: OfferWhereInput;
+  }) => BatchPayloadPromise;
+  upsertOffer: (args: {
+    where: OfferWhereUniqueInput;
+    create: OfferCreateInput;
+    update: OfferUpdateInput;
+  }) => OfferPromise;
+  deleteOffer: (where: OfferWhereUniqueInput) => OfferPromise;
+  deleteManyOffers: (where?: OfferWhereInput) => BatchPayloadPromise;
+  createPresentationPage: (
+    data: PresentationPageCreateInput
+  ) => PresentationPagePromise;
+  updatePresentationPage: (args: {
+    data: PresentationPageUpdateInput;
+    where: PresentationPageWhereUniqueInput;
+  }) => PresentationPagePromise;
+  updateManyPresentationPages: (args: {
+    data: PresentationPageUpdateManyMutationInput;
+    where?: PresentationPageWhereInput;
+  }) => BatchPayloadPromise;
+  upsertPresentationPage: (args: {
+    where: PresentationPageWhereUniqueInput;
+    create: PresentationPageCreateInput;
+    update: PresentationPageUpdateInput;
+  }) => PresentationPagePromise;
+  deletePresentationPage: (
+    where: PresentationPageWhereUniqueInput
+  ) => PresentationPagePromise;
+  deleteManyPresentationPages: (
+    where?: PresentationPageWhereInput
+  ) => BatchPayloadPromise;
+  createReport: (data: ReportCreateInput) => ReportPromise;
+  updateReport: (args: {
+    data: ReportUpdateInput;
+    where: ReportWhereUniqueInput;
+  }) => ReportPromise;
+  updateManyReports: (args: {
+    data: ReportUpdateManyMutationInput;
+    where?: ReportWhereInput;
+  }) => BatchPayloadPromise;
+  upsertReport: (args: {
+    where: ReportWhereUniqueInput;
+    create: ReportCreateInput;
+    update: ReportUpdateInput;
+  }) => ReportPromise;
+  deleteReport: (where: ReportWhereUniqueInput) => ReportPromise;
+  deleteManyReports: (where?: ReportWhereInput) => BatchPayloadPromise;
+  createStudy: (data: StudyCreateInput) => StudyPromise;
+  updateStudy: (args: {
+    data: StudyUpdateInput;
+    where: StudyWhereUniqueInput;
+  }) => StudyPromise;
+  updateManyStudies: (args: {
+    data: StudyUpdateManyMutationInput;
+    where?: StudyWhereInput;
+  }) => BatchPayloadPromise;
+  upsertStudy: (args: {
+    where: StudyWhereUniqueInput;
+    create: StudyCreateInput;
+    update: StudyUpdateInput;
+  }) => StudyPromise;
+  deleteStudy: (where: StudyWhereUniqueInput) => StudyPromise;
+  deleteManyStudies: (where?: StudyWhereInput) => BatchPayloadPromise;
+  createTag: (data: TagCreateInput) => TagPromise;
+  updateTag: (args: {
+    data: TagUpdateInput;
+    where: TagWhereUniqueInput;
+  }) => TagPromise;
+  updateManyTags: (args: {
+    data: TagUpdateManyMutationInput;
+    where?: TagWhereInput;
+  }) => BatchPayloadPromise;
+  upsertTag: (args: {
+    where: TagWhereUniqueInput;
+    create: TagCreateInput;
+    update: TagUpdateInput;
+  }) => TagPromise;
+  deleteTag: (where: TagWhereUniqueInput) => TagPromise;
+  deleteManyTags: (where?: TagWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (args: {
     data: UserUpdateInput;
@@ -88,6 +424,33 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  address: (
+    where?: AddressSubscriptionWhereInput
+  ) => AddressSubscriptionPayloadSubscription;
+  application: (
+    where?: ApplicationSubscriptionWhereInput
+  ) => ApplicationSubscriptionPayloadSubscription;
+  degree: (
+    where?: DegreeSubscriptionWhereInput
+  ) => DegreeSubscriptionPayloadSubscription;
+  message: (
+    where?: MessageSubscriptionWhereInput
+  ) => MessageSubscriptionPayloadSubscription;
+  offer: (
+    where?: OfferSubscriptionWhereInput
+  ) => OfferSubscriptionPayloadSubscription;
+  presentationPage: (
+    where?: PresentationPageSubscriptionWhereInput
+  ) => PresentationPageSubscriptionPayloadSubscription;
+  report: (
+    where?: ReportSubscriptionWhereInput
+  ) => ReportSubscriptionPayloadSubscription;
+  study: (
+    where?: StudySubscriptionWhereInput
+  ) => StudySubscriptionPayloadSubscription;
+  tag: (
+    where?: TagSubscriptionWhereInput
+  ) => TagSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
@@ -102,6 +465,115 @@ export interface ClientConstructor<T> {
  */
 
 export type Role = "ROLE_USER" | "ROLE_ADMIN";
+export type Status = "ENABLED" | "DISABLED";
+
+export type StudyOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "label_ASC"
+  | "label_DESC"
+  | "school_ASC"
+  | "school_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type MessageOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "content_ASC"
+  | "content_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type OfferOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type TagOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "label_ASC"
+  | "label_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type ReportOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "motivation_ASC"
+  | "motivation_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type AddressOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "country_ASC"
+  | "country_DESC"
+  | "region_ASC"
+  | "region_DESC"
+  | "postalCode_ASC"
+  | "postalCode_DESC"
+  | "town_ASC"
+  | "town_DESC"
+  | "street_ASC"
+  | "street_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type ApplicationOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "comment_ASC"
+  | "comment_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type DegreeOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "label_ASC"
+  | "label_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
+
+export type PresentationPageOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "content_ASC"
+  | "content_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "created_at_ASC"
+  | "created_at_DESC"
+  | "updated_at_ASC"
+  | "updated_at_DESC";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -110,10 +582,16 @@ export type UserOrderByInput =
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
+  | "plainPassword_ASC"
+  | "plainPassword_DESC"
   | "firstname_ASC"
   | "firstname_DESC"
   | "lastname_ASC"
   | "lastname_DESC"
+  | "birthday_ASC"
+  | "birthday_DESC"
+  | "status_ASC"
+  | "status_DESC"
   | "role_ASC"
   | "role_DESC"
   | "createdAt_ASC"
@@ -123,10 +601,128 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type AddressWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
-  email?: Maybe<String>;
 }>;
+
+export interface StudyWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  school?: Maybe<String>;
+  school_not?: Maybe<String>;
+  school_in?: Maybe<String[] | String>;
+  school_not_in?: Maybe<String[] | String>;
+  school_lt?: Maybe<String>;
+  school_lte?: Maybe<String>;
+  school_gt?: Maybe<String>;
+  school_gte?: Maybe<String>;
+  school_contains?: Maybe<String>;
+  school_not_contains?: Maybe<String>;
+  school_starts_with?: Maybe<String>;
+  school_not_starts_with?: Maybe<String>;
+  school_ends_with?: Maybe<String>;
+  school_not_ends_with?: Maybe<String>;
+  degree?: Maybe<DegreeWhereInput>;
+  userAccount?: Maybe<UserWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<StudyWhereInput[] | StudyWhereInput>;
+  OR?: Maybe<StudyWhereInput[] | StudyWhereInput>;
+  NOT?: Maybe<StudyWhereInput[] | StudyWhereInput>;
+}
+
+export interface DegreeWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  studies_every?: Maybe<StudyWhereInput>;
+  studies_some?: Maybe<StudyWhereInput>;
+  studies_none?: Maybe<StudyWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<DegreeWhereInput[] | DegreeWhereInput>;
+  OR?: Maybe<DegreeWhereInput[] | DegreeWhereInput>;
+  NOT?: Maybe<DegreeWhereInput[] | DegreeWhereInput>;
+}
 
 export interface UserWhereInput {
   id?: Maybe<ID_Input>;
@@ -171,6 +767,20 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  plainPassword_not?: Maybe<String>;
+  plainPassword_in?: Maybe<String[] | String>;
+  plainPassword_not_in?: Maybe<String[] | String>;
+  plainPassword_lt?: Maybe<String>;
+  plainPassword_lte?: Maybe<String>;
+  plainPassword_gt?: Maybe<String>;
+  plainPassword_gte?: Maybe<String>;
+  plainPassword_contains?: Maybe<String>;
+  plainPassword_not_contains?: Maybe<String>;
+  plainPassword_starts_with?: Maybe<String>;
+  plainPassword_not_starts_with?: Maybe<String>;
+  plainPassword_ends_with?: Maybe<String>;
+  plainPassword_not_ends_with?: Maybe<String>;
   firstname?: Maybe<String>;
   firstname_not?: Maybe<String>;
   firstname_in?: Maybe<String[] | String>;
@@ -199,10 +809,48 @@ export interface UserWhereInput {
   lastname_not_starts_with?: Maybe<String>;
   lastname_ends_with?: Maybe<String>;
   lastname_not_ends_with?: Maybe<String>;
+  birthday?: Maybe<String>;
+  birthday_not?: Maybe<String>;
+  birthday_in?: Maybe<String[] | String>;
+  birthday_not_in?: Maybe<String[] | String>;
+  birthday_lt?: Maybe<String>;
+  birthday_lte?: Maybe<String>;
+  birthday_gt?: Maybe<String>;
+  birthday_gte?: Maybe<String>;
+  birthday_contains?: Maybe<String>;
+  birthday_not_contains?: Maybe<String>;
+  birthday_starts_with?: Maybe<String>;
+  birthday_not_starts_with?: Maybe<String>;
+  birthday_ends_with?: Maybe<String>;
+  birthday_not_ends_with?: Maybe<String>;
+  status?: Maybe<Status>;
+  status_not?: Maybe<Status>;
+  status_in?: Maybe<Status[] | Status>;
+  status_not_in?: Maybe<Status[] | Status>;
   role?: Maybe<Role>;
   role_not?: Maybe<Role>;
   role_in?: Maybe<Role[] | Role>;
   role_not_in?: Maybe<Role[] | Role>;
+  address?: Maybe<AddressWhereInput>;
+  studies_every?: Maybe<StudyWhereInput>;
+  studies_some?: Maybe<StudyWhereInput>;
+  studies_none?: Maybe<StudyWhereInput>;
+  sentMessages_every?: Maybe<MessageWhereInput>;
+  sentMessages_some?: Maybe<MessageWhereInput>;
+  sentMessages_none?: Maybe<MessageWhereInput>;
+  receivedmessages_every?: Maybe<MessageWhereInput>;
+  receivedmessages_some?: Maybe<MessageWhereInput>;
+  receivedmessages_none?: Maybe<MessageWhereInput>;
+  offers_every?: Maybe<OfferWhereInput>;
+  offers_some?: Maybe<OfferWhereInput>;
+  offers_none?: Maybe<OfferWhereInput>;
+  reports_every?: Maybe<ReportWhereInput>;
+  reports_some?: Maybe<ReportWhereInput>;
+  reports_none?: Maybe<ReportWhereInput>;
+  reportedBy_every?: Maybe<ReportWhereInput>;
+  reportedBy_some?: Maybe<ReportWhereInput>;
+  reportedBy_none?: Maybe<ReportWhereInput>;
+  presentationPage?: Maybe<PresentationPageWhereInput>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -224,29 +872,2228 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
+export interface AddressWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  country?: Maybe<String>;
+  country_not?: Maybe<String>;
+  country_in?: Maybe<String[] | String>;
+  country_not_in?: Maybe<String[] | String>;
+  country_lt?: Maybe<String>;
+  country_lte?: Maybe<String>;
+  country_gt?: Maybe<String>;
+  country_gte?: Maybe<String>;
+  country_contains?: Maybe<String>;
+  country_not_contains?: Maybe<String>;
+  country_starts_with?: Maybe<String>;
+  country_not_starts_with?: Maybe<String>;
+  country_ends_with?: Maybe<String>;
+  country_not_ends_with?: Maybe<String>;
+  region?: Maybe<String>;
+  region_not?: Maybe<String>;
+  region_in?: Maybe<String[] | String>;
+  region_not_in?: Maybe<String[] | String>;
+  region_lt?: Maybe<String>;
+  region_lte?: Maybe<String>;
+  region_gt?: Maybe<String>;
+  region_gte?: Maybe<String>;
+  region_contains?: Maybe<String>;
+  region_not_contains?: Maybe<String>;
+  region_starts_with?: Maybe<String>;
+  region_not_starts_with?: Maybe<String>;
+  region_ends_with?: Maybe<String>;
+  region_not_ends_with?: Maybe<String>;
+  postalCode?: Maybe<String>;
+  postalCode_not?: Maybe<String>;
+  postalCode_in?: Maybe<String[] | String>;
+  postalCode_not_in?: Maybe<String[] | String>;
+  postalCode_lt?: Maybe<String>;
+  postalCode_lte?: Maybe<String>;
+  postalCode_gt?: Maybe<String>;
+  postalCode_gte?: Maybe<String>;
+  postalCode_contains?: Maybe<String>;
+  postalCode_not_contains?: Maybe<String>;
+  postalCode_starts_with?: Maybe<String>;
+  postalCode_not_starts_with?: Maybe<String>;
+  postalCode_ends_with?: Maybe<String>;
+  postalCode_not_ends_with?: Maybe<String>;
+  town?: Maybe<String>;
+  town_not?: Maybe<String>;
+  town_in?: Maybe<String[] | String>;
+  town_not_in?: Maybe<String[] | String>;
+  town_lt?: Maybe<String>;
+  town_lte?: Maybe<String>;
+  town_gt?: Maybe<String>;
+  town_gte?: Maybe<String>;
+  town_contains?: Maybe<String>;
+  town_not_contains?: Maybe<String>;
+  town_starts_with?: Maybe<String>;
+  town_not_starts_with?: Maybe<String>;
+  town_ends_with?: Maybe<String>;
+  town_not_ends_with?: Maybe<String>;
+  street?: Maybe<String>;
+  street_not?: Maybe<String>;
+  street_in?: Maybe<String[] | String>;
+  street_not_in?: Maybe<String[] | String>;
+  street_lt?: Maybe<String>;
+  street_lte?: Maybe<String>;
+  street_gt?: Maybe<String>;
+  street_gte?: Maybe<String>;
+  street_contains?: Maybe<String>;
+  street_not_contains?: Maybe<String>;
+  street_starts_with?: Maybe<String>;
+  street_not_starts_with?: Maybe<String>;
+  street_ends_with?: Maybe<String>;
+  street_not_ends_with?: Maybe<String>;
+  userAccount?: Maybe<UserWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<AddressWhereInput[] | AddressWhereInput>;
+  OR?: Maybe<AddressWhereInput[] | AddressWhereInput>;
+  NOT?: Maybe<AddressWhereInput[] | AddressWhereInput>;
+}
+
+export interface MessageWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  sender?: Maybe<UserWhereInput>;
+  receiver?: Maybe<UserWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<MessageWhereInput[] | MessageWhereInput>;
+  OR?: Maybe<MessageWhereInput[] | MessageWhereInput>;
+  NOT?: Maybe<MessageWhereInput[] | MessageWhereInput>;
+}
+
+export interface OfferWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  tags_every?: Maybe<TagWhereInput>;
+  tags_some?: Maybe<TagWhereInput>;
+  tags_none?: Maybe<TagWhereInput>;
+  reports_every?: Maybe<ReportWhereInput>;
+  reports_some?: Maybe<ReportWhereInput>;
+  reports_none?: Maybe<ReportWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<OfferWhereInput[] | OfferWhereInput>;
+  OR?: Maybe<OfferWhereInput[] | OfferWhereInput>;
+  NOT?: Maybe<OfferWhereInput[] | OfferWhereInput>;
+}
+
+export interface TagWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  offers_every?: Maybe<OfferWhereInput>;
+  offers_some?: Maybe<OfferWhereInput>;
+  offers_none?: Maybe<OfferWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<TagWhereInput[] | TagWhereInput>;
+  OR?: Maybe<TagWhereInput[] | TagWhereInput>;
+  NOT?: Maybe<TagWhereInput[] | TagWhereInput>;
+}
+
+export interface ReportWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  motivation?: Maybe<String>;
+  motivation_not?: Maybe<String>;
+  motivation_in?: Maybe<String[] | String>;
+  motivation_not_in?: Maybe<String[] | String>;
+  motivation_lt?: Maybe<String>;
+  motivation_lte?: Maybe<String>;
+  motivation_gt?: Maybe<String>;
+  motivation_gte?: Maybe<String>;
+  motivation_contains?: Maybe<String>;
+  motivation_not_contains?: Maybe<String>;
+  motivation_starts_with?: Maybe<String>;
+  motivation_not_starts_with?: Maybe<String>;
+  motivation_ends_with?: Maybe<String>;
+  motivation_not_ends_with?: Maybe<String>;
+  status?: Maybe<String>;
+  status_not?: Maybe<String>;
+  status_in?: Maybe<String[] | String>;
+  status_not_in?: Maybe<String[] | String>;
+  status_lt?: Maybe<String>;
+  status_lte?: Maybe<String>;
+  status_gt?: Maybe<String>;
+  status_gte?: Maybe<String>;
+  status_contains?: Maybe<String>;
+  status_not_contains?: Maybe<String>;
+  status_starts_with?: Maybe<String>;
+  status_not_starts_with?: Maybe<String>;
+  status_ends_with?: Maybe<String>;
+  status_not_ends_with?: Maybe<String>;
+  reporter?: Maybe<UserWhereInput>;
+  offer?: Maybe<OfferWhereInput>;
+  userReported?: Maybe<UserWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ReportWhereInput[] | ReportWhereInput>;
+  OR?: Maybe<ReportWhereInput[] | ReportWhereInput>;
+  NOT?: Maybe<ReportWhereInput[] | ReportWhereInput>;
+}
+
+export interface PresentationPageWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  status?: Maybe<String>;
+  status_not?: Maybe<String>;
+  status_in?: Maybe<String[] | String>;
+  status_not_in?: Maybe<String[] | String>;
+  status_lt?: Maybe<String>;
+  status_lte?: Maybe<String>;
+  status_gt?: Maybe<String>;
+  status_gte?: Maybe<String>;
+  status_contains?: Maybe<String>;
+  status_not_contains?: Maybe<String>;
+  status_starts_with?: Maybe<String>;
+  status_not_starts_with?: Maybe<String>;
+  status_ends_with?: Maybe<String>;
+  status_not_ends_with?: Maybe<String>;
+  owner?: Maybe<UserWhereInput>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<PresentationPageWhereInput[] | PresentationPageWhereInput>;
+  OR?: Maybe<PresentationPageWhereInput[] | PresentationPageWhereInput>;
+  NOT?: Maybe<PresentationPageWhereInput[] | PresentationPageWhereInput>;
+}
+
+export type ApplicationWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ApplicationWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  status?: Maybe<String>;
+  status_not?: Maybe<String>;
+  status_in?: Maybe<String[] | String>;
+  status_not_in?: Maybe<String[] | String>;
+  status_lt?: Maybe<String>;
+  status_lte?: Maybe<String>;
+  status_gt?: Maybe<String>;
+  status_gte?: Maybe<String>;
+  status_contains?: Maybe<String>;
+  status_not_contains?: Maybe<String>;
+  status_starts_with?: Maybe<String>;
+  status_not_starts_with?: Maybe<String>;
+  status_ends_with?: Maybe<String>;
+  status_not_ends_with?: Maybe<String>;
+  comment?: Maybe<String>;
+  comment_not?: Maybe<String>;
+  comment_in?: Maybe<String[] | String>;
+  comment_not_in?: Maybe<String[] | String>;
+  comment_lt?: Maybe<String>;
+  comment_lte?: Maybe<String>;
+  comment_gt?: Maybe<String>;
+  comment_gte?: Maybe<String>;
+  comment_contains?: Maybe<String>;
+  comment_not_contains?: Maybe<String>;
+  comment_starts_with?: Maybe<String>;
+  comment_not_starts_with?: Maybe<String>;
+  comment_ends_with?: Maybe<String>;
+  comment_not_ends_with?: Maybe<String>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ApplicationWhereInput[] | ApplicationWhereInput>;
+  OR?: Maybe<ApplicationWhereInput[] | ApplicationWhereInput>;
+  NOT?: Maybe<ApplicationWhereInput[] | ApplicationWhereInput>;
+}
+
+export type DegreeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type MessageWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type OfferWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type PresentationPageWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type ReportWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type StudyWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type TagWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface AddressCreateInput {
+  id?: Maybe<ID_Input>;
+  country: String;
+  region: String;
+  postalCode: String;
+  town: String;
+  street: String;
+  userAccount?: Maybe<UserCreateOneWithoutAddressInput>;
+}
+
+export interface UserCreateOneWithoutAddressInput {
+  create?: Maybe<UserCreateWithoutAddressInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutAddressInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface StudyCreateManyWithoutUserAccountInput {
+  create?: Maybe<
+    StudyCreateWithoutUserAccountInput[] | StudyCreateWithoutUserAccountInput
+  >;
+  connect?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+}
+
+export interface StudyCreateWithoutUserAccountInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+  school: String;
+  degree?: Maybe<DegreeCreateOneWithoutStudiesInput>;
+}
+
+export interface DegreeCreateOneWithoutStudiesInput {
+  create?: Maybe<DegreeCreateWithoutStudiesInput>;
+  connect?: Maybe<DegreeWhereUniqueInput>;
+}
+
+export interface DegreeCreateWithoutStudiesInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+}
+
+export interface MessageCreateManyWithoutSenderInput {
+  create?: Maybe<
+    MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput
+  >;
+  connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+}
+
+export interface MessageCreateWithoutSenderInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  receiver?: Maybe<UserCreateOneWithoutReceivedmessagesInput>;
+}
+
+export interface UserCreateOneWithoutReceivedmessagesInput {
+  create?: Maybe<UserCreateWithoutReceivedmessagesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutReceivedmessagesInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface AddressCreateOneWithoutUserAccountInput {
+  create?: Maybe<AddressCreateWithoutUserAccountInput>;
+  connect?: Maybe<AddressWhereUniqueInput>;
+}
+
+export interface AddressCreateWithoutUserAccountInput {
+  id?: Maybe<ID_Input>;
+  country: String;
+  region: String;
+  postalCode: String;
+  town: String;
+  street: String;
+}
+
+export interface OfferCreateManyInput {
+  create?: Maybe<OfferCreateInput[] | OfferCreateInput>;
+  connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+}
+
+export interface OfferCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  tags?: Maybe<TagCreateManyWithoutOffersInput>;
+  reports?: Maybe<ReportCreateManyWithoutOfferInput>;
+}
+
+export interface TagCreateManyWithoutOffersInput {
+  create?: Maybe<TagCreateWithoutOffersInput[] | TagCreateWithoutOffersInput>;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+}
+
+export interface TagCreateWithoutOffersInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+}
+
+export interface ReportCreateManyWithoutOfferInput {
+  create?: Maybe<
+    ReportCreateWithoutOfferInput[] | ReportCreateWithoutOfferInput
+  >;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+}
+
+export interface ReportCreateWithoutOfferInput {
+  id?: Maybe<ID_Input>;
+  motivation: String;
+  status: String;
+  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
+  userReported?: Maybe<UserCreateOneWithoutReportedByInput>;
+}
+
+export interface UserCreateOneWithoutReportsInput {
+  create?: Maybe<UserCreateWithoutReportsInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutReportsInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface MessageCreateManyWithoutReceiverInput {
+  create?: Maybe<
+    MessageCreateWithoutReceiverInput[] | MessageCreateWithoutReceiverInput
+  >;
+  connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+}
+
+export interface MessageCreateWithoutReceiverInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  sender?: Maybe<UserCreateOneWithoutSentMessagesInput>;
+}
+
+export interface UserCreateOneWithoutSentMessagesInput {
+  create?: Maybe<UserCreateWithoutSentMessagesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutSentMessagesInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface ReportCreateManyWithoutReporterInput {
+  create?: Maybe<
+    ReportCreateWithoutReporterInput[] | ReportCreateWithoutReporterInput
+  >;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+}
+
+export interface ReportCreateWithoutReporterInput {
+  id?: Maybe<ID_Input>;
+  motivation: String;
+  status: String;
+  offer?: Maybe<OfferCreateOneWithoutReportsInput>;
+  userReported?: Maybe<UserCreateOneWithoutReportedByInput>;
+}
+
+export interface OfferCreateOneWithoutReportsInput {
+  create?: Maybe<OfferCreateWithoutReportsInput>;
+  connect?: Maybe<OfferWhereUniqueInput>;
+}
+
+export interface OfferCreateWithoutReportsInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  tags?: Maybe<TagCreateManyWithoutOffersInput>;
+}
+
+export interface UserCreateOneWithoutReportedByInput {
+  create?: Maybe<UserCreateWithoutReportedByInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutReportedByInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface PresentationPageCreateOneWithoutOwnerInput {
+  create?: Maybe<PresentationPageCreateWithoutOwnerInput>;
+  connect?: Maybe<PresentationPageWhereUniqueInput>;
+}
+
+export interface PresentationPageCreateWithoutOwnerInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  status: String;
+}
+
+export interface ReportCreateManyWithoutUserReportedInput {
+  create?: Maybe<
+    | ReportCreateWithoutUserReportedInput[]
+    | ReportCreateWithoutUserReportedInput
+  >;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+}
+
+export interface ReportCreateWithoutUserReportedInput {
+  id?: Maybe<ID_Input>;
+  motivation: String;
+  status: String;
+  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
+  offer?: Maybe<OfferCreateOneWithoutReportsInput>;
+}
+
+export interface AddressUpdateInput {
+  country?: Maybe<String>;
+  region?: Maybe<String>;
+  postalCode?: Maybe<String>;
+  town?: Maybe<String>;
+  street?: Maybe<String>;
+  userAccount?: Maybe<UserUpdateOneWithoutAddressInput>;
+}
+
+export interface UserUpdateOneWithoutAddressInput {
+  create?: Maybe<UserCreateWithoutAddressInput>;
+  update?: Maybe<UserUpdateWithoutAddressDataInput>;
+  upsert?: Maybe<UserUpsertWithoutAddressInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutAddressDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface StudyUpdateManyWithoutUserAccountInput {
+  create?: Maybe<
+    StudyCreateWithoutUserAccountInput[] | StudyCreateWithoutUserAccountInput
+  >;
+  delete?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  connect?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  set?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  disconnect?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  update?: Maybe<
+    | StudyUpdateWithWhereUniqueWithoutUserAccountInput[]
+    | StudyUpdateWithWhereUniqueWithoutUserAccountInput
+  >;
+  upsert?: Maybe<
+    | StudyUpsertWithWhereUniqueWithoutUserAccountInput[]
+    | StudyUpsertWithWhereUniqueWithoutUserAccountInput
+  >;
+  deleteMany?: Maybe<StudyScalarWhereInput[] | StudyScalarWhereInput>;
+  updateMany?: Maybe<
+    StudyUpdateManyWithWhereNestedInput[] | StudyUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface StudyUpdateWithWhereUniqueWithoutUserAccountInput {
+  where: StudyWhereUniqueInput;
+  data: StudyUpdateWithoutUserAccountDataInput;
+}
+
+export interface StudyUpdateWithoutUserAccountDataInput {
+  label?: Maybe<String>;
+  school?: Maybe<String>;
+  degree?: Maybe<DegreeUpdateOneWithoutStudiesInput>;
+}
+
+export interface DegreeUpdateOneWithoutStudiesInput {
+  create?: Maybe<DegreeCreateWithoutStudiesInput>;
+  update?: Maybe<DegreeUpdateWithoutStudiesDataInput>;
+  upsert?: Maybe<DegreeUpsertWithoutStudiesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<DegreeWhereUniqueInput>;
+}
+
+export interface DegreeUpdateWithoutStudiesDataInput {
+  label?: Maybe<String>;
+}
+
+export interface DegreeUpsertWithoutStudiesInput {
+  update: DegreeUpdateWithoutStudiesDataInput;
+  create: DegreeCreateWithoutStudiesInput;
+}
+
+export interface StudyUpsertWithWhereUniqueWithoutUserAccountInput {
+  where: StudyWhereUniqueInput;
+  update: StudyUpdateWithoutUserAccountDataInput;
+  create: StudyCreateWithoutUserAccountInput;
+}
+
+export interface StudyScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  school?: Maybe<String>;
+  school_not?: Maybe<String>;
+  school_in?: Maybe<String[] | String>;
+  school_not_in?: Maybe<String[] | String>;
+  school_lt?: Maybe<String>;
+  school_lte?: Maybe<String>;
+  school_gt?: Maybe<String>;
+  school_gte?: Maybe<String>;
+  school_contains?: Maybe<String>;
+  school_not_contains?: Maybe<String>;
+  school_starts_with?: Maybe<String>;
+  school_not_starts_with?: Maybe<String>;
+  school_ends_with?: Maybe<String>;
+  school_not_ends_with?: Maybe<String>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<StudyScalarWhereInput[] | StudyScalarWhereInput>;
+  OR?: Maybe<StudyScalarWhereInput[] | StudyScalarWhereInput>;
+  NOT?: Maybe<StudyScalarWhereInput[] | StudyScalarWhereInput>;
+}
+
+export interface StudyUpdateManyWithWhereNestedInput {
+  where: StudyScalarWhereInput;
+  data: StudyUpdateManyDataInput;
+}
+
+export interface StudyUpdateManyDataInput {
+  label?: Maybe<String>;
+  school?: Maybe<String>;
+}
+
+export interface MessageUpdateManyWithoutSenderInput {
+  create?: Maybe<
+    MessageCreateWithoutSenderInput[] | MessageCreateWithoutSenderInput
+  >;
+  delete?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  set?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  disconnect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  update?: Maybe<
+    | MessageUpdateWithWhereUniqueWithoutSenderInput[]
+    | MessageUpdateWithWhereUniqueWithoutSenderInput
+  >;
+  upsert?: Maybe<
+    | MessageUpsertWithWhereUniqueWithoutSenderInput[]
+    | MessageUpsertWithWhereUniqueWithoutSenderInput
+  >;
+  deleteMany?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
+  updateMany?: Maybe<
+    | MessageUpdateManyWithWhereNestedInput[]
+    | MessageUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface MessageUpdateWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutSenderDataInput;
+}
+
+export interface MessageUpdateWithoutSenderDataInput {
+  content?: Maybe<String>;
+  receiver?: Maybe<UserUpdateOneWithoutReceivedmessagesInput>;
+}
+
+export interface UserUpdateOneWithoutReceivedmessagesInput {
+  create?: Maybe<UserCreateWithoutReceivedmessagesInput>;
+  update?: Maybe<UserUpdateWithoutReceivedmessagesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutReceivedmessagesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutReceivedmessagesDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface AddressUpdateOneWithoutUserAccountInput {
+  create?: Maybe<AddressCreateWithoutUserAccountInput>;
+  update?: Maybe<AddressUpdateWithoutUserAccountDataInput>;
+  upsert?: Maybe<AddressUpsertWithoutUserAccountInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<AddressWhereUniqueInput>;
+}
+
+export interface AddressUpdateWithoutUserAccountDataInput {
+  country?: Maybe<String>;
+  region?: Maybe<String>;
+  postalCode?: Maybe<String>;
+  town?: Maybe<String>;
+  street?: Maybe<String>;
+}
+
+export interface AddressUpsertWithoutUserAccountInput {
+  update: AddressUpdateWithoutUserAccountDataInput;
+  create: AddressCreateWithoutUserAccountInput;
+}
+
+export interface OfferUpdateManyInput {
+  create?: Maybe<OfferCreateInput[] | OfferCreateInput>;
+  update?: Maybe<
+    | OfferUpdateWithWhereUniqueNestedInput[]
+    | OfferUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | OfferUpsertWithWhereUniqueNestedInput[]
+    | OfferUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  set?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  disconnect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  deleteMany?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
+  updateMany?: Maybe<
+    OfferUpdateManyWithWhereNestedInput[] | OfferUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface OfferUpdateWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput;
+  data: OfferUpdateDataInput;
+}
+
+export interface OfferUpdateDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  tags?: Maybe<TagUpdateManyWithoutOffersInput>;
+  reports?: Maybe<ReportUpdateManyWithoutOfferInput>;
+}
+
+export interface TagUpdateManyWithoutOffersInput {
+  create?: Maybe<TagCreateWithoutOffersInput[] | TagCreateWithoutOffersInput>;
+  delete?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  set?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  disconnect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  update?: Maybe<
+    | TagUpdateWithWhereUniqueWithoutOffersInput[]
+    | TagUpdateWithWhereUniqueWithoutOffersInput
+  >;
+  upsert?: Maybe<
+    | TagUpsertWithWhereUniqueWithoutOffersInput[]
+    | TagUpsertWithWhereUniqueWithoutOffersInput
+  >;
+  deleteMany?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  updateMany?: Maybe<
+    TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface TagUpdateWithWhereUniqueWithoutOffersInput {
+  where: TagWhereUniqueInput;
+  data: TagUpdateWithoutOffersDataInput;
+}
+
+export interface TagUpdateWithoutOffersDataInput {
+  label?: Maybe<String>;
+}
+
+export interface TagUpsertWithWhereUniqueWithoutOffersInput {
+  where: TagWhereUniqueInput;
+  update: TagUpdateWithoutOffersDataInput;
+  create: TagCreateWithoutOffersInput;
+}
+
+export interface TagScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  OR?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  NOT?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+}
+
+export interface TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput;
+  data: TagUpdateManyDataInput;
+}
+
+export interface TagUpdateManyDataInput {
+  label?: Maybe<String>;
+}
+
+export interface ReportUpdateManyWithoutOfferInput {
+  create?: Maybe<
+    ReportCreateWithoutOfferInput[] | ReportCreateWithoutOfferInput
+  >;
+  delete?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  set?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  disconnect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  update?: Maybe<
+    | ReportUpdateWithWhereUniqueWithoutOfferInput[]
+    | ReportUpdateWithWhereUniqueWithoutOfferInput
+  >;
+  upsert?: Maybe<
+    | ReportUpsertWithWhereUniqueWithoutOfferInput[]
+    | ReportUpsertWithWhereUniqueWithoutOfferInput
+  >;
+  deleteMany?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReportUpdateManyWithWhereNestedInput[]
+    | ReportUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ReportUpdateWithWhereUniqueWithoutOfferInput {
+  where: ReportWhereUniqueInput;
+  data: ReportUpdateWithoutOfferDataInput;
+}
+
+export interface ReportUpdateWithoutOfferDataInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
+  userReported?: Maybe<UserUpdateOneWithoutReportedByInput>;
+}
+
+export interface UserUpdateOneWithoutReportsInput {
+  create?: Maybe<UserCreateWithoutReportsInput>;
+  update?: Maybe<UserUpdateWithoutReportsDataInput>;
+  upsert?: Maybe<UserUpsertWithoutReportsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutReportsDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface MessageUpdateManyWithoutReceiverInput {
+  create?: Maybe<
+    MessageCreateWithoutReceiverInput[] | MessageCreateWithoutReceiverInput
+  >;
+  delete?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  connect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  set?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  disconnect?: Maybe<MessageWhereUniqueInput[] | MessageWhereUniqueInput>;
+  update?: Maybe<
+    | MessageUpdateWithWhereUniqueWithoutReceiverInput[]
+    | MessageUpdateWithWhereUniqueWithoutReceiverInput
+  >;
+  upsert?: Maybe<
+    | MessageUpsertWithWhereUniqueWithoutReceiverInput[]
+    | MessageUpsertWithWhereUniqueWithoutReceiverInput
+  >;
+  deleteMany?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
+  updateMany?: Maybe<
+    | MessageUpdateManyWithWhereNestedInput[]
+    | MessageUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface MessageUpdateWithWhereUniqueWithoutReceiverInput {
+  where: MessageWhereUniqueInput;
+  data: MessageUpdateWithoutReceiverDataInput;
+}
+
+export interface MessageUpdateWithoutReceiverDataInput {
+  content?: Maybe<String>;
+  sender?: Maybe<UserUpdateOneWithoutSentMessagesInput>;
+}
+
+export interface UserUpdateOneWithoutSentMessagesInput {
+  create?: Maybe<UserCreateWithoutSentMessagesInput>;
+  update?: Maybe<UserUpdateWithoutSentMessagesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutSentMessagesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutSentMessagesDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface ReportUpdateManyWithoutReporterInput {
+  create?: Maybe<
+    ReportCreateWithoutReporterInput[] | ReportCreateWithoutReporterInput
+  >;
+  delete?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  set?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  disconnect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  update?: Maybe<
+    | ReportUpdateWithWhereUniqueWithoutReporterInput[]
+    | ReportUpdateWithWhereUniqueWithoutReporterInput
+  >;
+  upsert?: Maybe<
+    | ReportUpsertWithWhereUniqueWithoutReporterInput[]
+    | ReportUpsertWithWhereUniqueWithoutReporterInput
+  >;
+  deleteMany?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReportUpdateManyWithWhereNestedInput[]
+    | ReportUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ReportUpdateWithWhereUniqueWithoutReporterInput {
+  where: ReportWhereUniqueInput;
+  data: ReportUpdateWithoutReporterDataInput;
+}
+
+export interface ReportUpdateWithoutReporterDataInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+  offer?: Maybe<OfferUpdateOneWithoutReportsInput>;
+  userReported?: Maybe<UserUpdateOneWithoutReportedByInput>;
+}
+
+export interface OfferUpdateOneWithoutReportsInput {
+  create?: Maybe<OfferCreateWithoutReportsInput>;
+  update?: Maybe<OfferUpdateWithoutReportsDataInput>;
+  upsert?: Maybe<OfferUpsertWithoutReportsInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<OfferWhereUniqueInput>;
+}
+
+export interface OfferUpdateWithoutReportsDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  tags?: Maybe<TagUpdateManyWithoutOffersInput>;
+}
+
+export interface OfferUpsertWithoutReportsInput {
+  update: OfferUpdateWithoutReportsDataInput;
+  create: OfferCreateWithoutReportsInput;
+}
+
+export interface UserUpdateOneWithoutReportedByInput {
+  create?: Maybe<UserCreateWithoutReportedByInput>;
+  update?: Maybe<UserUpdateWithoutReportedByDataInput>;
+  upsert?: Maybe<UserUpsertWithoutReportedByInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutReportedByDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface PresentationPageUpdateOneWithoutOwnerInput {
+  create?: Maybe<PresentationPageCreateWithoutOwnerInput>;
+  update?: Maybe<PresentationPageUpdateWithoutOwnerDataInput>;
+  upsert?: Maybe<PresentationPageUpsertWithoutOwnerInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<PresentationPageWhereUniqueInput>;
+}
+
+export interface PresentationPageUpdateWithoutOwnerDataInput {
+  content?: Maybe<String>;
+  status?: Maybe<String>;
+}
+
+export interface PresentationPageUpsertWithoutOwnerInput {
+  update: PresentationPageUpdateWithoutOwnerDataInput;
+  create: PresentationPageCreateWithoutOwnerInput;
+}
+
+export interface UserUpsertWithoutReportedByInput {
+  update: UserUpdateWithoutReportedByDataInput;
+  create: UserCreateWithoutReportedByInput;
+}
+
+export interface ReportUpsertWithWhereUniqueWithoutReporterInput {
+  where: ReportWhereUniqueInput;
+  update: ReportUpdateWithoutReporterDataInput;
+  create: ReportCreateWithoutReporterInput;
+}
+
+export interface ReportScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  motivation?: Maybe<String>;
+  motivation_not?: Maybe<String>;
+  motivation_in?: Maybe<String[] | String>;
+  motivation_not_in?: Maybe<String[] | String>;
+  motivation_lt?: Maybe<String>;
+  motivation_lte?: Maybe<String>;
+  motivation_gt?: Maybe<String>;
+  motivation_gte?: Maybe<String>;
+  motivation_contains?: Maybe<String>;
+  motivation_not_contains?: Maybe<String>;
+  motivation_starts_with?: Maybe<String>;
+  motivation_not_starts_with?: Maybe<String>;
+  motivation_ends_with?: Maybe<String>;
+  motivation_not_ends_with?: Maybe<String>;
+  status?: Maybe<String>;
+  status_not?: Maybe<String>;
+  status_in?: Maybe<String[] | String>;
+  status_not_in?: Maybe<String[] | String>;
+  status_lt?: Maybe<String>;
+  status_lte?: Maybe<String>;
+  status_gt?: Maybe<String>;
+  status_gte?: Maybe<String>;
+  status_contains?: Maybe<String>;
+  status_not_contains?: Maybe<String>;
+  status_starts_with?: Maybe<String>;
+  status_not_starts_with?: Maybe<String>;
+  status_ends_with?: Maybe<String>;
+  status_not_ends_with?: Maybe<String>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+  OR?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+  NOT?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+}
+
+export interface ReportUpdateManyWithWhereNestedInput {
+  where: ReportScalarWhereInput;
+  data: ReportUpdateManyDataInput;
+}
+
+export interface ReportUpdateManyDataInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+}
+
+export interface ReportUpdateManyWithoutUserReportedInput {
+  create?: Maybe<
+    | ReportCreateWithoutUserReportedInput[]
+    | ReportCreateWithoutUserReportedInput
+  >;
+  delete?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  set?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  disconnect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  update?: Maybe<
+    | ReportUpdateWithWhereUniqueWithoutUserReportedInput[]
+    | ReportUpdateWithWhereUniqueWithoutUserReportedInput
+  >;
+  upsert?: Maybe<
+    | ReportUpsertWithWhereUniqueWithoutUserReportedInput[]
+    | ReportUpsertWithWhereUniqueWithoutUserReportedInput
+  >;
+  deleteMany?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReportUpdateManyWithWhereNestedInput[]
+    | ReportUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ReportUpdateWithWhereUniqueWithoutUserReportedInput {
+  where: ReportWhereUniqueInput;
+  data: ReportUpdateWithoutUserReportedDataInput;
+}
+
+export interface ReportUpdateWithoutUserReportedDataInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
+  offer?: Maybe<OfferUpdateOneWithoutReportsInput>;
+}
+
+export interface ReportUpsertWithWhereUniqueWithoutUserReportedInput {
+  where: ReportWhereUniqueInput;
+  update: ReportUpdateWithoutUserReportedDataInput;
+  create: ReportCreateWithoutUserReportedInput;
+}
+
+export interface UserUpsertWithoutSentMessagesInput {
+  update: UserUpdateWithoutSentMessagesDataInput;
+  create: UserCreateWithoutSentMessagesInput;
+}
+
+export interface MessageUpsertWithWhereUniqueWithoutReceiverInput {
+  where: MessageWhereUniqueInput;
+  update: MessageUpdateWithoutReceiverDataInput;
+  create: MessageCreateWithoutReceiverInput;
+}
+
+export interface MessageScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  content?: Maybe<String>;
+  content_not?: Maybe<String>;
+  content_in?: Maybe<String[] | String>;
+  content_not_in?: Maybe<String[] | String>;
+  content_lt?: Maybe<String>;
+  content_lte?: Maybe<String>;
+  content_gt?: Maybe<String>;
+  content_gte?: Maybe<String>;
+  content_contains?: Maybe<String>;
+  content_not_contains?: Maybe<String>;
+  content_starts_with?: Maybe<String>;
+  content_not_starts_with?: Maybe<String>;
+  content_ends_with?: Maybe<String>;
+  content_not_ends_with?: Maybe<String>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
+  OR?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
+  NOT?: Maybe<MessageScalarWhereInput[] | MessageScalarWhereInput>;
+}
+
+export interface MessageUpdateManyWithWhereNestedInput {
+  where: MessageScalarWhereInput;
+  data: MessageUpdateManyDataInput;
+}
+
+export interface MessageUpdateManyDataInput {
+  content?: Maybe<String>;
+}
+
+export interface UserUpsertWithoutReportsInput {
+  update: UserUpdateWithoutReportsDataInput;
+  create: UserCreateWithoutReportsInput;
+}
+
+export interface ReportUpsertWithWhereUniqueWithoutOfferInput {
+  where: ReportWhereUniqueInput;
+  update: ReportUpdateWithoutOfferDataInput;
+  create: ReportCreateWithoutOfferInput;
+}
+
+export interface OfferUpsertWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput;
+  update: OfferUpdateDataInput;
+  create: OfferCreateInput;
+}
+
+export interface OfferScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  created_at?: Maybe<DateTimeInput>;
+  created_at_not?: Maybe<DateTimeInput>;
+  created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  created_at_lt?: Maybe<DateTimeInput>;
+  created_at_lte?: Maybe<DateTimeInput>;
+  created_at_gt?: Maybe<DateTimeInput>;
+  created_at_gte?: Maybe<DateTimeInput>;
+  updated_at?: Maybe<DateTimeInput>;
+  updated_at_not?: Maybe<DateTimeInput>;
+  updated_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updated_at_lt?: Maybe<DateTimeInput>;
+  updated_at_lte?: Maybe<DateTimeInput>;
+  updated_at_gt?: Maybe<DateTimeInput>;
+  updated_at_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
+  OR?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
+  NOT?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
+}
+
+export interface OfferUpdateManyWithWhereNestedInput {
+  where: OfferScalarWhereInput;
+  data: OfferUpdateManyDataInput;
+}
+
+export interface OfferUpdateManyDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface UserUpsertWithoutReceivedmessagesInput {
+  update: UserUpdateWithoutReceivedmessagesDataInput;
+  create: UserCreateWithoutReceivedmessagesInput;
+}
+
+export interface MessageUpsertWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput;
+  update: MessageUpdateWithoutSenderDataInput;
+  create: MessageCreateWithoutSenderInput;
+}
+
+export interface UserUpsertWithoutAddressInput {
+  update: UserUpdateWithoutAddressDataInput;
+  create: UserCreateWithoutAddressInput;
+}
+
+export interface AddressUpdateManyMutationInput {
+  country?: Maybe<String>;
+  region?: Maybe<String>;
+  postalCode?: Maybe<String>;
+  town?: Maybe<String>;
+  street?: Maybe<String>;
+}
+
+export interface ApplicationCreateInput {
+  id?: Maybe<ID_Input>;
+  status: String;
+  comment?: Maybe<String>;
+}
+
+export interface ApplicationUpdateInput {
+  status?: Maybe<String>;
+  comment?: Maybe<String>;
+}
+
+export interface ApplicationUpdateManyMutationInput {
+  status?: Maybe<String>;
+  comment?: Maybe<String>;
+}
+
+export interface DegreeCreateInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+  studies?: Maybe<StudyCreateManyWithoutDegreeInput>;
+}
+
+export interface StudyCreateManyWithoutDegreeInput {
+  create?: Maybe<
+    StudyCreateWithoutDegreeInput[] | StudyCreateWithoutDegreeInput
+  >;
+  connect?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+}
+
+export interface StudyCreateWithoutDegreeInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+  school: String;
+  userAccount?: Maybe<UserCreateOneWithoutStudiesInput>;
+}
+
+export interface UserCreateOneWithoutStudiesInput {
+  create?: Maybe<UserCreateWithoutStudiesInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutStudiesInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface DegreeUpdateInput {
+  label?: Maybe<String>;
+  studies?: Maybe<StudyUpdateManyWithoutDegreeInput>;
+}
+
+export interface StudyUpdateManyWithoutDegreeInput {
+  create?: Maybe<
+    StudyCreateWithoutDegreeInput[] | StudyCreateWithoutDegreeInput
+  >;
+  delete?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  connect?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  set?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  disconnect?: Maybe<StudyWhereUniqueInput[] | StudyWhereUniqueInput>;
+  update?: Maybe<
+    | StudyUpdateWithWhereUniqueWithoutDegreeInput[]
+    | StudyUpdateWithWhereUniqueWithoutDegreeInput
+  >;
+  upsert?: Maybe<
+    | StudyUpsertWithWhereUniqueWithoutDegreeInput[]
+    | StudyUpsertWithWhereUniqueWithoutDegreeInput
+  >;
+  deleteMany?: Maybe<StudyScalarWhereInput[] | StudyScalarWhereInput>;
+  updateMany?: Maybe<
+    StudyUpdateManyWithWhereNestedInput[] | StudyUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface StudyUpdateWithWhereUniqueWithoutDegreeInput {
+  where: StudyWhereUniqueInput;
+  data: StudyUpdateWithoutDegreeDataInput;
+}
+
+export interface StudyUpdateWithoutDegreeDataInput {
+  label?: Maybe<String>;
+  school?: Maybe<String>;
+  userAccount?: Maybe<UserUpdateOneWithoutStudiesInput>;
+}
+
+export interface UserUpdateOneWithoutStudiesInput {
+  create?: Maybe<UserCreateWithoutStudiesInput>;
+  update?: Maybe<UserUpdateWithoutStudiesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutStudiesInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutStudiesDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface UserUpsertWithoutStudiesInput {
+  update: UserUpdateWithoutStudiesDataInput;
+  create: UserCreateWithoutStudiesInput;
+}
+
+export interface StudyUpsertWithWhereUniqueWithoutDegreeInput {
+  where: StudyWhereUniqueInput;
+  update: StudyUpdateWithoutDegreeDataInput;
+  create: StudyCreateWithoutDegreeInput;
+}
+
+export interface DegreeUpdateManyMutationInput {
+  label?: Maybe<String>;
+}
+
+export interface MessageCreateInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  sender?: Maybe<UserCreateOneWithoutSentMessagesInput>;
+  receiver?: Maybe<UserCreateOneWithoutReceivedmessagesInput>;
+}
+
+export interface MessageUpdateInput {
+  content?: Maybe<String>;
+  sender?: Maybe<UserUpdateOneWithoutSentMessagesInput>;
+  receiver?: Maybe<UserUpdateOneWithoutReceivedmessagesInput>;
+}
+
+export interface MessageUpdateManyMutationInput {
+  content?: Maybe<String>;
+}
+
+export interface OfferUpdateInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  tags?: Maybe<TagUpdateManyWithoutOffersInput>;
+  reports?: Maybe<ReportUpdateManyWithoutOfferInput>;
+}
+
+export interface OfferUpdateManyMutationInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface PresentationPageCreateInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  status: String;
+  owner?: Maybe<UserCreateOneWithoutPresentationPageInput>;
+}
+
+export interface UserCreateOneWithoutPresentationPageInput {
+  create?: Maybe<UserCreateWithoutPresentationPageInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutPresentationPageInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+}
+
+export interface PresentationPageUpdateInput {
+  content?: Maybe<String>;
+  status?: Maybe<String>;
+  owner?: Maybe<UserUpdateOneWithoutPresentationPageInput>;
+}
+
+export interface UserUpdateOneWithoutPresentationPageInput {
+  create?: Maybe<UserCreateWithoutPresentationPageInput>;
+  update?: Maybe<UserUpdateWithoutPresentationPageDataInput>;
+  upsert?: Maybe<UserUpsertWithoutPresentationPageInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutPresentationPageDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+}
+
+export interface UserUpsertWithoutPresentationPageInput {
+  update: UserUpdateWithoutPresentationPageDataInput;
+  create: UserCreateWithoutPresentationPageInput;
+}
+
+export interface PresentationPageUpdateManyMutationInput {
+  content?: Maybe<String>;
+  status?: Maybe<String>;
+}
+
+export interface ReportCreateInput {
+  id?: Maybe<ID_Input>;
+  motivation: String;
+  status: String;
+  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
+  offer?: Maybe<OfferCreateOneWithoutReportsInput>;
+  userReported?: Maybe<UserCreateOneWithoutReportedByInput>;
+}
+
+export interface ReportUpdateInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
+  offer?: Maybe<OfferUpdateOneWithoutReportsInput>;
+  userReported?: Maybe<UserUpdateOneWithoutReportedByInput>;
+}
+
+export interface ReportUpdateManyMutationInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+}
+
+export interface StudyCreateInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+  school: String;
+  degree?: Maybe<DegreeCreateOneWithoutStudiesInput>;
+  userAccount?: Maybe<UserCreateOneWithoutStudiesInput>;
+}
+
+export interface StudyUpdateInput {
+  label?: Maybe<String>;
+  school?: Maybe<String>;
+  degree?: Maybe<DegreeUpdateOneWithoutStudiesInput>;
+  userAccount?: Maybe<UserUpdateOneWithoutStudiesInput>;
+}
+
+export interface StudyUpdateManyMutationInput {
+  label?: Maybe<String>;
+  school?: Maybe<String>;
+}
+
+export interface TagCreateInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+  offers?: Maybe<OfferCreateManyWithoutTagsInput>;
+}
+
+export interface OfferCreateManyWithoutTagsInput {
+  create?: Maybe<OfferCreateWithoutTagsInput[] | OfferCreateWithoutTagsInput>;
+  connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+}
+
+export interface OfferCreateWithoutTagsInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  reports?: Maybe<ReportCreateManyWithoutOfferInput>;
+}
+
+export interface TagUpdateInput {
+  label?: Maybe<String>;
+  offers?: Maybe<OfferUpdateManyWithoutTagsInput>;
+}
+
+export interface OfferUpdateManyWithoutTagsInput {
+  create?: Maybe<OfferCreateWithoutTagsInput[] | OfferCreateWithoutTagsInput>;
+  delete?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  set?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  disconnect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  update?: Maybe<
+    | OfferUpdateWithWhereUniqueWithoutTagsInput[]
+    | OfferUpdateWithWhereUniqueWithoutTagsInput
+  >;
+  upsert?: Maybe<
+    | OfferUpsertWithWhereUniqueWithoutTagsInput[]
+    | OfferUpsertWithWhereUniqueWithoutTagsInput
+  >;
+  deleteMany?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
+  updateMany?: Maybe<
+    OfferUpdateManyWithWhereNestedInput[] | OfferUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface OfferUpdateWithWhereUniqueWithoutTagsInput {
+  where: OfferWhereUniqueInput;
+  data: OfferUpdateWithoutTagsDataInput;
+}
+
+export interface OfferUpdateWithoutTagsDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  reports?: Maybe<ReportUpdateManyWithoutOfferInput>;
+}
+
+export interface OfferUpsertWithWhereUniqueWithoutTagsInput {
+  where: OfferWhereUniqueInput;
+  update: OfferUpdateWithoutTagsDataInput;
+  create: OfferCreateWithoutTagsInput;
+}
+
+export interface TagUpdateManyMutationInput {
+  label?: Maybe<String>;
+}
+
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   email: String;
   password: String;
+  plainPassword?: Maybe<String>;
   firstname?: Maybe<String>;
   lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
   role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
 }
 
 export interface UserUpdateInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
   firstname?: Maybe<String>;
   lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
   role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
 }
 
 export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
   firstname?: Maybe<String>;
   lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
   role?: Maybe<Role>;
+}
+
+export interface AddressSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AddressWhereInput>;
+  AND?: Maybe<AddressSubscriptionWhereInput[] | AddressSubscriptionWhereInput>;
+  OR?: Maybe<AddressSubscriptionWhereInput[] | AddressSubscriptionWhereInput>;
+  NOT?: Maybe<AddressSubscriptionWhereInput[] | AddressSubscriptionWhereInput>;
+}
+
+export interface ApplicationSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ApplicationWhereInput>;
+  AND?: Maybe<
+    ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ApplicationSubscriptionWhereInput[] | ApplicationSubscriptionWhereInput
+  >;
+}
+
+export interface DegreeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<DegreeWhereInput>;
+  AND?: Maybe<DegreeSubscriptionWhereInput[] | DegreeSubscriptionWhereInput>;
+  OR?: Maybe<DegreeSubscriptionWhereInput[] | DegreeSubscriptionWhereInput>;
+  NOT?: Maybe<DegreeSubscriptionWhereInput[] | DegreeSubscriptionWhereInput>;
+}
+
+export interface MessageSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<MessageWhereInput>;
+  AND?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
+  OR?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
+  NOT?: Maybe<MessageSubscriptionWhereInput[] | MessageSubscriptionWhereInput>;
+}
+
+export interface OfferSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<OfferWhereInput>;
+  AND?: Maybe<OfferSubscriptionWhereInput[] | OfferSubscriptionWhereInput>;
+  OR?: Maybe<OfferSubscriptionWhereInput[] | OfferSubscriptionWhereInput>;
+  NOT?: Maybe<OfferSubscriptionWhereInput[] | OfferSubscriptionWhereInput>;
+}
+
+export interface PresentationPageSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PresentationPageWhereInput>;
+  AND?: Maybe<
+    | PresentationPageSubscriptionWhereInput[]
+    | PresentationPageSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | PresentationPageSubscriptionWhereInput[]
+    | PresentationPageSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | PresentationPageSubscriptionWhereInput[]
+    | PresentationPageSubscriptionWhereInput
+  >;
+}
+
+export interface ReportSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ReportWhereInput>;
+  AND?: Maybe<ReportSubscriptionWhereInput[] | ReportSubscriptionWhereInput>;
+  OR?: Maybe<ReportSubscriptionWhereInput[] | ReportSubscriptionWhereInput>;
+  NOT?: Maybe<ReportSubscriptionWhereInput[] | ReportSubscriptionWhereInput>;
+}
+
+export interface StudySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<StudyWhereInput>;
+  AND?: Maybe<StudySubscriptionWhereInput[] | StudySubscriptionWhereInput>;
+  OR?: Maybe<StudySubscriptionWhereInput[] | StudySubscriptionWhereInput>;
+  NOT?: Maybe<StudySubscriptionWhereInput[] | StudySubscriptionWhereInput>;
+}
+
+export interface TagSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TagWhereInput>;
+  AND?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+  OR?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+  NOT?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -264,12 +3111,66 @@ export interface NodeNode {
   id: ID_Output;
 }
 
+export interface Address {
+  id: ID_Output;
+  country: String;
+  region: String;
+  postalCode: String;
+  town: String;
+  street: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface AddressPromise extends Promise<Address>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  country: () => Promise<String>;
+  region: () => Promise<String>;
+  postalCode: () => Promise<String>;
+  town: () => Promise<String>;
+  street: () => Promise<String>;
+  userAccount: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface AddressSubscription
+  extends Promise<AsyncIterator<Address>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  country: () => Promise<AsyncIterator<String>>;
+  region: () => Promise<AsyncIterator<String>>;
+  postalCode: () => Promise<AsyncIterator<String>>;
+  town: () => Promise<AsyncIterator<String>>;
+  street: () => Promise<AsyncIterator<String>>;
+  userAccount: <T = UserSubscription>() => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface AddressNullablePromise
+  extends Promise<Address | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  country: () => Promise<String>;
+  region: () => Promise<String>;
+  postalCode: () => Promise<String>;
+  town: () => Promise<String>;
+  street: () => Promise<String>;
+  userAccount: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
 export interface User {
   id: ID_Output;
   email: String;
   password: String;
+  plainPassword?: String;
   firstname?: String;
   lastname?: String;
+  birthday?: String;
+  status?: Status;
   role?: Role;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -279,9 +3180,68 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  plainPassword: () => Promise<String>;
   firstname: () => Promise<String>;
   lastname: () => Promise<String>;
+  birthday: () => Promise<String>;
+  status: () => Promise<Status>;
   role: () => Promise<Role>;
+  address: <T = AddressPromise>() => T;
+  studies: <T = FragmentableArray<Study>>(args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  sentMessages: <T = FragmentableArray<Message>>(args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  receivedmessages: <T = FragmentableArray<Message>>(args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  offers: <T = FragmentableArray<Offer>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reports: <T = FragmentableArray<Report>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reportedBy: <T = FragmentableArray<Report>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  presentationPage: <T = PresentationPagePromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -292,9 +3252,68 @@ export interface UserSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  plainPassword: () => Promise<AsyncIterator<String>>;
   firstname: () => Promise<AsyncIterator<String>>;
   lastname: () => Promise<AsyncIterator<String>>;
+  birthday: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Status>>;
   role: () => Promise<AsyncIterator<Role>>;
+  address: <T = AddressSubscription>() => T;
+  studies: <T = Promise<AsyncIterator<StudySubscription>>>(args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  sentMessages: <T = Promise<AsyncIterator<MessageSubscription>>>(args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  receivedmessages: <T = Promise<AsyncIterator<MessageSubscription>>>(args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  offers: <T = Promise<AsyncIterator<OfferSubscription>>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reports: <T = Promise<AsyncIterator<ReportSubscription>>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reportedBy: <T = Promise<AsyncIterator<ReportSubscription>>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  presentationPage: <T = PresentationPageSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -305,32 +3324,463 @@ export interface UserNullablePromise
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  plainPassword: () => Promise<String>;
   firstname: () => Promise<String>;
   lastname: () => Promise<String>;
+  birthday: () => Promise<String>;
+  status: () => Promise<Status>;
   role: () => Promise<Role>;
+  address: <T = AddressPromise>() => T;
+  studies: <T = FragmentableArray<Study>>(args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  sentMessages: <T = FragmentableArray<Message>>(args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  receivedmessages: <T = FragmentableArray<Message>>(args?: {
+    where?: MessageWhereInput;
+    orderBy?: MessageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  offers: <T = FragmentableArray<Offer>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reports: <T = FragmentableArray<Report>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reportedBy: <T = FragmentableArray<Report>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  presentationPage: <T = PresentationPagePromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
+export interface Study {
+  id: ID_Output;
+  label: String;
+  school: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface StudyPromise extends Promise<Study>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  school: () => Promise<String>;
+  degree: <T = DegreePromise>() => T;
+  userAccount: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface StudySubscription
+  extends Promise<AsyncIterator<Study>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  school: () => Promise<AsyncIterator<String>>;
+  degree: <T = DegreeSubscription>() => T;
+  userAccount: <T = UserSubscription>() => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface StudyNullablePromise
+  extends Promise<Study | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  school: () => Promise<String>;
+  degree: <T = DegreePromise>() => T;
+  userAccount: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface Degree {
+  id: ID_Output;
+  label: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface DegreePromise extends Promise<Degree>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  studies: <T = FragmentableArray<Study>>(args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface DegreeSubscription
+  extends Promise<AsyncIterator<Degree>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  studies: <T = Promise<AsyncIterator<StudySubscription>>>(args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface DegreeNullablePromise
+  extends Promise<Degree | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  studies: <T = FragmentableArray<Study>>(args?: {
+    where?: StudyWhereInput;
+    orderBy?: StudyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface Message {
+  id: ID_Output;
+  content: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface MessagePromise extends Promise<Message>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  sender: <T = UserPromise>() => T;
+  receiver: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface MessageSubscription
+  extends Promise<AsyncIterator<Message>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  content: () => Promise<AsyncIterator<String>>;
+  sender: <T = UserSubscription>() => T;
+  receiver: <T = UserSubscription>() => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface MessageNullablePromise
+  extends Promise<Message | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  sender: <T = UserPromise>() => T;
+  receiver: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface Offer {
+  id: ID_Output;
+  title: String;
+  description: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface OfferPromise extends Promise<Offer>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  tags: <T = FragmentableArray<Tag>>(args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reports: <T = FragmentableArray<Report>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface OfferSubscription
+  extends Promise<AsyncIterator<Offer>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  tags: <T = Promise<AsyncIterator<TagSubscription>>>(args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reports: <T = Promise<AsyncIterator<ReportSubscription>>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface OfferNullablePromise
+  extends Promise<Offer | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  tags: <T = FragmentableArray<Tag>>(args?: {
+    where?: TagWhereInput;
+    orderBy?: TagOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  reports: <T = FragmentableArray<Report>>(args?: {
+    where?: ReportWhereInput;
+    orderBy?: ReportOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface Tag {
+  id: ID_Output;
+  label: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface TagPromise extends Promise<Tag>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  offers: <T = FragmentableArray<Offer>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface TagSubscription
+  extends Promise<AsyncIterator<Tag>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  offers: <T = Promise<AsyncIterator<OfferSubscription>>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TagNullablePromise extends Promise<Tag | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  offers: <T = FragmentableArray<Offer>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface Report {
+  id: ID_Output;
+  motivation: String;
+  status: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface ReportPromise extends Promise<Report>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  motivation: () => Promise<String>;
+  status: () => Promise<String>;
+  reporter: <T = UserPromise>() => T;
+  offer: <T = OfferPromise>() => T;
+  userReported: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface ReportSubscription
+  extends Promise<AsyncIterator<Report>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  motivation: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
+  reporter: <T = UserSubscription>() => T;
+  offer: <T = OfferSubscription>() => T;
+  userReported: <T = UserSubscription>() => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ReportNullablePromise
+  extends Promise<Report | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  motivation: () => Promise<String>;
+  status: () => Promise<String>;
+  reporter: <T = UserPromise>() => T;
+  offer: <T = OfferPromise>() => T;
+  userReported: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface PresentationPage {
+  id: ID_Output;
+  content: String;
+  status: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface PresentationPagePromise
+  extends Promise<PresentationPage>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  status: () => Promise<String>;
+  owner: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface PresentationPageSubscription
+  extends Promise<AsyncIterator<PresentationPage>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  content: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
+  owner: <T = UserSubscription>() => T;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface PresentationPageNullablePromise
+  extends Promise<PresentationPage | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  status: () => Promise<String>;
+  owner: <T = UserPromise>() => T;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface AddressConnection {
+  pageInfo: PageInfo;
+  edges: AddressEdge[];
+}
+
+export interface AddressConnectionPromise
+  extends Promise<AddressConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<AddressEdge>>() => T;
+  aggregate: <T = AggregateAddressPromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface AddressConnectionSubscription
+  extends Promise<AsyncIterator<AddressConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AddressEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAddressSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -354,6 +3804,532 @@ export interface PageInfoSubscription
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AddressEdge {
+  node: Address;
+  cursor: String;
+}
+
+export interface AddressEdgePromise extends Promise<AddressEdge>, Fragmentable {
+  node: <T = AddressPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AddressEdgeSubscription
+  extends Promise<AsyncIterator<AddressEdge>>,
+    Fragmentable {
+  node: <T = AddressSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateAddress {
+  count: Int;
+}
+
+export interface AggregateAddressPromise
+  extends Promise<AggregateAddress>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAddressSubscription
+  extends Promise<AsyncIterator<AggregateAddress>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Application {
+  id: ID_Output;
+  status: String;
+  comment?: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface ApplicationPromise extends Promise<Application>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  status: () => Promise<String>;
+  comment: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface ApplicationSubscription
+  extends Promise<AsyncIterator<Application>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  status: () => Promise<AsyncIterator<String>>;
+  comment: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ApplicationNullablePromise
+  extends Promise<Application | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  status: () => Promise<String>;
+  comment: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface ApplicationConnection {
+  pageInfo: PageInfo;
+  edges: ApplicationEdge[];
+}
+
+export interface ApplicationConnectionPromise
+  extends Promise<ApplicationConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ApplicationEdge>>() => T;
+  aggregate: <T = AggregateApplicationPromise>() => T;
+}
+
+export interface ApplicationConnectionSubscription
+  extends Promise<AsyncIterator<ApplicationConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ApplicationEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateApplicationSubscription>() => T;
+}
+
+export interface ApplicationEdge {
+  node: Application;
+  cursor: String;
+}
+
+export interface ApplicationEdgePromise
+  extends Promise<ApplicationEdge>,
+    Fragmentable {
+  node: <T = ApplicationPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ApplicationEdgeSubscription
+  extends Promise<AsyncIterator<ApplicationEdge>>,
+    Fragmentable {
+  node: <T = ApplicationSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateApplication {
+  count: Int;
+}
+
+export interface AggregateApplicationPromise
+  extends Promise<AggregateApplication>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateApplicationSubscription
+  extends Promise<AsyncIterator<AggregateApplication>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface DegreeConnection {
+  pageInfo: PageInfo;
+  edges: DegreeEdge[];
+}
+
+export interface DegreeConnectionPromise
+  extends Promise<DegreeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<DegreeEdge>>() => T;
+  aggregate: <T = AggregateDegreePromise>() => T;
+}
+
+export interface DegreeConnectionSubscription
+  extends Promise<AsyncIterator<DegreeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<DegreeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateDegreeSubscription>() => T;
+}
+
+export interface DegreeEdge {
+  node: Degree;
+  cursor: String;
+}
+
+export interface DegreeEdgePromise extends Promise<DegreeEdge>, Fragmentable {
+  node: <T = DegreePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface DegreeEdgeSubscription
+  extends Promise<AsyncIterator<DegreeEdge>>,
+    Fragmentable {
+  node: <T = DegreeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateDegree {
+  count: Int;
+}
+
+export interface AggregateDegreePromise
+  extends Promise<AggregateDegree>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateDegreeSubscription
+  extends Promise<AsyncIterator<AggregateDegree>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface MessageConnection {
+  pageInfo: PageInfo;
+  edges: MessageEdge[];
+}
+
+export interface MessageConnectionPromise
+  extends Promise<MessageConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<MessageEdge>>() => T;
+  aggregate: <T = AggregateMessagePromise>() => T;
+}
+
+export interface MessageConnectionSubscription
+  extends Promise<AsyncIterator<MessageConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<MessageEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateMessageSubscription>() => T;
+}
+
+export interface MessageEdge {
+  node: Message;
+  cursor: String;
+}
+
+export interface MessageEdgePromise extends Promise<MessageEdge>, Fragmentable {
+  node: <T = MessagePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface MessageEdgeSubscription
+  extends Promise<AsyncIterator<MessageEdge>>,
+    Fragmentable {
+  node: <T = MessageSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateMessage {
+  count: Int;
+}
+
+export interface AggregateMessagePromise
+  extends Promise<AggregateMessage>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateMessageSubscription
+  extends Promise<AsyncIterator<AggregateMessage>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface OfferConnection {
+  pageInfo: PageInfo;
+  edges: OfferEdge[];
+}
+
+export interface OfferConnectionPromise
+  extends Promise<OfferConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<OfferEdge>>() => T;
+  aggregate: <T = AggregateOfferPromise>() => T;
+}
+
+export interface OfferConnectionSubscription
+  extends Promise<AsyncIterator<OfferConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<OfferEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateOfferSubscription>() => T;
+}
+
+export interface OfferEdge {
+  node: Offer;
+  cursor: String;
+}
+
+export interface OfferEdgePromise extends Promise<OfferEdge>, Fragmentable {
+  node: <T = OfferPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface OfferEdgeSubscription
+  extends Promise<AsyncIterator<OfferEdge>>,
+    Fragmentable {
+  node: <T = OfferSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateOffer {
+  count: Int;
+}
+
+export interface AggregateOfferPromise
+  extends Promise<AggregateOffer>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateOfferSubscription
+  extends Promise<AsyncIterator<AggregateOffer>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface PresentationPageConnection {
+  pageInfo: PageInfo;
+  edges: PresentationPageEdge[];
+}
+
+export interface PresentationPageConnectionPromise
+  extends Promise<PresentationPageConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PresentationPageEdge>>() => T;
+  aggregate: <T = AggregatePresentationPagePromise>() => T;
+}
+
+export interface PresentationPageConnectionSubscription
+  extends Promise<AsyncIterator<PresentationPageConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PresentationPageEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePresentationPageSubscription>() => T;
+}
+
+export interface PresentationPageEdge {
+  node: PresentationPage;
+  cursor: String;
+}
+
+export interface PresentationPageEdgePromise
+  extends Promise<PresentationPageEdge>,
+    Fragmentable {
+  node: <T = PresentationPagePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface PresentationPageEdgeSubscription
+  extends Promise<AsyncIterator<PresentationPageEdge>>,
+    Fragmentable {
+  node: <T = PresentationPageSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregatePresentationPage {
+  count: Int;
+}
+
+export interface AggregatePresentationPagePromise
+  extends Promise<AggregatePresentationPage>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregatePresentationPageSubscription
+  extends Promise<AsyncIterator<AggregatePresentationPage>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ReportConnection {
+  pageInfo: PageInfo;
+  edges: ReportEdge[];
+}
+
+export interface ReportConnectionPromise
+  extends Promise<ReportConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ReportEdge>>() => T;
+  aggregate: <T = AggregateReportPromise>() => T;
+}
+
+export interface ReportConnectionSubscription
+  extends Promise<AsyncIterator<ReportConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ReportEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateReportSubscription>() => T;
+}
+
+export interface ReportEdge {
+  node: Report;
+  cursor: String;
+}
+
+export interface ReportEdgePromise extends Promise<ReportEdge>, Fragmentable {
+  node: <T = ReportPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ReportEdgeSubscription
+  extends Promise<AsyncIterator<ReportEdge>>,
+    Fragmentable {
+  node: <T = ReportSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateReport {
+  count: Int;
+}
+
+export interface AggregateReportPromise
+  extends Promise<AggregateReport>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateReportSubscription
+  extends Promise<AsyncIterator<AggregateReport>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface StudyConnection {
+  pageInfo: PageInfo;
+  edges: StudyEdge[];
+}
+
+export interface StudyConnectionPromise
+  extends Promise<StudyConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<StudyEdge>>() => T;
+  aggregate: <T = AggregateStudyPromise>() => T;
+}
+
+export interface StudyConnectionSubscription
+  extends Promise<AsyncIterator<StudyConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<StudyEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateStudySubscription>() => T;
+}
+
+export interface StudyEdge {
+  node: Study;
+  cursor: String;
+}
+
+export interface StudyEdgePromise extends Promise<StudyEdge>, Fragmentable {
+  node: <T = StudyPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface StudyEdgeSubscription
+  extends Promise<AsyncIterator<StudyEdge>>,
+    Fragmentable {
+  node: <T = StudySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateStudy {
+  count: Int;
+}
+
+export interface AggregateStudyPromise
+  extends Promise<AggregateStudy>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateStudySubscription
+  extends Promise<AsyncIterator<AggregateStudy>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface TagConnection {
+  pageInfo: PageInfo;
+  edges: TagEdge[];
+}
+
+export interface TagConnectionPromise
+  extends Promise<TagConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TagEdge>>() => T;
+  aggregate: <T = AggregateTagPromise>() => T;
+}
+
+export interface TagConnectionSubscription
+  extends Promise<AsyncIterator<TagConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TagEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTagSubscription>() => T;
+}
+
+export interface TagEdge {
+  node: Tag;
+  cursor: String;
+}
+
+export interface TagEdgePromise extends Promise<TagEdge>, Fragmentable {
+  node: <T = TagPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TagEdgeSubscription
+  extends Promise<AsyncIterator<TagEdge>>,
+    Fragmentable {
+  node: <T = TagSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateTag {
+  count: Int;
+}
+
+export interface AggregateTagPromise
+  extends Promise<AggregateTag>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTagSubscription
+  extends Promise<AsyncIterator<AggregateTag>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface UserEdge {
@@ -405,6 +4381,483 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
+export interface AddressSubscriptionPayload {
+  mutation: MutationType;
+  node: Address;
+  updatedFields: String[];
+  previousValues: AddressPreviousValues;
+}
+
+export interface AddressSubscriptionPayloadPromise
+  extends Promise<AddressSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AddressPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AddressPreviousValuesPromise>() => T;
+}
+
+export interface AddressSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AddressSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AddressSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AddressPreviousValuesSubscription>() => T;
+}
+
+export interface AddressPreviousValues {
+  id: ID_Output;
+  country: String;
+  region: String;
+  postalCode: String;
+  town: String;
+  street: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface AddressPreviousValuesPromise
+  extends Promise<AddressPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  country: () => Promise<String>;
+  region: () => Promise<String>;
+  postalCode: () => Promise<String>;
+  town: () => Promise<String>;
+  street: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface AddressPreviousValuesSubscription
+  extends Promise<AsyncIterator<AddressPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  country: () => Promise<AsyncIterator<String>>;
+  region: () => Promise<AsyncIterator<String>>;
+  postalCode: () => Promise<AsyncIterator<String>>;
+  town: () => Promise<AsyncIterator<String>>;
+  street: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ApplicationSubscriptionPayload {
+  mutation: MutationType;
+  node: Application;
+  updatedFields: String[];
+  previousValues: ApplicationPreviousValues;
+}
+
+export interface ApplicationSubscriptionPayloadPromise
+  extends Promise<ApplicationSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ApplicationPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ApplicationPreviousValuesPromise>() => T;
+}
+
+export interface ApplicationSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ApplicationSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ApplicationSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ApplicationPreviousValuesSubscription>() => T;
+}
+
+export interface ApplicationPreviousValues {
+  id: ID_Output;
+  status: String;
+  comment?: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface ApplicationPreviousValuesPromise
+  extends Promise<ApplicationPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  status: () => Promise<String>;
+  comment: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface ApplicationPreviousValuesSubscription
+  extends Promise<AsyncIterator<ApplicationPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  status: () => Promise<AsyncIterator<String>>;
+  comment: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface DegreeSubscriptionPayload {
+  mutation: MutationType;
+  node: Degree;
+  updatedFields: String[];
+  previousValues: DegreePreviousValues;
+}
+
+export interface DegreeSubscriptionPayloadPromise
+  extends Promise<DegreeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = DegreePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = DegreePreviousValuesPromise>() => T;
+}
+
+export interface DegreeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<DegreeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = DegreeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = DegreePreviousValuesSubscription>() => T;
+}
+
+export interface DegreePreviousValues {
+  id: ID_Output;
+  label: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface DegreePreviousValuesPromise
+  extends Promise<DegreePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface DegreePreviousValuesSubscription
+  extends Promise<AsyncIterator<DegreePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface MessageSubscriptionPayload {
+  mutation: MutationType;
+  node: Message;
+  updatedFields: String[];
+  previousValues: MessagePreviousValues;
+}
+
+export interface MessageSubscriptionPayloadPromise
+  extends Promise<MessageSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = MessagePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = MessagePreviousValuesPromise>() => T;
+}
+
+export interface MessageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<MessageSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = MessageSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = MessagePreviousValuesSubscription>() => T;
+}
+
+export interface MessagePreviousValues {
+  id: ID_Output;
+  content: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface MessagePreviousValuesPromise
+  extends Promise<MessagePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface MessagePreviousValuesSubscription
+  extends Promise<AsyncIterator<MessagePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  content: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface OfferSubscriptionPayload {
+  mutation: MutationType;
+  node: Offer;
+  updatedFields: String[];
+  previousValues: OfferPreviousValues;
+}
+
+export interface OfferSubscriptionPayloadPromise
+  extends Promise<OfferSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = OfferPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = OfferPreviousValuesPromise>() => T;
+}
+
+export interface OfferSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<OfferSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = OfferSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = OfferPreviousValuesSubscription>() => T;
+}
+
+export interface OfferPreviousValues {
+  id: ID_Output;
+  title: String;
+  description: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface OfferPreviousValuesPromise
+  extends Promise<OfferPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface OfferPreviousValuesSubscription
+  extends Promise<AsyncIterator<OfferPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface PresentationPageSubscriptionPayload {
+  mutation: MutationType;
+  node: PresentationPage;
+  updatedFields: String[];
+  previousValues: PresentationPagePreviousValues;
+}
+
+export interface PresentationPageSubscriptionPayloadPromise
+  extends Promise<PresentationPageSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = PresentationPagePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = PresentationPagePreviousValuesPromise>() => T;
+}
+
+export interface PresentationPageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<PresentationPageSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = PresentationPageSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = PresentationPagePreviousValuesSubscription>() => T;
+}
+
+export interface PresentationPagePreviousValues {
+  id: ID_Output;
+  content: String;
+  status: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface PresentationPagePreviousValuesPromise
+  extends Promise<PresentationPagePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  content: () => Promise<String>;
+  status: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface PresentationPagePreviousValuesSubscription
+  extends Promise<AsyncIterator<PresentationPagePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  content: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ReportSubscriptionPayload {
+  mutation: MutationType;
+  node: Report;
+  updatedFields: String[];
+  previousValues: ReportPreviousValues;
+}
+
+export interface ReportSubscriptionPayloadPromise
+  extends Promise<ReportSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ReportPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ReportPreviousValuesPromise>() => T;
+}
+
+export interface ReportSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ReportSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ReportSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ReportPreviousValuesSubscription>() => T;
+}
+
+export interface ReportPreviousValues {
+  id: ID_Output;
+  motivation: String;
+  status: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface ReportPreviousValuesPromise
+  extends Promise<ReportPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  motivation: () => Promise<String>;
+  status: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface ReportPreviousValuesSubscription
+  extends Promise<AsyncIterator<ReportPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  motivation: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface StudySubscriptionPayload {
+  mutation: MutationType;
+  node: Study;
+  updatedFields: String[];
+  previousValues: StudyPreviousValues;
+}
+
+export interface StudySubscriptionPayloadPromise
+  extends Promise<StudySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = StudyPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = StudyPreviousValuesPromise>() => T;
+}
+
+export interface StudySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<StudySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = StudySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = StudyPreviousValuesSubscription>() => T;
+}
+
+export interface StudyPreviousValues {
+  id: ID_Output;
+  label: String;
+  school: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface StudyPreviousValuesPromise
+  extends Promise<StudyPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  school: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface StudyPreviousValuesSubscription
+  extends Promise<AsyncIterator<StudyPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  school: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface TagSubscriptionPayload {
+  mutation: MutationType;
+  node: Tag;
+  updatedFields: String[];
+  previousValues: TagPreviousValues;
+}
+
+export interface TagSubscriptionPayloadPromise
+  extends Promise<TagSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TagPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TagPreviousValuesPromise>() => T;
+}
+
+export interface TagSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TagSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TagSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TagPreviousValuesSubscription>() => T;
+}
+
+export interface TagPreviousValues {
+  id: ID_Output;
+  label: String;
+  created_at: DateTimeOutput;
+  updated_at: DateTimeOutput;
+}
+
+export interface TagPreviousValuesPromise
+  extends Promise<TagPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  created_at: () => Promise<DateTimeOutput>;
+  updated_at: () => Promise<DateTimeOutput>;
+}
+
+export interface TagPreviousValuesSubscription
+  extends Promise<AsyncIterator<TagPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
 export interface UserSubscriptionPayload {
   mutation: MutationType;
   node: User;
@@ -434,8 +4887,11 @@ export interface UserPreviousValues {
   id: ID_Output;
   email: String;
   password: String;
+  plainPassword?: String;
   firstname?: String;
   lastname?: String;
+  birthday?: String;
+  status?: Status;
   role?: Role;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -447,8 +4903,11 @@ export interface UserPreviousValuesPromise
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  plainPassword: () => Promise<String>;
   firstname: () => Promise<String>;
   lastname: () => Promise<String>;
+  birthday: () => Promise<String>;
+  status: () => Promise<Status>;
   role: () => Promise<Role>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -460,8 +4919,11 @@ export interface UserPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  plainPassword: () => Promise<AsyncIterator<String>>;
   firstname: () => Promise<AsyncIterator<String>>;
   lastname: () => Promise<AsyncIterator<String>>;
+  birthday: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Status>>;
   role: () => Promise<AsyncIterator<Role>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -507,6 +4969,46 @@ export type Long = string;
 export const models: Model[] = [
   {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "Address",
+    embedded: false
+  },
+  {
+    name: "Application",
+    embedded: false
+  },
+  {
+    name: "Degree",
+    embedded: false
+  },
+  {
+    name: "Message",
+    embedded: false
+  },
+  {
+    name: "Offer",
+    embedded: false
+  },
+  {
+    name: "PresentationPage",
+    embedded: false
+  },
+  {
+    name: "Report",
+    embedded: false
+  },
+  {
+    name: "Study",
+    embedded: false
+  },
+  {
+    name: "Tag",
+    embedded: false
+  },
+  {
+    name: "Status",
     embedded: false
   },
   {

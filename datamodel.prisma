@@ -2,13 +2,115 @@ type User {
   	id: ID! @id
   	email: String! @unique
   	password: String!
-	firstname: String,
-	lastname: String,
-	role: Role @default(value: ROLE_USER)
+	plainPassword: String
+	firstname: String
+	lastname: String
+	birthday: String
+	status: Status @default(value:ENABLED)
+	role: Role @default(value:ROLE_USER)
+	address: Address @relation(link: INLINE)
+	studies: [Study]
+	sentMessages: [Message] @relation(name: "SentMessages")
+	receivedmessages: [Message] @relation(name: "Receivedmessages")
+	offers: [Offer]
+	reports: [Report] @relation(name: "Reports")
+	reportedBy: [Report] @relation(name: "ReportedBy")
+	presentationPage: PresentationPage @relation(link: INLINE)
 	createdAt: DateTime! @createdAt
 	updatedAt: DateTime! @updatedAt
 }
 
+type Address {
+	id: ID! @id
+	country: String!
+	region: String!
+	postalCode: String!
+	town: String!
+	street: String!
+	userAccount: User
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Application {
+	id: ID! @id
+	status: String!
+	comment: String
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Degree {
+	id: ID! @id
+	label: String!
+	studies: [Study]
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Message {
+	id: ID! @id
+	content: String!
+	sender: User @relation(name: "SentMessages")
+	receiver: User @relation(name: "Receivedmessages")
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Offer {
+	id: ID! @id
+	title: String!
+	description: String!
+	tags: [Tag]
+	reports: [Report] 
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type PresentationPage {
+	id: ID! @id
+	content: String!
+	status: String!
+	owner: User
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Report {
+	id: ID! @id
+	motivation: String!
+	status: String!
+	reporter: User @relation(name: "Reports")
+	offer: Offer
+	userReported: User @relation(name: "ReportedBy")
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Study {
+	id: ID! @id
+	label: String!
+	school: String!
+	degree: Degree
+	userAccount: User
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+type Tag {
+	id: ID! @id
+	label: String!
+	offers: [Offer]
+	created_at: DateTime! @createdAt
+	updated_at: DateTime! @updatedAt
+}
+
+
+
+enum Status {
+	ENABLED
+	DISABLED
+}
 enum Role {
 	ROLE_USER
 	ROLE_ADMIN
