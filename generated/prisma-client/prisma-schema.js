@@ -1281,6 +1281,7 @@ type Offer {
   id: ID!
   title: String!
   description: String!
+  employer: User!
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
   reports(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
   created_at: DateTime!
@@ -1297,12 +1298,13 @@ input OfferCreateInput {
   id: ID
   title: String!
   description: String!
+  employer: UserCreateOneWithoutOffersInput!
   tags: TagCreateManyWithoutOffersInput
   reports: ReportCreateManyWithoutOfferInput
 }
 
-input OfferCreateManyInput {
-  create: [OfferCreateInput!]
+input OfferCreateManyWithoutEmployerInput {
+  create: [OfferCreateWithoutEmployerInput!]
   connect: [OfferWhereUniqueInput!]
 }
 
@@ -1316,10 +1318,19 @@ input OfferCreateOneWithoutReportsInput {
   connect: OfferWhereUniqueInput
 }
 
+input OfferCreateWithoutEmployerInput {
+  id: ID
+  title: String!
+  description: String!
+  tags: TagCreateManyWithoutOffersInput
+  reports: ReportCreateManyWithoutOfferInput
+}
+
 input OfferCreateWithoutReportsInput {
   id: ID
   title: String!
   description: String!
+  employer: UserCreateOneWithoutOffersInput!
   tags: TagCreateManyWithoutOffersInput
 }
 
@@ -1327,6 +1338,7 @@ input OfferCreateWithoutTagsInput {
   id: ID
   title: String!
   description: String!
+  employer: UserCreateOneWithoutOffersInput!
   reports: ReportCreateManyWithoutOfferInput
 }
 
@@ -1438,16 +1450,10 @@ input OfferSubscriptionWhereInput {
   NOT: [OfferSubscriptionWhereInput!]
 }
 
-input OfferUpdateDataInput {
-  title: String
-  description: String
-  tags: TagUpdateManyWithoutOffersInput
-  reports: ReportUpdateManyWithoutOfferInput
-}
-
 input OfferUpdateInput {
   title: String
   description: String
+  employer: UserUpdateOneRequiredWithoutOffersInput
   tags: TagUpdateManyWithoutOffersInput
   reports: ReportUpdateManyWithoutOfferInput
 }
@@ -1457,21 +1463,21 @@ input OfferUpdateManyDataInput {
   description: String
 }
 
-input OfferUpdateManyInput {
-  create: [OfferCreateInput!]
-  update: [OfferUpdateWithWhereUniqueNestedInput!]
-  upsert: [OfferUpsertWithWhereUniqueNestedInput!]
+input OfferUpdateManyMutationInput {
+  title: String
+  description: String
+}
+
+input OfferUpdateManyWithoutEmployerInput {
+  create: [OfferCreateWithoutEmployerInput!]
   delete: [OfferWhereUniqueInput!]
   connect: [OfferWhereUniqueInput!]
   set: [OfferWhereUniqueInput!]
   disconnect: [OfferWhereUniqueInput!]
+  update: [OfferUpdateWithWhereUniqueWithoutEmployerInput!]
+  upsert: [OfferUpsertWithWhereUniqueWithoutEmployerInput!]
   deleteMany: [OfferScalarWhereInput!]
   updateMany: [OfferUpdateManyWithWhereNestedInput!]
-}
-
-input OfferUpdateManyMutationInput {
-  title: String
-  description: String
 }
 
 input OfferUpdateManyWithoutTagsInput {
@@ -1500,21 +1506,30 @@ input OfferUpdateOneWithoutReportsInput {
   connect: OfferWhereUniqueInput
 }
 
+input OfferUpdateWithoutEmployerDataInput {
+  title: String
+  description: String
+  tags: TagUpdateManyWithoutOffersInput
+  reports: ReportUpdateManyWithoutOfferInput
+}
+
 input OfferUpdateWithoutReportsDataInput {
   title: String
   description: String
+  employer: UserUpdateOneRequiredWithoutOffersInput
   tags: TagUpdateManyWithoutOffersInput
 }
 
 input OfferUpdateWithoutTagsDataInput {
   title: String
   description: String
+  employer: UserUpdateOneRequiredWithoutOffersInput
   reports: ReportUpdateManyWithoutOfferInput
 }
 
-input OfferUpdateWithWhereUniqueNestedInput {
+input OfferUpdateWithWhereUniqueWithoutEmployerInput {
   where: OfferWhereUniqueInput!
-  data: OfferUpdateDataInput!
+  data: OfferUpdateWithoutEmployerDataInput!
 }
 
 input OfferUpdateWithWhereUniqueWithoutTagsInput {
@@ -1527,10 +1542,10 @@ input OfferUpsertWithoutReportsInput {
   create: OfferCreateWithoutReportsInput!
 }
 
-input OfferUpsertWithWhereUniqueNestedInput {
+input OfferUpsertWithWhereUniqueWithoutEmployerInput {
   where: OfferWhereUniqueInput!
-  update: OfferUpdateDataInput!
-  create: OfferCreateInput!
+  update: OfferUpdateWithoutEmployerDataInput!
+  create: OfferCreateWithoutEmployerInput!
 }
 
 input OfferUpsertWithWhereUniqueWithoutTagsInput {
@@ -1582,6 +1597,7 @@ input OfferWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  employer: UserWhereInput
   tags_every: TagWhereInput
   tags_some: TagWhereInput
   tags_none: TagWhereInput
@@ -1624,7 +1640,7 @@ type PresentationPage {
   id: ID!
   content: String!
   status: String!
-  owner: User
+  owner: User!
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -1639,7 +1655,7 @@ input PresentationPageCreateInput {
   id: ID
   content: String!
   status: String!
-  owner: UserCreateOneWithoutPresentationPageInput
+  owner: UserCreateOneWithoutPresentationPageInput!
 }
 
 input PresentationPageCreateOneWithoutOwnerInput {
@@ -1700,7 +1716,7 @@ input PresentationPageSubscriptionWhereInput {
 input PresentationPageUpdateInput {
   content: String
   status: String
-  owner: UserUpdateOneWithoutPresentationPageInput
+  owner: UserUpdateOneRequiredWithoutPresentationPageInput
 }
 
 input PresentationPageUpdateManyMutationInput {
@@ -2786,7 +2802,7 @@ input UserCreateInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
@@ -2800,6 +2816,11 @@ input UserCreateOneWithoutAddressInput {
 
 input UserCreateOneWithoutExperiencesInput {
   create: UserCreateWithoutExperiencesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutOffersInput {
+  create: UserCreateWithoutOffersInput
   connect: UserWhereUniqueInput
 }
 
@@ -2846,7 +2867,7 @@ input UserCreateWithoutAddressInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
@@ -2867,7 +2888,27 @@ input UserCreateWithoutExperiencesInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutOffersInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2887,7 +2928,7 @@ input UserCreateWithoutPresentationPageInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
@@ -2906,7 +2947,7 @@ input UserCreateWithoutReceivedmessagesInput {
   address: AddressCreateOneWithoutUserAccountInput
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
@@ -2927,7 +2968,7 @@ input UserCreateWithoutReportedByInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2947,7 +2988,7 @@ input UserCreateWithoutReportsInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2966,7 +3007,7 @@ input UserCreateWithoutSentMessagesInput {
   address: AddressCreateOneWithoutUserAccountInput
   studies: StudyCreateManyWithoutUserAccountInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
@@ -2986,7 +3027,7 @@ input UserCreateWithoutStudiesInput {
   address: AddressCreateOneWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
-  offers: OfferCreateManyInput
+  offers: OfferCreateManyWithoutEmployerInput
   experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
@@ -3068,7 +3109,7 @@ input UserUpdateInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
@@ -3086,6 +3127,20 @@ input UserUpdateManyMutationInput {
   role: Role
 }
 
+input UserUpdateOneRequiredWithoutOffersInput {
+  create: UserCreateWithoutOffersInput
+  update: UserUpdateWithoutOffersDataInput
+  upsert: UserUpsertWithoutOffersInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutPresentationPageInput {
+  create: UserCreateWithoutPresentationPageInput
+  update: UserUpdateWithoutPresentationPageDataInput
+  upsert: UserUpsertWithoutPresentationPageInput
+  connect: UserWhereUniqueInput
+}
+
 input UserUpdateOneWithoutAddressInput {
   create: UserCreateWithoutAddressInput
   update: UserUpdateWithoutAddressDataInput
@@ -3099,15 +3154,6 @@ input UserUpdateOneWithoutExperiencesInput {
   create: UserCreateWithoutExperiencesInput
   update: UserUpdateWithoutExperiencesDataInput
   upsert: UserUpsertWithoutExperiencesInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: UserWhereUniqueInput
-}
-
-input UserUpdateOneWithoutPresentationPageInput {
-  create: UserCreateWithoutPresentationPageInput
-  update: UserUpdateWithoutPresentationPageDataInput
-  upsert: UserUpsertWithoutPresentationPageInput
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
@@ -3170,7 +3216,7 @@ input UserUpdateWithoutAddressDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
@@ -3190,7 +3236,26 @@ input UserUpdateWithoutExperiencesDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutOffersDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -3209,7 +3274,7 @@ input UserUpdateWithoutPresentationPageDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
@@ -3227,7 +3292,7 @@ input UserUpdateWithoutReceivedmessagesDataInput {
   address: AddressUpdateOneWithoutUserAccountInput
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
@@ -3247,7 +3312,7 @@ input UserUpdateWithoutReportedByDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -3266,7 +3331,7 @@ input UserUpdateWithoutReportsDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -3284,7 +3349,7 @@ input UserUpdateWithoutSentMessagesDataInput {
   address: AddressUpdateOneWithoutUserAccountInput
   studies: StudyUpdateManyWithoutUserAccountInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
@@ -3303,7 +3368,7 @@ input UserUpdateWithoutStudiesDataInput {
   address: AddressUpdateOneWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
-  offers: OfferUpdateManyInput
+  offers: OfferUpdateManyWithoutEmployerInput
   experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
@@ -3318,6 +3383,11 @@ input UserUpsertWithoutAddressInput {
 input UserUpsertWithoutExperiencesInput {
   update: UserUpdateWithoutExperiencesDataInput!
   create: UserCreateWithoutExperiencesInput!
+}
+
+input UserUpsertWithoutOffersInput {
+  update: UserUpdateWithoutOffersDataInput!
+  create: UserCreateWithoutOffersInput!
 }
 
 input UserUpsertWithoutPresentationPageInput {
