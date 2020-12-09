@@ -45,6 +45,10 @@ var models = [
     embedded: false
   },
   {
+    name: "Experience",
+    embedded: false
+  },
+  {
     name: "Status",
     embedded: false
   },

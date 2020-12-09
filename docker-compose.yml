@@ -27,7 +27,12 @@ services:
             POSTGRES_USER: prisma
             POSTGRES_PASSWORD: prisma
         volumes:
-            - postgres:/var/lib/postgresql/data
+            - ./postgres:/var/lib/postgresql/data
+    adminer:
+        depends_on:
+            - postgres
+        restart: always
+        image: adminer:latest
+        ports:
+            - 8090:8080
 
-volumes:
-    postgres:

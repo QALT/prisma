@@ -260,6 +260,10 @@ type AggregateDegree {
   count: Int!
 }
 
+type AggregateExperience {
+  count: Int!
+}
+
 type AggregateMessage {
   count: Int!
 }
@@ -591,6 +595,341 @@ input DegreeWhereUniqueInput {
   id: ID
 }
 
+type Experience {
+  id: ID!
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+  userAccount: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type ExperienceConnection {
+  pageInfo: PageInfo!
+  edges: [ExperienceEdge]!
+  aggregate: AggregateExperience!
+}
+
+input ExperienceCreateInput {
+  id: ID
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+  userAccount: UserCreateOneWithoutExperiencesInput
+}
+
+input ExperienceCreateManyWithoutUserAccountInput {
+  create: [ExperienceCreateWithoutUserAccountInput!]
+  connect: [ExperienceWhereUniqueInput!]
+}
+
+input ExperienceCreateWithoutUserAccountInput {
+  id: ID
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+}
+
+type ExperienceEdge {
+  node: Experience!
+  cursor: String!
+}
+
+enum ExperienceOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  description_ASC
+  description_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type ExperiencePreviousValues {
+  id: ID!
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input ExperienceScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  startDate: String
+  startDate_not: String
+  startDate_in: [String!]
+  startDate_not_in: [String!]
+  startDate_lt: String
+  startDate_lte: String
+  startDate_gt: String
+  startDate_gte: String
+  startDate_contains: String
+  startDate_not_contains: String
+  startDate_starts_with: String
+  startDate_not_starts_with: String
+  startDate_ends_with: String
+  startDate_not_ends_with: String
+  endDate: String
+  endDate_not: String
+  endDate_in: [String!]
+  endDate_not_in: [String!]
+  endDate_lt: String
+  endDate_lte: String
+  endDate_gt: String
+  endDate_gte: String
+  endDate_contains: String
+  endDate_not_contains: String
+  endDate_starts_with: String
+  endDate_not_starts_with: String
+  endDate_ends_with: String
+  endDate_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ExperienceScalarWhereInput!]
+  OR: [ExperienceScalarWhereInput!]
+  NOT: [ExperienceScalarWhereInput!]
+}
+
+type ExperienceSubscriptionPayload {
+  mutation: MutationType!
+  node: Experience
+  updatedFields: [String!]
+  previousValues: ExperiencePreviousValues
+}
+
+input ExperienceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ExperienceWhereInput
+  AND: [ExperienceSubscriptionWhereInput!]
+  OR: [ExperienceSubscriptionWhereInput!]
+  NOT: [ExperienceSubscriptionWhereInput!]
+}
+
+input ExperienceUpdateInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+  userAccount: UserUpdateOneWithoutExperiencesInput
+}
+
+input ExperienceUpdateManyDataInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+}
+
+input ExperienceUpdateManyMutationInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+}
+
+input ExperienceUpdateManyWithoutUserAccountInput {
+  create: [ExperienceCreateWithoutUserAccountInput!]
+  delete: [ExperienceWhereUniqueInput!]
+  connect: [ExperienceWhereUniqueInput!]
+  set: [ExperienceWhereUniqueInput!]
+  disconnect: [ExperienceWhereUniqueInput!]
+  update: [ExperienceUpdateWithWhereUniqueWithoutUserAccountInput!]
+  upsert: [ExperienceUpsertWithWhereUniqueWithoutUserAccountInput!]
+  deleteMany: [ExperienceScalarWhereInput!]
+  updateMany: [ExperienceUpdateManyWithWhereNestedInput!]
+}
+
+input ExperienceUpdateManyWithWhereNestedInput {
+  where: ExperienceScalarWhereInput!
+  data: ExperienceUpdateManyDataInput!
+}
+
+input ExperienceUpdateWithoutUserAccountDataInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+}
+
+input ExperienceUpdateWithWhereUniqueWithoutUserAccountInput {
+  where: ExperienceWhereUniqueInput!
+  data: ExperienceUpdateWithoutUserAccountDataInput!
+}
+
+input ExperienceUpsertWithWhereUniqueWithoutUserAccountInput {
+  where: ExperienceWhereUniqueInput!
+  update: ExperienceUpdateWithoutUserAccountDataInput!
+  create: ExperienceCreateWithoutUserAccountInput!
+}
+
+input ExperienceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  startDate: String
+  startDate_not: String
+  startDate_in: [String!]
+  startDate_not_in: [String!]
+  startDate_lt: String
+  startDate_lte: String
+  startDate_gt: String
+  startDate_gte: String
+  startDate_contains: String
+  startDate_not_contains: String
+  startDate_starts_with: String
+  startDate_not_starts_with: String
+  startDate_ends_with: String
+  startDate_not_ends_with: String
+  endDate: String
+  endDate_not: String
+  endDate_in: [String!]
+  endDate_not_in: [String!]
+  endDate_lt: String
+  endDate_lte: String
+  endDate_gt: String
+  endDate_gte: String
+  endDate_contains: String
+  endDate_not_contains: String
+  endDate_starts_with: String
+  endDate_not_starts_with: String
+  endDate_ends_with: String
+  endDate_not_ends_with: String
+  userAccount: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ExperienceWhereInput!]
+  OR: [ExperienceWhereInput!]
+  NOT: [ExperienceWhereInput!]
+}
+
+input ExperienceWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
 type Message {
@@ -878,6 +1217,12 @@ type Mutation {
   upsertDegree(where: DegreeWhereUniqueInput!, create: DegreeCreateInput!, update: DegreeUpdateInput!): Degree!
   deleteDegree(where: DegreeWhereUniqueInput!): Degree
   deleteManyDegrees(where: DegreeWhereInput): BatchPayload!
+  createExperience(data: ExperienceCreateInput!): Experience!
+  updateExperience(data: ExperienceUpdateInput!, where: ExperienceWhereUniqueInput!): Experience
+  updateManyExperiences(data: ExperienceUpdateManyMutationInput!, where: ExperienceWhereInput): BatchPayload!
+  upsertExperience(where: ExperienceWhereUniqueInput!, create: ExperienceCreateInput!, update: ExperienceUpdateInput!): Experience!
+  deleteExperience(where: ExperienceWhereUniqueInput!): Experience
+  deleteManyExperiences(where: ExperienceWhereInput): BatchPayload!
   createMessage(data: MessageCreateInput!): Message!
   updateMessage(data: MessageUpdateInput!, where: MessageWhereUniqueInput!): Message
   updateManyMessages(data: MessageUpdateManyMutationInput!, where: MessageWhereInput): BatchPayload!
@@ -1461,6 +1806,9 @@ type Query {
   degree(where: DegreeWhereUniqueInput!): Degree
   degrees(where: DegreeWhereInput, orderBy: DegreeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Degree]!
   degreesConnection(where: DegreeWhereInput, orderBy: DegreeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DegreeConnection!
+  experience(where: ExperienceWhereUniqueInput!): Experience
+  experiences(where: ExperienceWhereInput, orderBy: ExperienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Experience]!
+  experiencesConnection(where: ExperienceWhereInput, orderBy: ExperienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExperienceConnection!
   message(where: MessageWhereUniqueInput!): Message
   messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message]!
   messagesConnection(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MessageConnection!
@@ -1843,8 +2191,8 @@ input ReportWhereUniqueInput {
 }
 
 enum Role {
-  USER
-  ADMIN
+  ROLE_USER
+  ROLE_ADMIN
 }
 
 enum Status {
@@ -2162,6 +2510,7 @@ type Subscription {
   address(where: AddressSubscriptionWhereInput): AddressSubscriptionPayload
   application(where: ApplicationSubscriptionWhereInput): ApplicationSubscriptionPayload
   degree(where: DegreeSubscriptionWhereInput): DegreeSubscriptionPayload
+  experience(where: ExperienceSubscriptionWhereInput): ExperienceSubscriptionPayload
   message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
   offer(where: OfferSubscriptionWhereInput): OfferSubscriptionPayload
   presentationPage(where: PresentationPageSubscriptionWhereInput): PresentationPageSubscriptionPayload
@@ -2409,6 +2758,7 @@ type User {
   sentMessages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
   receivedmessages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
   offers(where: OfferWhereInput, orderBy: OfferOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Offer!]
+  experiences(where: ExperienceWhereInput, orderBy: ExperienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Experience!]
   reports(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
   reportedBy(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
   presentationPage: PresentationPage
@@ -2437,6 +2787,7 @@ input UserCreateInput {
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2444,6 +2795,11 @@ input UserCreateInput {
 
 input UserCreateOneWithoutAddressInput {
   create: UserCreateWithoutAddressInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutExperiencesInput {
+  create: UserCreateWithoutExperiencesInput
   connect: UserWhereUniqueInput
 }
 
@@ -2491,6 +2847,27 @@ input UserCreateWithoutAddressInput {
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutExperiencesInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2511,6 +2888,7 @@ input UserCreateWithoutPresentationPageInput {
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
 }
@@ -2529,6 +2907,7 @@ input UserCreateWithoutReceivedmessagesInput {
   studies: StudyCreateManyWithoutUserAccountInput
   sentMessages: MessageCreateManyWithoutSenderInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2549,6 +2928,7 @@ input UserCreateWithoutReportedByInput {
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
 }
@@ -2568,6 +2948,7 @@ input UserCreateWithoutReportsInput {
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
 }
@@ -2586,6 +2967,7 @@ input UserCreateWithoutSentMessagesInput {
   studies: StudyCreateManyWithoutUserAccountInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2605,6 +2987,7 @@ input UserCreateWithoutStudiesInput {
   sentMessages: MessageCreateManyWithoutSenderInput
   receivedmessages: MessageCreateManyWithoutReceiverInput
   offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
   reports: ReportCreateManyWithoutReporterInput
   reportedBy: ReportCreateManyWithoutUserReportedInput
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
@@ -2686,6 +3069,7 @@ input UserUpdateInput {
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -2706,6 +3090,15 @@ input UserUpdateOneWithoutAddressInput {
   create: UserCreateWithoutAddressInput
   update: UserUpdateWithoutAddressDataInput
   upsert: UserUpsertWithoutAddressInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutExperiencesInput {
+  create: UserCreateWithoutExperiencesInput
+  update: UserUpdateWithoutExperiencesDataInput
+  upsert: UserUpsertWithoutExperiencesInput
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
@@ -2778,6 +3171,26 @@ input UserUpdateWithoutAddressDataInput {
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutExperiencesDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -2797,6 +3210,7 @@ input UserUpdateWithoutPresentationPageDataInput {
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
 }
@@ -2814,6 +3228,7 @@ input UserUpdateWithoutReceivedmessagesDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   sentMessages: MessageUpdateManyWithoutSenderInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -2833,6 +3248,7 @@ input UserUpdateWithoutReportedByDataInput {
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
 }
@@ -2851,6 +3267,7 @@ input UserUpdateWithoutReportsDataInput {
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
 }
@@ -2868,6 +3285,7 @@ input UserUpdateWithoutSentMessagesDataInput {
   studies: StudyUpdateManyWithoutUserAccountInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -2886,6 +3304,7 @@ input UserUpdateWithoutStudiesDataInput {
   sentMessages: MessageUpdateManyWithoutSenderInput
   receivedmessages: MessageUpdateManyWithoutReceiverInput
   offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
   reports: ReportUpdateManyWithoutReporterInput
   reportedBy: ReportUpdateManyWithoutUserReportedInput
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
@@ -2894,6 +3313,11 @@ input UserUpdateWithoutStudiesDataInput {
 input UserUpsertWithoutAddressInput {
   update: UserUpdateWithoutAddressDataInput!
   create: UserCreateWithoutAddressInput!
+}
+
+input UserUpsertWithoutExperiencesInput {
+  update: UserUpdateWithoutExperiencesDataInput!
+  create: UserCreateWithoutExperiencesInput!
 }
 
 input UserUpsertWithoutPresentationPageInput {
@@ -3046,6 +3470,9 @@ input UserWhereInput {
   offers_every: OfferWhereInput
   offers_some: OfferWhereInput
   offers_none: OfferWhereInput
+  experiences_every: ExperienceWhereInput
+  experiences_some: ExperienceWhereInput
+  experiences_none: ExperienceWhereInput
   reports_every: ReportWhereInput
   reports_some: ReportWhereInput
   reports_none: ReportWhereInput
