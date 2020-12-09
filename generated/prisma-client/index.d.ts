@@ -101,17 +101,19 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type Role = "USER" | "ADMIN";
+export type Role = "ROLE_USER" | "ROLE_ADMIN";
 
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "name_ASC"
-  | "name_DESC"
   | "email_ASC"
   | "email_DESC"
   | "password_ASC"
   | "password_DESC"
+  | "firstname_ASC"
+  | "firstname_DESC"
+  | "lastname_ASC"
+  | "lastname_DESC"
   | "role_ASC"
   | "role_DESC"
   | "createdAt_ASC"
@@ -141,20 +143,6 @@ export interface UserWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
   email?: Maybe<String>;
   email_not?: Maybe<String>;
   email_in?: Maybe<String[] | String>;
@@ -183,6 +171,34 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
+  firstname?: Maybe<String>;
+  firstname_not?: Maybe<String>;
+  firstname_in?: Maybe<String[] | String>;
+  firstname_not_in?: Maybe<String[] | String>;
+  firstname_lt?: Maybe<String>;
+  firstname_lte?: Maybe<String>;
+  firstname_gt?: Maybe<String>;
+  firstname_gte?: Maybe<String>;
+  firstname_contains?: Maybe<String>;
+  firstname_not_contains?: Maybe<String>;
+  firstname_starts_with?: Maybe<String>;
+  firstname_not_starts_with?: Maybe<String>;
+  firstname_ends_with?: Maybe<String>;
+  firstname_not_ends_with?: Maybe<String>;
+  lastname?: Maybe<String>;
+  lastname_not?: Maybe<String>;
+  lastname_in?: Maybe<String[] | String>;
+  lastname_not_in?: Maybe<String[] | String>;
+  lastname_lt?: Maybe<String>;
+  lastname_lte?: Maybe<String>;
+  lastname_gt?: Maybe<String>;
+  lastname_gte?: Maybe<String>;
+  lastname_contains?: Maybe<String>;
+  lastname_not_contains?: Maybe<String>;
+  lastname_starts_with?: Maybe<String>;
+  lastname_not_starts_with?: Maybe<String>;
+  lastname_ends_with?: Maybe<String>;
+  lastname_not_ends_with?: Maybe<String>;
   role?: Maybe<Role>;
   role_not?: Maybe<Role>;
   role_in?: Maybe<Role[] | Role>;
@@ -210,23 +226,26 @@ export interface UserWhereInput {
 
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
-  name: String;
   email: String;
   password: String;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
   role?: Maybe<Role>;
 }
 
 export interface UserUpdateInput {
-  name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
   role?: Maybe<Role>;
 }
 
 export interface UserUpdateManyMutationInput {
-  name?: Maybe<String>;
   email?: Maybe<String>;
   password?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
   role?: Maybe<Role>;
 }
 
@@ -247,9 +266,10 @@ export interface NodeNode {
 
 export interface User {
   id: ID_Output;
-  name: String;
   email: String;
   password: String;
+  firstname?: String;
+  lastname?: String;
   role?: Role;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -257,9 +277,10 @@ export interface User {
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
   role: () => Promise<Role>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -269,9 +290,10 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<Role>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -281,9 +303,10 @@ export interface UserNullablePromise
   extends Promise<User | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
   role: () => Promise<Role>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -409,9 +432,10 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
-  name: String;
   email: String;
   password: String;
+  firstname?: String;
+  lastname?: String;
   role?: Role;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -421,9 +445,10 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
   email: () => Promise<String>;
   password: () => Promise<String>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
   role: () => Promise<Role>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -433,9 +458,10 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
   role: () => Promise<AsyncIterator<Role>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;

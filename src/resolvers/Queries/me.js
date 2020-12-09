@@ -3,9 +3,10 @@ async function me (parent, args, ctx, info) {
         id: "blabla",
         name: "Robin"
     }
-    return user
-  }
 
-  module.exports = {
+    return user
+}
+
+module.exports = {
     me
-  }
+}
