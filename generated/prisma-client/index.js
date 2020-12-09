@@ -9,6 +9,50 @@ var models = [
     embedded: false
   },
   {
+    name: "Address",
+    embedded: false
+  },
+  {
+    name: "Application",
+    embedded: false
+  },
+  {
+    name: "Degree",
+    embedded: false
+  },
+  {
+    name: "Message",
+    embedded: false
+  },
+  {
+    name: "Offer",
+    embedded: false
+  },
+  {
+    name: "PresentationPage",
+    embedded: false
+  },
+  {
+    name: "Report",
+    embedded: false
+  },
+  {
+    name: "Study",
+    embedded: false
+  },
+  {
+    name: "Tag",
+    embedded: false
+  },
+  {
+    name: "Experience",
+    embedded: false
+  },
+  {
+    name: "Status",
+    embedded: false
+  },
+  {
     name: "Role",
     embedded: false
   }

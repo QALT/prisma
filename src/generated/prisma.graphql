@@ -1,5 +1,432 @@
+type Address {
+  id: ID!
+  country: String!
+  region: String!
+  postalCode: String!
+  town: String!
+  street: String!
+  userAccount: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type AddressConnection {
+  pageInfo: PageInfo!
+  edges: [AddressEdge]!
+  aggregate: AggregateAddress!
+}
+
+input AddressCreateInput {
+  id: ID
+  country: String!
+  region: String!
+  postalCode: String!
+  town: String!
+  street: String!
+  userAccount: UserCreateOneWithoutAddressInput
+}
+
+input AddressCreateOneWithoutUserAccountInput {
+  create: AddressCreateWithoutUserAccountInput
+  connect: AddressWhereUniqueInput
+}
+
+input AddressCreateWithoutUserAccountInput {
+  id: ID
+  country: String!
+  region: String!
+  postalCode: String!
+  town: String!
+  street: String!
+}
+
+type AddressEdge {
+  node: Address!
+  cursor: String!
+}
+
+enum AddressOrderByInput {
+  id_ASC
+  id_DESC
+  country_ASC
+  country_DESC
+  region_ASC
+  region_DESC
+  postalCode_ASC
+  postalCode_DESC
+  town_ASC
+  town_DESC
+  street_ASC
+  street_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type AddressPreviousValues {
+  id: ID!
+  country: String!
+  region: String!
+  postalCode: String!
+  town: String!
+  street: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type AddressSubscriptionPayload {
+  mutation: MutationType!
+  node: Address
+  updatedFields: [String!]
+  previousValues: AddressPreviousValues
+}
+
+input AddressSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AddressWhereInput
+  AND: [AddressSubscriptionWhereInput!]
+  OR: [AddressSubscriptionWhereInput!]
+  NOT: [AddressSubscriptionWhereInput!]
+}
+
+input AddressUpdateInput {
+  country: String
+  region: String
+  postalCode: String
+  town: String
+  street: String
+  userAccount: UserUpdateOneWithoutAddressInput
+}
+
+input AddressUpdateManyMutationInput {
+  country: String
+  region: String
+  postalCode: String
+  town: String
+  street: String
+}
+
+input AddressUpdateOneWithoutUserAccountInput {
+  create: AddressCreateWithoutUserAccountInput
+  update: AddressUpdateWithoutUserAccountDataInput
+  upsert: AddressUpsertWithoutUserAccountInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: AddressWhereUniqueInput
+}
+
+input AddressUpdateWithoutUserAccountDataInput {
+  country: String
+  region: String
+  postalCode: String
+  town: String
+  street: String
+}
+
+input AddressUpsertWithoutUserAccountInput {
+  update: AddressUpdateWithoutUserAccountDataInput!
+  create: AddressCreateWithoutUserAccountInput!
+}
+
+input AddressWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  region: String
+  region_not: String
+  region_in: [String!]
+  region_not_in: [String!]
+  region_lt: String
+  region_lte: String
+  region_gt: String
+  region_gte: String
+  region_contains: String
+  region_not_contains: String
+  region_starts_with: String
+  region_not_starts_with: String
+  region_ends_with: String
+  region_not_ends_with: String
+  postalCode: String
+  postalCode_not: String
+  postalCode_in: [String!]
+  postalCode_not_in: [String!]
+  postalCode_lt: String
+  postalCode_lte: String
+  postalCode_gt: String
+  postalCode_gte: String
+  postalCode_contains: String
+  postalCode_not_contains: String
+  postalCode_starts_with: String
+  postalCode_not_starts_with: String
+  postalCode_ends_with: String
+  postalCode_not_ends_with: String
+  town: String
+  town_not: String
+  town_in: [String!]
+  town_not_in: [String!]
+  town_lt: String
+  town_lte: String
+  town_gt: String
+  town_gte: String
+  town_contains: String
+  town_not_contains: String
+  town_starts_with: String
+  town_not_starts_with: String
+  town_ends_with: String
+  town_not_ends_with: String
+  street: String
+  street_not: String
+  street_in: [String!]
+  street_not_in: [String!]
+  street_lt: String
+  street_lte: String
+  street_gt: String
+  street_gte: String
+  street_contains: String
+  street_not_contains: String
+  street_starts_with: String
+  street_not_starts_with: String
+  street_ends_with: String
+  street_not_ends_with: String
+  userAccount: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  NOT: [AddressWhereInput!]
+}
+
+input AddressWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAddress {
+  count: Int!
+}
+
+type AggregateApplication {
+  count: Int!
+}
+
+type AggregateDegree {
+  count: Int!
+}
+
+type AggregateExperience {
+  count: Int!
+}
+
+type AggregateMessage {
+  count: Int!
+}
+
+type AggregateOffer {
+  count: Int!
+}
+
+type AggregatePresentationPage {
+  count: Int!
+}
+
+type AggregateReport {
+  count: Int!
+}
+
+type AggregateStudy {
+  count: Int!
+}
+
+type AggregateTag {
+  count: Int!
+}
+
 type AggregateUser {
   count: Int!
+}
+
+type Application {
+  id: ID!
+  status: String!
+  comment: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type ApplicationConnection {
+  pageInfo: PageInfo!
+  edges: [ApplicationEdge]!
+  aggregate: AggregateApplication!
+}
+
+input ApplicationCreateInput {
+  id: ID
+  status: String!
+  comment: String
+}
+
+type ApplicationEdge {
+  node: Application!
+  cursor: String!
+}
+
+enum ApplicationOrderByInput {
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+  comment_ASC
+  comment_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type ApplicationPreviousValues {
+  id: ID!
+  status: String!
+  comment: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type ApplicationSubscriptionPayload {
+  mutation: MutationType!
+  node: Application
+  updatedFields: [String!]
+  previousValues: ApplicationPreviousValues
+}
+
+input ApplicationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ApplicationWhereInput
+  AND: [ApplicationSubscriptionWhereInput!]
+  OR: [ApplicationSubscriptionWhereInput!]
+  NOT: [ApplicationSubscriptionWhereInput!]
+}
+
+input ApplicationUpdateInput {
+  status: String
+  comment: String
+}
+
+input ApplicationUpdateManyMutationInput {
+  status: String
+  comment: String
+}
+
+input ApplicationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ApplicationWhereInput!]
+  OR: [ApplicationWhereInput!]
+  NOT: [ApplicationWhereInput!]
+}
+
+input ApplicationWhereUniqueInput {
+  id: ID
 }
 
 type BatchPayload {
@@ -8,9 +435,825 @@ type BatchPayload {
 
 scalar DateTime
 
+type Degree {
+  id: ID!
+  label: String!
+  studies(where: StudyWhereInput, orderBy: StudyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Study!]
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type DegreeConnection {
+  pageInfo: PageInfo!
+  edges: [DegreeEdge]!
+  aggregate: AggregateDegree!
+}
+
+input DegreeCreateInput {
+  id: ID
+  label: String!
+  studies: StudyCreateManyWithoutDegreeInput
+}
+
+input DegreeCreateOneWithoutStudiesInput {
+  create: DegreeCreateWithoutStudiesInput
+  connect: DegreeWhereUniqueInput
+}
+
+input DegreeCreateWithoutStudiesInput {
+  id: ID
+  label: String!
+}
+
+type DegreeEdge {
+  node: Degree!
+  cursor: String!
+}
+
+enum DegreeOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type DegreePreviousValues {
+  id: ID!
+  label: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type DegreeSubscriptionPayload {
+  mutation: MutationType!
+  node: Degree
+  updatedFields: [String!]
+  previousValues: DegreePreviousValues
+}
+
+input DegreeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DegreeWhereInput
+  AND: [DegreeSubscriptionWhereInput!]
+  OR: [DegreeSubscriptionWhereInput!]
+  NOT: [DegreeSubscriptionWhereInput!]
+}
+
+input DegreeUpdateInput {
+  label: String
+  studies: StudyUpdateManyWithoutDegreeInput
+}
+
+input DegreeUpdateManyMutationInput {
+  label: String
+}
+
+input DegreeUpdateOneWithoutStudiesInput {
+  create: DegreeCreateWithoutStudiesInput
+  update: DegreeUpdateWithoutStudiesDataInput
+  upsert: DegreeUpsertWithoutStudiesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: DegreeWhereUniqueInput
+}
+
+input DegreeUpdateWithoutStudiesDataInput {
+  label: String
+}
+
+input DegreeUpsertWithoutStudiesInput {
+  update: DegreeUpdateWithoutStudiesDataInput!
+  create: DegreeCreateWithoutStudiesInput!
+}
+
+input DegreeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  studies_every: StudyWhereInput
+  studies_some: StudyWhereInput
+  studies_none: StudyWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [DegreeWhereInput!]
+  OR: [DegreeWhereInput!]
+  NOT: [DegreeWhereInput!]
+}
+
+input DegreeWhereUniqueInput {
+  id: ID
+}
+
+type Experience {
+  id: ID!
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+  userAccount: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type ExperienceConnection {
+  pageInfo: PageInfo!
+  edges: [ExperienceEdge]!
+  aggregate: AggregateExperience!
+}
+
+input ExperienceCreateInput {
+  id: ID
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+  userAccount: UserCreateOneWithoutExperiencesInput
+}
+
+input ExperienceCreateManyWithoutUserAccountInput {
+  create: [ExperienceCreateWithoutUserAccountInput!]
+  connect: [ExperienceWhereUniqueInput!]
+}
+
+input ExperienceCreateWithoutUserAccountInput {
+  id: ID
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+}
+
+type ExperienceEdge {
+  node: Experience!
+  cursor: String!
+}
+
+enum ExperienceOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  description_ASC
+  description_DESC
+  startDate_ASC
+  startDate_DESC
+  endDate_ASC
+  endDate_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type ExperiencePreviousValues {
+  id: ID!
+  label: String!
+  description: String
+  startDate: String!
+  endDate: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input ExperienceScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  startDate: String
+  startDate_not: String
+  startDate_in: [String!]
+  startDate_not_in: [String!]
+  startDate_lt: String
+  startDate_lte: String
+  startDate_gt: String
+  startDate_gte: String
+  startDate_contains: String
+  startDate_not_contains: String
+  startDate_starts_with: String
+  startDate_not_starts_with: String
+  startDate_ends_with: String
+  startDate_not_ends_with: String
+  endDate: String
+  endDate_not: String
+  endDate_in: [String!]
+  endDate_not_in: [String!]
+  endDate_lt: String
+  endDate_lte: String
+  endDate_gt: String
+  endDate_gte: String
+  endDate_contains: String
+  endDate_not_contains: String
+  endDate_starts_with: String
+  endDate_not_starts_with: String
+  endDate_ends_with: String
+  endDate_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ExperienceScalarWhereInput!]
+  OR: [ExperienceScalarWhereInput!]
+  NOT: [ExperienceScalarWhereInput!]
+}
+
+type ExperienceSubscriptionPayload {
+  mutation: MutationType!
+  node: Experience
+  updatedFields: [String!]
+  previousValues: ExperiencePreviousValues
+}
+
+input ExperienceSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ExperienceWhereInput
+  AND: [ExperienceSubscriptionWhereInput!]
+  OR: [ExperienceSubscriptionWhereInput!]
+  NOT: [ExperienceSubscriptionWhereInput!]
+}
+
+input ExperienceUpdateInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+  userAccount: UserUpdateOneWithoutExperiencesInput
+}
+
+input ExperienceUpdateManyDataInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+}
+
+input ExperienceUpdateManyMutationInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+}
+
+input ExperienceUpdateManyWithoutUserAccountInput {
+  create: [ExperienceCreateWithoutUserAccountInput!]
+  delete: [ExperienceWhereUniqueInput!]
+  connect: [ExperienceWhereUniqueInput!]
+  set: [ExperienceWhereUniqueInput!]
+  disconnect: [ExperienceWhereUniqueInput!]
+  update: [ExperienceUpdateWithWhereUniqueWithoutUserAccountInput!]
+  upsert: [ExperienceUpsertWithWhereUniqueWithoutUserAccountInput!]
+  deleteMany: [ExperienceScalarWhereInput!]
+  updateMany: [ExperienceUpdateManyWithWhereNestedInput!]
+}
+
+input ExperienceUpdateManyWithWhereNestedInput {
+  where: ExperienceScalarWhereInput!
+  data: ExperienceUpdateManyDataInput!
+}
+
+input ExperienceUpdateWithoutUserAccountDataInput {
+  label: String
+  description: String
+  startDate: String
+  endDate: String
+}
+
+input ExperienceUpdateWithWhereUniqueWithoutUserAccountInput {
+  where: ExperienceWhereUniqueInput!
+  data: ExperienceUpdateWithoutUserAccountDataInput!
+}
+
+input ExperienceUpsertWithWhereUniqueWithoutUserAccountInput {
+  where: ExperienceWhereUniqueInput!
+  update: ExperienceUpdateWithoutUserAccountDataInput!
+  create: ExperienceCreateWithoutUserAccountInput!
+}
+
+input ExperienceWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  startDate: String
+  startDate_not: String
+  startDate_in: [String!]
+  startDate_not_in: [String!]
+  startDate_lt: String
+  startDate_lte: String
+  startDate_gt: String
+  startDate_gte: String
+  startDate_contains: String
+  startDate_not_contains: String
+  startDate_starts_with: String
+  startDate_not_starts_with: String
+  startDate_ends_with: String
+  startDate_not_ends_with: String
+  endDate: String
+  endDate_not: String
+  endDate_in: [String!]
+  endDate_not_in: [String!]
+  endDate_lt: String
+  endDate_lte: String
+  endDate_gt: String
+  endDate_gte: String
+  endDate_contains: String
+  endDate_not_contains: String
+  endDate_starts_with: String
+  endDate_not_starts_with: String
+  endDate_ends_with: String
+  endDate_not_ends_with: String
+  userAccount: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ExperienceWhereInput!]
+  OR: [ExperienceWhereInput!]
+  NOT: [ExperienceWhereInput!]
+}
+
+input ExperienceWhereUniqueInput {
+  id: ID
+}
+
 scalar Long
 
+type Message {
+  id: ID!
+  content: String!
+  sender: User
+  receiver: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type MessageConnection {
+  pageInfo: PageInfo!
+  edges: [MessageEdge]!
+  aggregate: AggregateMessage!
+}
+
+input MessageCreateInput {
+  id: ID
+  content: String!
+  sender: UserCreateOneWithoutSentMessagesInput
+  receiver: UserCreateOneWithoutReceivedmessagesInput
+}
+
+input MessageCreateManyWithoutReceiverInput {
+  create: [MessageCreateWithoutReceiverInput!]
+  connect: [MessageWhereUniqueInput!]
+}
+
+input MessageCreateManyWithoutSenderInput {
+  create: [MessageCreateWithoutSenderInput!]
+  connect: [MessageWhereUniqueInput!]
+}
+
+input MessageCreateWithoutReceiverInput {
+  id: ID
+  content: String!
+  sender: UserCreateOneWithoutSentMessagesInput
+}
+
+input MessageCreateWithoutSenderInput {
+  id: ID
+  content: String!
+  receiver: UserCreateOneWithoutReceivedmessagesInput
+}
+
+type MessageEdge {
+  node: Message!
+  cursor: String!
+}
+
+enum MessageOrderByInput {
+  id_ASC
+  id_DESC
+  content_ASC
+  content_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type MessagePreviousValues {
+  id: ID!
+  content: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input MessageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [MessageScalarWhereInput!]
+  OR: [MessageScalarWhereInput!]
+  NOT: [MessageScalarWhereInput!]
+}
+
+type MessageSubscriptionPayload {
+  mutation: MutationType!
+  node: Message
+  updatedFields: [String!]
+  previousValues: MessagePreviousValues
+}
+
+input MessageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MessageWhereInput
+  AND: [MessageSubscriptionWhereInput!]
+  OR: [MessageSubscriptionWhereInput!]
+  NOT: [MessageSubscriptionWhereInput!]
+}
+
+input MessageUpdateInput {
+  content: String
+  sender: UserUpdateOneWithoutSentMessagesInput
+  receiver: UserUpdateOneWithoutReceivedmessagesInput
+}
+
+input MessageUpdateManyDataInput {
+  content: String
+}
+
+input MessageUpdateManyMutationInput {
+  content: String
+}
+
+input MessageUpdateManyWithoutReceiverInput {
+  create: [MessageCreateWithoutReceiverInput!]
+  delete: [MessageWhereUniqueInput!]
+  connect: [MessageWhereUniqueInput!]
+  set: [MessageWhereUniqueInput!]
+  disconnect: [MessageWhereUniqueInput!]
+  update: [MessageUpdateWithWhereUniqueWithoutReceiverInput!]
+  upsert: [MessageUpsertWithWhereUniqueWithoutReceiverInput!]
+  deleteMany: [MessageScalarWhereInput!]
+  updateMany: [MessageUpdateManyWithWhereNestedInput!]
+}
+
+input MessageUpdateManyWithoutSenderInput {
+  create: [MessageCreateWithoutSenderInput!]
+  delete: [MessageWhereUniqueInput!]
+  connect: [MessageWhereUniqueInput!]
+  set: [MessageWhereUniqueInput!]
+  disconnect: [MessageWhereUniqueInput!]
+  update: [MessageUpdateWithWhereUniqueWithoutSenderInput!]
+  upsert: [MessageUpsertWithWhereUniqueWithoutSenderInput!]
+  deleteMany: [MessageScalarWhereInput!]
+  updateMany: [MessageUpdateManyWithWhereNestedInput!]
+}
+
+input MessageUpdateManyWithWhereNestedInput {
+  where: MessageScalarWhereInput!
+  data: MessageUpdateManyDataInput!
+}
+
+input MessageUpdateWithoutReceiverDataInput {
+  content: String
+  sender: UserUpdateOneWithoutSentMessagesInput
+}
+
+input MessageUpdateWithoutSenderDataInput {
+  content: String
+  receiver: UserUpdateOneWithoutReceivedmessagesInput
+}
+
+input MessageUpdateWithWhereUniqueWithoutReceiverInput {
+  where: MessageWhereUniqueInput!
+  data: MessageUpdateWithoutReceiverDataInput!
+}
+
+input MessageUpdateWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput!
+  data: MessageUpdateWithoutSenderDataInput!
+}
+
+input MessageUpsertWithWhereUniqueWithoutReceiverInput {
+  where: MessageWhereUniqueInput!
+  update: MessageUpdateWithoutReceiverDataInput!
+  create: MessageCreateWithoutReceiverInput!
+}
+
+input MessageUpsertWithWhereUniqueWithoutSenderInput {
+  where: MessageWhereUniqueInput!
+  update: MessageUpdateWithoutSenderDataInput!
+  create: MessageCreateWithoutSenderInput!
+}
+
+input MessageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  sender: UserWhereInput
+  receiver: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [MessageWhereInput!]
+  OR: [MessageWhereInput!]
+  NOT: [MessageWhereInput!]
+}
+
+input MessageWhereUniqueInput {
+  id: ID
+}
+
 type Mutation {
+  createAddress(data: AddressCreateInput!): Address!
+  updateAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address
+  updateManyAddresses(data: AddressUpdateManyMutationInput!, where: AddressWhereInput): BatchPayload!
+  upsertAddress(where: AddressWhereUniqueInput!, create: AddressCreateInput!, update: AddressUpdateInput!): Address!
+  deleteAddress(where: AddressWhereUniqueInput!): Address
+  deleteManyAddresses(where: AddressWhereInput): BatchPayload!
+  createApplication(data: ApplicationCreateInput!): Application!
+  updateApplication(data: ApplicationUpdateInput!, where: ApplicationWhereUniqueInput!): Application
+  updateManyApplications(data: ApplicationUpdateManyMutationInput!, where: ApplicationWhereInput): BatchPayload!
+  upsertApplication(where: ApplicationWhereUniqueInput!, create: ApplicationCreateInput!, update: ApplicationUpdateInput!): Application!
+  deleteApplication(where: ApplicationWhereUniqueInput!): Application
+  deleteManyApplications(where: ApplicationWhereInput): BatchPayload!
+  createDegree(data: DegreeCreateInput!): Degree!
+  updateDegree(data: DegreeUpdateInput!, where: DegreeWhereUniqueInput!): Degree
+  updateManyDegrees(data: DegreeUpdateManyMutationInput!, where: DegreeWhereInput): BatchPayload!
+  upsertDegree(where: DegreeWhereUniqueInput!, create: DegreeCreateInput!, update: DegreeUpdateInput!): Degree!
+  deleteDegree(where: DegreeWhereUniqueInput!): Degree
+  deleteManyDegrees(where: DegreeWhereInput): BatchPayload!
+  createExperience(data: ExperienceCreateInput!): Experience!
+  updateExperience(data: ExperienceUpdateInput!, where: ExperienceWhereUniqueInput!): Experience
+  updateManyExperiences(data: ExperienceUpdateManyMutationInput!, where: ExperienceWhereInput): BatchPayload!
+  upsertExperience(where: ExperienceWhereUniqueInput!, create: ExperienceCreateInput!, update: ExperienceUpdateInput!): Experience!
+  deleteExperience(where: ExperienceWhereUniqueInput!): Experience
+  deleteManyExperiences(where: ExperienceWhereInput): BatchPayload!
+  createMessage(data: MessageCreateInput!): Message!
+  updateMessage(data: MessageUpdateInput!, where: MessageWhereUniqueInput!): Message
+  updateManyMessages(data: MessageUpdateManyMutationInput!, where: MessageWhereInput): BatchPayload!
+  upsertMessage(where: MessageWhereUniqueInput!, create: MessageCreateInput!, update: MessageUpdateInput!): Message!
+  deleteMessage(where: MessageWhereUniqueInput!): Message
+  deleteManyMessages(where: MessageWhereInput): BatchPayload!
+  createOffer(data: OfferCreateInput!): Offer!
+  updateOffer(data: OfferUpdateInput!, where: OfferWhereUniqueInput!): Offer
+  updateManyOffers(data: OfferUpdateManyMutationInput!, where: OfferWhereInput): BatchPayload!
+  upsertOffer(where: OfferWhereUniqueInput!, create: OfferCreateInput!, update: OfferUpdateInput!): Offer!
+  deleteOffer(where: OfferWhereUniqueInput!): Offer
+  deleteManyOffers(where: OfferWhereInput): BatchPayload!
+  createPresentationPage(data: PresentationPageCreateInput!): PresentationPage!
+  updatePresentationPage(data: PresentationPageUpdateInput!, where: PresentationPageWhereUniqueInput!): PresentationPage
+  updateManyPresentationPages(data: PresentationPageUpdateManyMutationInput!, where: PresentationPageWhereInput): BatchPayload!
+  upsertPresentationPage(where: PresentationPageWhereUniqueInput!, create: PresentationPageCreateInput!, update: PresentationPageUpdateInput!): PresentationPage!
+  deletePresentationPage(where: PresentationPageWhereUniqueInput!): PresentationPage
+  deleteManyPresentationPages(where: PresentationPageWhereInput): BatchPayload!
+  createReport(data: ReportCreateInput!): Report!
+  updateReport(data: ReportUpdateInput!, where: ReportWhereUniqueInput!): Report
+  updateManyReports(data: ReportUpdateManyMutationInput!, where: ReportWhereInput): BatchPayload!
+  upsertReport(where: ReportWhereUniqueInput!, create: ReportCreateInput!, update: ReportUpdateInput!): Report!
+  deleteReport(where: ReportWhereUniqueInput!): Report
+  deleteManyReports(where: ReportWhereInput): BatchPayload!
+  createStudy(data: StudyCreateInput!): Study!
+  updateStudy(data: StudyUpdateInput!, where: StudyWhereUniqueInput!): Study
+  updateManyStudies(data: StudyUpdateManyMutationInput!, where: StudyWhereInput): BatchPayload!
+  upsertStudy(where: StudyWhereUniqueInput!, create: StudyCreateInput!, update: StudyUpdateInput!): Study!
+  deleteStudy(where: StudyWhereUniqueInput!): Study
+  deleteManyStudies(where: StudyWhereInput): BatchPayload!
+  createTag(data: TagCreateInput!): Tag!
+  updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteManyTags(where: TagWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
@@ -29,6 +1272,342 @@ interface Node {
   id: ID!
 }
 
+type Offer {
+  id: ID!
+  title: String!
+  description: String!
+  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
+  reports(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type OfferConnection {
+  pageInfo: PageInfo!
+  edges: [OfferEdge]!
+  aggregate: AggregateOffer!
+}
+
+input OfferCreateInput {
+  id: ID
+  title: String!
+  description: String!
+  tags: TagCreateManyWithoutOffersInput
+  reports: ReportCreateManyWithoutOfferInput
+}
+
+input OfferCreateManyInput {
+  create: [OfferCreateInput!]
+  connect: [OfferWhereUniqueInput!]
+}
+
+input OfferCreateManyWithoutTagsInput {
+  create: [OfferCreateWithoutTagsInput!]
+  connect: [OfferWhereUniqueInput!]
+}
+
+input OfferCreateOneWithoutReportsInput {
+  create: OfferCreateWithoutReportsInput
+  connect: OfferWhereUniqueInput
+}
+
+input OfferCreateWithoutReportsInput {
+  id: ID
+  title: String!
+  description: String!
+  tags: TagCreateManyWithoutOffersInput
+}
+
+input OfferCreateWithoutTagsInput {
+  id: ID
+  title: String!
+  description: String!
+  reports: ReportCreateManyWithoutOfferInput
+}
+
+type OfferEdge {
+  node: Offer!
+  cursor: String!
+}
+
+enum OfferOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type OfferPreviousValues {
+  id: ID!
+  title: String!
+  description: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input OfferScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [OfferScalarWhereInput!]
+  OR: [OfferScalarWhereInput!]
+  NOT: [OfferScalarWhereInput!]
+}
+
+type OfferSubscriptionPayload {
+  mutation: MutationType!
+  node: Offer
+  updatedFields: [String!]
+  previousValues: OfferPreviousValues
+}
+
+input OfferSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: OfferWhereInput
+  AND: [OfferSubscriptionWhereInput!]
+  OR: [OfferSubscriptionWhereInput!]
+  NOT: [OfferSubscriptionWhereInput!]
+}
+
+input OfferUpdateDataInput {
+  title: String
+  description: String
+  tags: TagUpdateManyWithoutOffersInput
+  reports: ReportUpdateManyWithoutOfferInput
+}
+
+input OfferUpdateInput {
+  title: String
+  description: String
+  tags: TagUpdateManyWithoutOffersInput
+  reports: ReportUpdateManyWithoutOfferInput
+}
+
+input OfferUpdateManyDataInput {
+  title: String
+  description: String
+}
+
+input OfferUpdateManyInput {
+  create: [OfferCreateInput!]
+  update: [OfferUpdateWithWhereUniqueNestedInput!]
+  upsert: [OfferUpsertWithWhereUniqueNestedInput!]
+  delete: [OfferWhereUniqueInput!]
+  connect: [OfferWhereUniqueInput!]
+  set: [OfferWhereUniqueInput!]
+  disconnect: [OfferWhereUniqueInput!]
+  deleteMany: [OfferScalarWhereInput!]
+  updateMany: [OfferUpdateManyWithWhereNestedInput!]
+}
+
+input OfferUpdateManyMutationInput {
+  title: String
+  description: String
+}
+
+input OfferUpdateManyWithoutTagsInput {
+  create: [OfferCreateWithoutTagsInput!]
+  delete: [OfferWhereUniqueInput!]
+  connect: [OfferWhereUniqueInput!]
+  set: [OfferWhereUniqueInput!]
+  disconnect: [OfferWhereUniqueInput!]
+  update: [OfferUpdateWithWhereUniqueWithoutTagsInput!]
+  upsert: [OfferUpsertWithWhereUniqueWithoutTagsInput!]
+  deleteMany: [OfferScalarWhereInput!]
+  updateMany: [OfferUpdateManyWithWhereNestedInput!]
+}
+
+input OfferUpdateManyWithWhereNestedInput {
+  where: OfferScalarWhereInput!
+  data: OfferUpdateManyDataInput!
+}
+
+input OfferUpdateOneWithoutReportsInput {
+  create: OfferCreateWithoutReportsInput
+  update: OfferUpdateWithoutReportsDataInput
+  upsert: OfferUpsertWithoutReportsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: OfferWhereUniqueInput
+}
+
+input OfferUpdateWithoutReportsDataInput {
+  title: String
+  description: String
+  tags: TagUpdateManyWithoutOffersInput
+}
+
+input OfferUpdateWithoutTagsDataInput {
+  title: String
+  description: String
+  reports: ReportUpdateManyWithoutOfferInput
+}
+
+input OfferUpdateWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput!
+  data: OfferUpdateDataInput!
+}
+
+input OfferUpdateWithWhereUniqueWithoutTagsInput {
+  where: OfferWhereUniqueInput!
+  data: OfferUpdateWithoutTagsDataInput!
+}
+
+input OfferUpsertWithoutReportsInput {
+  update: OfferUpdateWithoutReportsDataInput!
+  create: OfferCreateWithoutReportsInput!
+}
+
+input OfferUpsertWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput!
+  update: OfferUpdateDataInput!
+  create: OfferCreateInput!
+}
+
+input OfferUpsertWithWhereUniqueWithoutTagsInput {
+  where: OfferWhereUniqueInput!
+  update: OfferUpdateWithoutTagsDataInput!
+  create: OfferCreateWithoutTagsInput!
+}
+
+input OfferWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  tags_every: TagWhereInput
+  tags_some: TagWhereInput
+  tags_none: TagWhereInput
+  reports_every: ReportWhereInput
+  reports_some: ReportWhereInput
+  reports_none: ReportWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [OfferWhereInput!]
+  OR: [OfferWhereInput!]
+  NOT: [OfferWhereInput!]
+}
+
+input OfferWhereUniqueInput {
+  id: ID
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   hasPreviousPage: Boolean!
@@ -36,11 +1615,574 @@ type PageInfo {
   endCursor: String
 }
 
+type PresentationPage {
+  id: ID!
+  content: String!
+  status: String!
+  owner: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type PresentationPageConnection {
+  pageInfo: PageInfo!
+  edges: [PresentationPageEdge]!
+  aggregate: AggregatePresentationPage!
+}
+
+input PresentationPageCreateInput {
+  id: ID
+  content: String!
+  status: String!
+  owner: UserCreateOneWithoutPresentationPageInput
+}
+
+input PresentationPageCreateOneWithoutOwnerInput {
+  create: PresentationPageCreateWithoutOwnerInput
+  connect: PresentationPageWhereUniqueInput
+}
+
+input PresentationPageCreateWithoutOwnerInput {
+  id: ID
+  content: String!
+  status: String!
+}
+
+type PresentationPageEdge {
+  node: PresentationPage!
+  cursor: String!
+}
+
+enum PresentationPageOrderByInput {
+  id_ASC
+  id_DESC
+  content_ASC
+  content_DESC
+  status_ASC
+  status_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type PresentationPagePreviousValues {
+  id: ID!
+  content: String!
+  status: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type PresentationPageSubscriptionPayload {
+  mutation: MutationType!
+  node: PresentationPage
+  updatedFields: [String!]
+  previousValues: PresentationPagePreviousValues
+}
+
+input PresentationPageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PresentationPageWhereInput
+  AND: [PresentationPageSubscriptionWhereInput!]
+  OR: [PresentationPageSubscriptionWhereInput!]
+  NOT: [PresentationPageSubscriptionWhereInput!]
+}
+
+input PresentationPageUpdateInput {
+  content: String
+  status: String
+  owner: UserUpdateOneWithoutPresentationPageInput
+}
+
+input PresentationPageUpdateManyMutationInput {
+  content: String
+  status: String
+}
+
+input PresentationPageUpdateOneWithoutOwnerInput {
+  create: PresentationPageCreateWithoutOwnerInput
+  update: PresentationPageUpdateWithoutOwnerDataInput
+  upsert: PresentationPageUpsertWithoutOwnerInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: PresentationPageWhereUniqueInput
+}
+
+input PresentationPageUpdateWithoutOwnerDataInput {
+  content: String
+  status: String
+}
+
+input PresentationPageUpsertWithoutOwnerInput {
+  update: PresentationPageUpdateWithoutOwnerDataInput!
+  create: PresentationPageCreateWithoutOwnerInput!
+}
+
+input PresentationPageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  content: String
+  content_not: String
+  content_in: [String!]
+  content_not_in: [String!]
+  content_lt: String
+  content_lte: String
+  content_gt: String
+  content_gte: String
+  content_contains: String
+  content_not_contains: String
+  content_starts_with: String
+  content_not_starts_with: String
+  content_ends_with: String
+  content_not_ends_with: String
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  owner: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [PresentationPageWhereInput!]
+  OR: [PresentationPageWhereInput!]
+  NOT: [PresentationPageWhereInput!]
+}
+
+input PresentationPageWhereUniqueInput {
+  id: ID
+}
+
 type Query {
+  address(where: AddressWhereUniqueInput!): Address
+  addresses(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Address]!
+  addressesConnection(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AddressConnection!
+  application(where: ApplicationWhereUniqueInput!): Application
+  applications(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Application]!
+  applicationsConnection(where: ApplicationWhereInput, orderBy: ApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ApplicationConnection!
+  degree(where: DegreeWhereUniqueInput!): Degree
+  degrees(where: DegreeWhereInput, orderBy: DegreeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Degree]!
+  degreesConnection(where: DegreeWhereInput, orderBy: DegreeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DegreeConnection!
+  experience(where: ExperienceWhereUniqueInput!): Experience
+  experiences(where: ExperienceWhereInput, orderBy: ExperienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Experience]!
+  experiencesConnection(where: ExperienceWhereInput, orderBy: ExperienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExperienceConnection!
+  message(where: MessageWhereUniqueInput!): Message
+  messages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message]!
+  messagesConnection(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MessageConnection!
+  offer(where: OfferWhereUniqueInput!): Offer
+  offers(where: OfferWhereInput, orderBy: OfferOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Offer]!
+  offersConnection(where: OfferWhereInput, orderBy: OfferOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OfferConnection!
+  presentationPage(where: PresentationPageWhereUniqueInput!): PresentationPage
+  presentationPages(where: PresentationPageWhereInput, orderBy: PresentationPageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [PresentationPage]!
+  presentationPagesConnection(where: PresentationPageWhereInput, orderBy: PresentationPageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PresentationPageConnection!
+  report(where: ReportWhereUniqueInput!): Report
+  reports(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report]!
+  reportsConnection(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReportConnection!
+  study(where: StudyWhereUniqueInput!): Study
+  studies(where: StudyWhereInput, orderBy: StudyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Study]!
+  studiesConnection(where: StudyWhereInput, orderBy: StudyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StudyConnection!
+  tag(where: TagWhereUniqueInput!): Tag
+  tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
   user(where: UserWhereUniqueInput!): User
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
+}
+
+type Report {
+  id: ID!
+  motivation: String!
+  status: String!
+  reporter: User
+  offer: Offer
+  userReported: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type ReportConnection {
+  pageInfo: PageInfo!
+  edges: [ReportEdge]!
+  aggregate: AggregateReport!
+}
+
+input ReportCreateInput {
+  id: ID
+  motivation: String!
+  status: String!
+  reporter: UserCreateOneWithoutReportsInput
+  offer: OfferCreateOneWithoutReportsInput
+  userReported: UserCreateOneWithoutReportedByInput
+}
+
+input ReportCreateManyWithoutOfferInput {
+  create: [ReportCreateWithoutOfferInput!]
+  connect: [ReportWhereUniqueInput!]
+}
+
+input ReportCreateManyWithoutReporterInput {
+  create: [ReportCreateWithoutReporterInput!]
+  connect: [ReportWhereUniqueInput!]
+}
+
+input ReportCreateManyWithoutUserReportedInput {
+  create: [ReportCreateWithoutUserReportedInput!]
+  connect: [ReportWhereUniqueInput!]
+}
+
+input ReportCreateWithoutOfferInput {
+  id: ID
+  motivation: String!
+  status: String!
+  reporter: UserCreateOneWithoutReportsInput
+  userReported: UserCreateOneWithoutReportedByInput
+}
+
+input ReportCreateWithoutReporterInput {
+  id: ID
+  motivation: String!
+  status: String!
+  offer: OfferCreateOneWithoutReportsInput
+  userReported: UserCreateOneWithoutReportedByInput
+}
+
+input ReportCreateWithoutUserReportedInput {
+  id: ID
+  motivation: String!
+  status: String!
+  reporter: UserCreateOneWithoutReportsInput
+  offer: OfferCreateOneWithoutReportsInput
+}
+
+type ReportEdge {
+  node: Report!
+  cursor: String!
+}
+
+enum ReportOrderByInput {
+  id_ASC
+  id_DESC
+  motivation_ASC
+  motivation_DESC
+  status_ASC
+  status_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type ReportPreviousValues {
+  id: ID!
+  motivation: String!
+  status: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input ReportScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  motivation: String
+  motivation_not: String
+  motivation_in: [String!]
+  motivation_not_in: [String!]
+  motivation_lt: String
+  motivation_lte: String
+  motivation_gt: String
+  motivation_gte: String
+  motivation_contains: String
+  motivation_not_contains: String
+  motivation_starts_with: String
+  motivation_not_starts_with: String
+  motivation_ends_with: String
+  motivation_not_ends_with: String
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ReportScalarWhereInput!]
+  OR: [ReportScalarWhereInput!]
+  NOT: [ReportScalarWhereInput!]
+}
+
+type ReportSubscriptionPayload {
+  mutation: MutationType!
+  node: Report
+  updatedFields: [String!]
+  previousValues: ReportPreviousValues
+}
+
+input ReportSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ReportWhereInput
+  AND: [ReportSubscriptionWhereInput!]
+  OR: [ReportSubscriptionWhereInput!]
+  NOT: [ReportSubscriptionWhereInput!]
+}
+
+input ReportUpdateInput {
+  motivation: String
+  status: String
+  reporter: UserUpdateOneWithoutReportsInput
+  offer: OfferUpdateOneWithoutReportsInput
+  userReported: UserUpdateOneWithoutReportedByInput
+}
+
+input ReportUpdateManyDataInput {
+  motivation: String
+  status: String
+}
+
+input ReportUpdateManyMutationInput {
+  motivation: String
+  status: String
+}
+
+input ReportUpdateManyWithoutOfferInput {
+  create: [ReportCreateWithoutOfferInput!]
+  delete: [ReportWhereUniqueInput!]
+  connect: [ReportWhereUniqueInput!]
+  set: [ReportWhereUniqueInput!]
+  disconnect: [ReportWhereUniqueInput!]
+  update: [ReportUpdateWithWhereUniqueWithoutOfferInput!]
+  upsert: [ReportUpsertWithWhereUniqueWithoutOfferInput!]
+  deleteMany: [ReportScalarWhereInput!]
+  updateMany: [ReportUpdateManyWithWhereNestedInput!]
+}
+
+input ReportUpdateManyWithoutReporterInput {
+  create: [ReportCreateWithoutReporterInput!]
+  delete: [ReportWhereUniqueInput!]
+  connect: [ReportWhereUniqueInput!]
+  set: [ReportWhereUniqueInput!]
+  disconnect: [ReportWhereUniqueInput!]
+  update: [ReportUpdateWithWhereUniqueWithoutReporterInput!]
+  upsert: [ReportUpsertWithWhereUniqueWithoutReporterInput!]
+  deleteMany: [ReportScalarWhereInput!]
+  updateMany: [ReportUpdateManyWithWhereNestedInput!]
+}
+
+input ReportUpdateManyWithoutUserReportedInput {
+  create: [ReportCreateWithoutUserReportedInput!]
+  delete: [ReportWhereUniqueInput!]
+  connect: [ReportWhereUniqueInput!]
+  set: [ReportWhereUniqueInput!]
+  disconnect: [ReportWhereUniqueInput!]
+  update: [ReportUpdateWithWhereUniqueWithoutUserReportedInput!]
+  upsert: [ReportUpsertWithWhereUniqueWithoutUserReportedInput!]
+  deleteMany: [ReportScalarWhereInput!]
+  updateMany: [ReportUpdateManyWithWhereNestedInput!]
+}
+
+input ReportUpdateManyWithWhereNestedInput {
+  where: ReportScalarWhereInput!
+  data: ReportUpdateManyDataInput!
+}
+
+input ReportUpdateWithoutOfferDataInput {
+  motivation: String
+  status: String
+  reporter: UserUpdateOneWithoutReportsInput
+  userReported: UserUpdateOneWithoutReportedByInput
+}
+
+input ReportUpdateWithoutReporterDataInput {
+  motivation: String
+  status: String
+  offer: OfferUpdateOneWithoutReportsInput
+  userReported: UserUpdateOneWithoutReportedByInput
+}
+
+input ReportUpdateWithoutUserReportedDataInput {
+  motivation: String
+  status: String
+  reporter: UserUpdateOneWithoutReportsInput
+  offer: OfferUpdateOneWithoutReportsInput
+}
+
+input ReportUpdateWithWhereUniqueWithoutOfferInput {
+  where: ReportWhereUniqueInput!
+  data: ReportUpdateWithoutOfferDataInput!
+}
+
+input ReportUpdateWithWhereUniqueWithoutReporterInput {
+  where: ReportWhereUniqueInput!
+  data: ReportUpdateWithoutReporterDataInput!
+}
+
+input ReportUpdateWithWhereUniqueWithoutUserReportedInput {
+  where: ReportWhereUniqueInput!
+  data: ReportUpdateWithoutUserReportedDataInput!
+}
+
+input ReportUpsertWithWhereUniqueWithoutOfferInput {
+  where: ReportWhereUniqueInput!
+  update: ReportUpdateWithoutOfferDataInput!
+  create: ReportCreateWithoutOfferInput!
+}
+
+input ReportUpsertWithWhereUniqueWithoutReporterInput {
+  where: ReportWhereUniqueInput!
+  update: ReportUpdateWithoutReporterDataInput!
+  create: ReportCreateWithoutReporterInput!
+}
+
+input ReportUpsertWithWhereUniqueWithoutUserReportedInput {
+  where: ReportWhereUniqueInput!
+  update: ReportUpdateWithoutUserReportedDataInput!
+  create: ReportCreateWithoutUserReportedInput!
+}
+
+input ReportWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  motivation: String
+  motivation_not: String
+  motivation_in: [String!]
+  motivation_not_in: [String!]
+  motivation_lt: String
+  motivation_lte: String
+  motivation_gt: String
+  motivation_gte: String
+  motivation_contains: String
+  motivation_not_contains: String
+  motivation_starts_with: String
+  motivation_not_starts_with: String
+  motivation_ends_with: String
+  motivation_not_ends_with: String
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
+  reporter: UserWhereInput
+  offer: OfferWhereInput
+  userReported: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [ReportWhereInput!]
+  OR: [ReportWhereInput!]
+  NOT: [ReportWhereInput!]
+}
+
+input ReportWhereUniqueInput {
+  id: ID
 }
 
 enum Role {
@@ -48,17 +2190,573 @@ enum Role {
   ROLE_ADMIN
 }
 
+enum Status {
+  ENABLED
+  DISABLED
+}
+
+type Study {
+  id: ID!
+  label: String!
+  school: String!
+  degree: Degree
+  userAccount: User
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type StudyConnection {
+  pageInfo: PageInfo!
+  edges: [StudyEdge]!
+  aggregate: AggregateStudy!
+}
+
+input StudyCreateInput {
+  id: ID
+  label: String!
+  school: String!
+  degree: DegreeCreateOneWithoutStudiesInput
+  userAccount: UserCreateOneWithoutStudiesInput
+}
+
+input StudyCreateManyWithoutDegreeInput {
+  create: [StudyCreateWithoutDegreeInput!]
+  connect: [StudyWhereUniqueInput!]
+}
+
+input StudyCreateManyWithoutUserAccountInput {
+  create: [StudyCreateWithoutUserAccountInput!]
+  connect: [StudyWhereUniqueInput!]
+}
+
+input StudyCreateWithoutDegreeInput {
+  id: ID
+  label: String!
+  school: String!
+  userAccount: UserCreateOneWithoutStudiesInput
+}
+
+input StudyCreateWithoutUserAccountInput {
+  id: ID
+  label: String!
+  school: String!
+  degree: DegreeCreateOneWithoutStudiesInput
+}
+
+type StudyEdge {
+  node: Study!
+  cursor: String!
+}
+
+enum StudyOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  school_ASC
+  school_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type StudyPreviousValues {
+  id: ID!
+  label: String!
+  school: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input StudyScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  school: String
+  school_not: String
+  school_in: [String!]
+  school_not_in: [String!]
+  school_lt: String
+  school_lte: String
+  school_gt: String
+  school_gte: String
+  school_contains: String
+  school_not_contains: String
+  school_starts_with: String
+  school_not_starts_with: String
+  school_ends_with: String
+  school_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [StudyScalarWhereInput!]
+  OR: [StudyScalarWhereInput!]
+  NOT: [StudyScalarWhereInput!]
+}
+
+type StudySubscriptionPayload {
+  mutation: MutationType!
+  node: Study
+  updatedFields: [String!]
+  previousValues: StudyPreviousValues
+}
+
+input StudySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: StudyWhereInput
+  AND: [StudySubscriptionWhereInput!]
+  OR: [StudySubscriptionWhereInput!]
+  NOT: [StudySubscriptionWhereInput!]
+}
+
+input StudyUpdateInput {
+  label: String
+  school: String
+  degree: DegreeUpdateOneWithoutStudiesInput
+  userAccount: UserUpdateOneWithoutStudiesInput
+}
+
+input StudyUpdateManyDataInput {
+  label: String
+  school: String
+}
+
+input StudyUpdateManyMutationInput {
+  label: String
+  school: String
+}
+
+input StudyUpdateManyWithoutDegreeInput {
+  create: [StudyCreateWithoutDegreeInput!]
+  delete: [StudyWhereUniqueInput!]
+  connect: [StudyWhereUniqueInput!]
+  set: [StudyWhereUniqueInput!]
+  disconnect: [StudyWhereUniqueInput!]
+  update: [StudyUpdateWithWhereUniqueWithoutDegreeInput!]
+  upsert: [StudyUpsertWithWhereUniqueWithoutDegreeInput!]
+  deleteMany: [StudyScalarWhereInput!]
+  updateMany: [StudyUpdateManyWithWhereNestedInput!]
+}
+
+input StudyUpdateManyWithoutUserAccountInput {
+  create: [StudyCreateWithoutUserAccountInput!]
+  delete: [StudyWhereUniqueInput!]
+  connect: [StudyWhereUniqueInput!]
+  set: [StudyWhereUniqueInput!]
+  disconnect: [StudyWhereUniqueInput!]
+  update: [StudyUpdateWithWhereUniqueWithoutUserAccountInput!]
+  upsert: [StudyUpsertWithWhereUniqueWithoutUserAccountInput!]
+  deleteMany: [StudyScalarWhereInput!]
+  updateMany: [StudyUpdateManyWithWhereNestedInput!]
+}
+
+input StudyUpdateManyWithWhereNestedInput {
+  where: StudyScalarWhereInput!
+  data: StudyUpdateManyDataInput!
+}
+
+input StudyUpdateWithoutDegreeDataInput {
+  label: String
+  school: String
+  userAccount: UserUpdateOneWithoutStudiesInput
+}
+
+input StudyUpdateWithoutUserAccountDataInput {
+  label: String
+  school: String
+  degree: DegreeUpdateOneWithoutStudiesInput
+}
+
+input StudyUpdateWithWhereUniqueWithoutDegreeInput {
+  where: StudyWhereUniqueInput!
+  data: StudyUpdateWithoutDegreeDataInput!
+}
+
+input StudyUpdateWithWhereUniqueWithoutUserAccountInput {
+  where: StudyWhereUniqueInput!
+  data: StudyUpdateWithoutUserAccountDataInput!
+}
+
+input StudyUpsertWithWhereUniqueWithoutDegreeInput {
+  where: StudyWhereUniqueInput!
+  update: StudyUpdateWithoutDegreeDataInput!
+  create: StudyCreateWithoutDegreeInput!
+}
+
+input StudyUpsertWithWhereUniqueWithoutUserAccountInput {
+  where: StudyWhereUniqueInput!
+  update: StudyUpdateWithoutUserAccountDataInput!
+  create: StudyCreateWithoutUserAccountInput!
+}
+
+input StudyWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  school: String
+  school_not: String
+  school_in: [String!]
+  school_not_in: [String!]
+  school_lt: String
+  school_lte: String
+  school_gt: String
+  school_gte: String
+  school_contains: String
+  school_not_contains: String
+  school_starts_with: String
+  school_not_starts_with: String
+  school_ends_with: String
+  school_not_ends_with: String
+  degree: DegreeWhereInput
+  userAccount: UserWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [StudyWhereInput!]
+  OR: [StudyWhereInput!]
+  NOT: [StudyWhereInput!]
+}
+
+input StudyWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
+  address(where: AddressSubscriptionWhereInput): AddressSubscriptionPayload
+  application(where: ApplicationSubscriptionWhereInput): ApplicationSubscriptionPayload
+  degree(where: DegreeSubscriptionWhereInput): DegreeSubscriptionPayload
+  experience(where: ExperienceSubscriptionWhereInput): ExperienceSubscriptionPayload
+  message(where: MessageSubscriptionWhereInput): MessageSubscriptionPayload
+  offer(where: OfferSubscriptionWhereInput): OfferSubscriptionPayload
+  presentationPage(where: PresentationPageSubscriptionWhereInput): PresentationPageSubscriptionPayload
+  report(where: ReportSubscriptionWhereInput): ReportSubscriptionPayload
+  study(where: StudySubscriptionWhereInput): StudySubscriptionPayload
+  tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type Tag {
+  id: ID!
+  label: String!
+  offers(where: OfferWhereInput, orderBy: OfferOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Offer!]
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type TagConnection {
+  pageInfo: PageInfo!
+  edges: [TagEdge]!
+  aggregate: AggregateTag!
+}
+
+input TagCreateInput {
+  id: ID
+  label: String!
+  offers: OfferCreateManyWithoutTagsInput
+}
+
+input TagCreateManyWithoutOffersInput {
+  create: [TagCreateWithoutOffersInput!]
+  connect: [TagWhereUniqueInput!]
+}
+
+input TagCreateWithoutOffersInput {
+  id: ID
+  label: String!
+}
+
+type TagEdge {
+  node: Tag!
+  cursor: String!
+}
+
+enum TagOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+  created_at_ASC
+  created_at_DESC
+  updated_at_ASC
+  updated_at_DESC
+}
+
+type TagPreviousValues {
+  id: ID!
+  label: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+input TagScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [TagScalarWhereInput!]
+  OR: [TagScalarWhereInput!]
+  NOT: [TagScalarWhereInput!]
+}
+
+type TagSubscriptionPayload {
+  mutation: MutationType!
+  node: Tag
+  updatedFields: [String!]
+  previousValues: TagPreviousValues
+}
+
+input TagSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TagWhereInput
+  AND: [TagSubscriptionWhereInput!]
+  OR: [TagSubscriptionWhereInput!]
+  NOT: [TagSubscriptionWhereInput!]
+}
+
+input TagUpdateInput {
+  label: String
+  offers: OfferUpdateManyWithoutTagsInput
+}
+
+input TagUpdateManyDataInput {
+  label: String
+}
+
+input TagUpdateManyMutationInput {
+  label: String
+}
+
+input TagUpdateManyWithoutOffersInput {
+  create: [TagCreateWithoutOffersInput!]
+  delete: [TagWhereUniqueInput!]
+  connect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
+  disconnect: [TagWhereUniqueInput!]
+  update: [TagUpdateWithWhereUniqueWithoutOffersInput!]
+  upsert: [TagUpsertWithWhereUniqueWithoutOffersInput!]
+  deleteMany: [TagScalarWhereInput!]
+  updateMany: [TagUpdateManyWithWhereNestedInput!]
+}
+
+input TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput!
+  data: TagUpdateManyDataInput!
+}
+
+input TagUpdateWithoutOffersDataInput {
+  label: String
+}
+
+input TagUpdateWithWhereUniqueWithoutOffersInput {
+  where: TagWhereUniqueInput!
+  data: TagUpdateWithoutOffersDataInput!
+}
+
+input TagUpsertWithWhereUniqueWithoutOffersInput {
+  where: TagWhereUniqueInput!
+  update: TagUpdateWithoutOffersDataInput!
+  create: TagCreateWithoutOffersInput!
+}
+
+input TagWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  offers_every: OfferWhereInput
+  offers_some: OfferWhereInput
+  offers_none: OfferWhereInput
+  created_at: DateTime
+  created_at_not: DateTime
+  created_at_in: [DateTime!]
+  created_at_not_in: [DateTime!]
+  created_at_lt: DateTime
+  created_at_lte: DateTime
+  created_at_gt: DateTime
+  created_at_gte: DateTime
+  updated_at: DateTime
+  updated_at_not: DateTime
+  updated_at_in: [DateTime!]
+  updated_at_not_in: [DateTime!]
+  updated_at_lt: DateTime
+  updated_at_lte: DateTime
+  updated_at_gt: DateTime
+  updated_at_gte: DateTime
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+}
+
+input TagWhereUniqueInput {
+  id: ID
 }
 
 type User {
   id: ID!
   email: String!
   password: String!
+  plainPassword: String
   firstname: String
   lastname: String
+  birthday: String
+  status: Status
   role: Role
+  address: Address
+  studies(where: StudyWhereInput, orderBy: StudyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Study!]
+  sentMessages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+  receivedmessages(where: MessageWhereInput, orderBy: MessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Message!]
+  offers(where: OfferWhereInput, orderBy: OfferOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Offer!]
+  experiences(where: ExperienceWhereInput, orderBy: ExperienceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Experience!]
+  reports(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
+  reportedBy(where: ReportWhereInput, orderBy: ReportOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Report!]
+  presentationPage: PresentationPage
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -73,9 +2771,221 @@ input UserCreateInput {
   id: ID
   email: String!
   password: String!
+  plainPassword: String
   firstname: String
   lastname: String
+  birthday: String
+  status: Status
   role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateOneWithoutAddressInput {
+  create: UserCreateWithoutAddressInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutExperiencesInput {
+  create: UserCreateWithoutExperiencesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutPresentationPageInput {
+  create: UserCreateWithoutPresentationPageInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutReceivedmessagesInput {
+  create: UserCreateWithoutReceivedmessagesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutReportedByInput {
+  create: UserCreateWithoutReportedByInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutReportsInput {
+  create: UserCreateWithoutReportsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutSentMessagesInput {
+  create: UserCreateWithoutSentMessagesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutStudiesInput {
+  create: UserCreateWithoutStudiesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutAddressInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutExperiencesInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutPresentationPageInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+}
+
+input UserCreateWithoutReceivedmessagesInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutReportedByInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutReportsInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutSentMessagesInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  studies: StudyCreateManyWithoutUserAccountInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
+}
+
+input UserCreateWithoutStudiesInput {
+  id: ID
+  email: String!
+  password: String!
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressCreateOneWithoutUserAccountInput
+  sentMessages: MessageCreateManyWithoutSenderInput
+  receivedmessages: MessageCreateManyWithoutReceiverInput
+  offers: OfferCreateManyInput
+  experiences: ExperienceCreateManyWithoutUserAccountInput
+  reports: ReportCreateManyWithoutReporterInput
+  reportedBy: ReportCreateManyWithoutUserReportedInput
+  presentationPage: PresentationPageCreateOneWithoutOwnerInput
 }
 
 type UserEdge {
@@ -90,10 +3000,16 @@ enum UserOrderByInput {
   email_DESC
   password_ASC
   password_DESC
+  plainPassword_ASC
+  plainPassword_DESC
   firstname_ASC
   firstname_DESC
   lastname_ASC
   lastname_DESC
+  birthday_ASC
+  birthday_DESC
+  status_ASC
+  status_DESC
   role_ASC
   role_DESC
   createdAt_ASC
@@ -106,8 +3022,11 @@ type UserPreviousValues {
   id: ID!
   email: String!
   password: String!
+  plainPassword: String
   firstname: String
   lastname: String
+  birthday: String
+  status: Status
   role: Role
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -134,17 +3053,296 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   email: String
   password: String
+  plainPassword: String
   firstname: String
   lastname: String
+  birthday: String
+  status: Status
   role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
 }
 
 input UserUpdateManyMutationInput {
   email: String
   password: String
+  plainPassword: String
   firstname: String
   lastname: String
+  birthday: String
+  status: Status
   role: Role
+}
+
+input UserUpdateOneWithoutAddressInput {
+  create: UserCreateWithoutAddressInput
+  update: UserUpdateWithoutAddressDataInput
+  upsert: UserUpsertWithoutAddressInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutExperiencesInput {
+  create: UserCreateWithoutExperiencesInput
+  update: UserUpdateWithoutExperiencesDataInput
+  upsert: UserUpsertWithoutExperiencesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutPresentationPageInput {
+  create: UserCreateWithoutPresentationPageInput
+  update: UserUpdateWithoutPresentationPageDataInput
+  upsert: UserUpsertWithoutPresentationPageInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutReceivedmessagesInput {
+  create: UserCreateWithoutReceivedmessagesInput
+  update: UserUpdateWithoutReceivedmessagesDataInput
+  upsert: UserUpsertWithoutReceivedmessagesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutReportedByInput {
+  create: UserCreateWithoutReportedByInput
+  update: UserUpdateWithoutReportedByDataInput
+  upsert: UserUpsertWithoutReportedByInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutReportsInput {
+  create: UserCreateWithoutReportsInput
+  update: UserUpdateWithoutReportsDataInput
+  upsert: UserUpsertWithoutReportsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutSentMessagesInput {
+  create: UserCreateWithoutSentMessagesInput
+  update: UserUpdateWithoutSentMessagesDataInput
+  upsert: UserUpsertWithoutSentMessagesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutStudiesInput {
+  create: UserCreateWithoutStudiesInput
+  update: UserUpdateWithoutStudiesDataInput
+  upsert: UserUpsertWithoutStudiesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutAddressDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutExperiencesDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutPresentationPageDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+}
+
+input UserUpdateWithoutReceivedmessagesDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutReportedByDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutReportsDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutSentMessagesDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpdateWithoutStudiesDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
+}
+
+input UserUpsertWithoutAddressInput {
+  update: UserUpdateWithoutAddressDataInput!
+  create: UserCreateWithoutAddressInput!
+}
+
+input UserUpsertWithoutExperiencesInput {
+  update: UserUpdateWithoutExperiencesDataInput!
+  create: UserCreateWithoutExperiencesInput!
+}
+
+input UserUpsertWithoutPresentationPageInput {
+  update: UserUpdateWithoutPresentationPageDataInput!
+  create: UserCreateWithoutPresentationPageInput!
+}
+
+input UserUpsertWithoutReceivedmessagesInput {
+  update: UserUpdateWithoutReceivedmessagesDataInput!
+  create: UserCreateWithoutReceivedmessagesInput!
+}
+
+input UserUpsertWithoutReportedByInput {
+  update: UserUpdateWithoutReportedByDataInput!
+  create: UserCreateWithoutReportedByInput!
+}
+
+input UserUpsertWithoutReportsInput {
+  update: UserUpdateWithoutReportsDataInput!
+  create: UserCreateWithoutReportsInput!
+}
+
+input UserUpsertWithoutSentMessagesInput {
+  update: UserUpdateWithoutSentMessagesDataInput!
+  create: UserCreateWithoutSentMessagesInput!
+}
+
+input UserUpsertWithoutStudiesInput {
+  update: UserUpdateWithoutStudiesDataInput!
+  create: UserCreateWithoutStudiesInput!
 }
 
 input UserWhereInput {
@@ -190,6 +3388,20 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  plainPassword: String
+  plainPassword_not: String
+  plainPassword_in: [String!]
+  plainPassword_not_in: [String!]
+  plainPassword_lt: String
+  plainPassword_lte: String
+  plainPassword_gt: String
+  plainPassword_gte: String
+  plainPassword_contains: String
+  plainPassword_not_contains: String
+  plainPassword_starts_with: String
+  plainPassword_not_starts_with: String
+  plainPassword_ends_with: String
+  plainPassword_not_ends_with: String
   firstname: String
   firstname_not: String
   firstname_in: [String!]
@@ -218,10 +3430,48 @@ input UserWhereInput {
   lastname_not_starts_with: String
   lastname_ends_with: String
   lastname_not_ends_with: String
+  birthday_in: [String!]
+  birthday_not_in: [String!]
+  birthday_lt: String
+  birthday_lte: String
+  birthday_gt: String
+  birthday_gte: String
+  birthday_contains: String
+  birthday_not_contains: String
+  birthday_starts_with: String
+  birthday_not_starts_with: String
+  birthday_ends_with: String
+  birthday_not_ends_with: String
+  status: Status
+  status_not: Status
+  status_in: [Status!]
+  status_not_in: [Status!]
   role: Role
   role_not: Role
-  role_in: [Role!]
   role_not_in: [Role!]
+  address: AddressWhereInput
+  studies_every: StudyWhereInput
+  studies_some: StudyWhereInput
+  studies_none: StudyWhereInput
+  sentMessages_every: MessageWhereInput
+  sentMessages_some: MessageWhereInput
+  sentMessages_none: MessageWhereInput
+  receivedmessages_every: MessageWhereInput
+  receivedmessages_some: MessageWhereInput
+  receivedmessages_none: MessageWhereInput
+  offers_every: OfferWhereInput
+  offers_some: OfferWhereInput
+  offers_none: OfferWhereInput
+  experiences_every: ExperienceWhereInput
+  experiences_some: ExperienceWhereInput
+  experiences_none: ExperienceWhereInput
+  reports_every: ReportWhereInput
+  reports_some: ReportWhereInput
+  reports_none: ReportWhereInput
+  reportedBy_every: ReportWhereInput
+  reportedBy_some: ReportWhereInput
+  reportedBy_none: ReportWhereInput
+  presentationPage: PresentationPageWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
