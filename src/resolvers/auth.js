@@ -54,14 +54,7 @@ const generateToken = (userId, firstname, lastname) => {
     }
 }
 
-// Q currently user
-async function me (parent, args, ctx, info) {
-    const user = await getUser(ctx)
-    return user
-}
-
 module.exports = {
-    me,
     signup,
     login
 }
