@@ -1,19 +1,19 @@
 const { forwardTo } = require('prisma-binding')
 
-async function createUser (parent, args, ctx, info) {
+async function createReport (parent, args, ctx, info) {
     return forwardTo('prisma')(parent, args, ctx, info)
 }
 
-async function updateUser (parent, args, ctx, info) {
+async function updateReport (parent, args, ctx, info) {
     return forwardTo('prisma')(parent, args, ctx, info)
 }
 
-async function deleteUser (parent, args, ctx, info) {
+async function deleteReport (parent, args, ctx, info) {
     return forwardTo('prisma')(parent, args, ctx, info)
 }
 
 module.exports = {
-    createUser,
-    updateUser,
-    deleteUser
+    createReport,
+    updateReport,
+    deleteReport
 }

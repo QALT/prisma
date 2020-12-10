@@ -1,4 +1,14 @@
-# import User, Query.user, Query.users, Mutation.updateUser, Mutation.deleteUser, from "./generated/prisma.graphql"
+# import Address, Query.address, Query.addresses, Mutation.createAddress, Mutation.updateAddress, Mutation.deleteAddress from "./generated/prisma.graphql"
+# import Application, Query.application, Query.applications, Mutation.createApplication, Mutation.updateApplication, Mutation.deleteApplication from "./generated/prisma.graphql"
+# import Degree, Query.degree, Query.degrees, Mutation.createDegree, Mutation.updateDegree, Mutation.deleteDegree from "./generated/prisma.graphql"
+# import Experience, Query.experience, Query.experiences, Mutation.createExperience, Mutation.updateExperience, Mutation.deleteExperience from "./generated/prisma.graphql"
+# import Message, Query.message, Query.messages, Mutation.createMessage, Mutation.updateMessage, Mutation.deleteMessage from "./generated/prisma.graphql"
+# import Offer, Query.offer, Query.offers, Mutation.createOffer, Mutation.updateOffer, Mutation.deleteOffer from "./generated/prisma.graphql"
+# import PresentationPage, Query.presentationPage, Query.presentationPages, Mutation.createPresentationPage, Mutation.updatePresentationPage, Mutation.deletePresentationPage from "./generated/prisma.graphql"
+# import Report, Query.report, Query.reports, Mutation.createReport, Mutation.updateReport, Mutation.deleteReport from "./generated/prisma.graphql"
+# import Study, Query.study, Query.studies, Mutation.createStudy, Mutation.updateStudy, Mutation.deleteStudy from "./generated/prisma.graphql"
+# import Tag, Query.tag, Query.tags, Mutation.createTag, Mutation.updateTag, Mutation.deleteTag from "./generated/prisma.graphql"
+# import User, Query.user, Query.users, Mutation.createUser, Mutation.updateUser, Mutation.deleteUser from "./generated/prisma.graphql"
 
 type Query {
     me: User
