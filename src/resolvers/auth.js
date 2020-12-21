@@ -33,10 +33,10 @@ async function login (parent, {email, password}, ctx, info) {
         throw new Error('Invalid password')
     }
 
-    return generateToken(user.id, user.firstname, user.lastname)
+    return generateToken(user.id, user.firstname, user.lastname, user.email)
 }
 
-const generateToken = (userId, firstname, lastname) => {
+const generateToken = (userId, firstname, lastname, email) => {
     const privateKey = fs.readFileSync('./src/jwt/private.pem');
 
     return {
@@ -44,6 +44,7 @@ const generateToken = (userId, firstname, lastname) => {
             userId: userId,
             firstname: firstname ?? null,
             lastname: lastname ?? null,
+            email: email
         }, {
             key: privateKey,
             passphrase: process.env.JWT_PASSPHRASE
