@@ -35,7 +35,7 @@ type Address {
 
 type Application {
 	id: ID! @id
-	status: String!
+	status: Status @default(value:APPLIED)
 	comment: String
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
@@ -63,6 +63,7 @@ type Offer {
 	title: String!
 	description: String!
 	employer: User!
+	status: Status @default(value:CREATED)
 	tags: [Tag]
 	reports: [Report] 
 	created_at: DateTime! @createdAt
@@ -72,7 +73,7 @@ type Offer {
 type PresentationPage {
 	id: ID! @id
 	content: String!
-	status: String!
+	status: Status @default(value:ONLINE)
 	owner: User!
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
@@ -81,7 +82,7 @@ type PresentationPage {
 type Report {
 	id: ID! @id
 	motivation: String!
-	status: String!
+	status: Status @default(value:SUBMITTED)
 	offer: Offer
 	reporter: User @relation(name: "Reports")
 	userReported: User @relation(name: "ReportedBy")
@@ -121,6 +122,10 @@ type Experience {
 enum Status {
 	ENABLED
 	DISABLED
+	APPLIED
+	ONLINE
+	CREATED
+	SUBMITTED
 }
 enum Role {
 	ROLE_USER
