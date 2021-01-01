@@ -503,8 +503,9 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type Role = "ROLE_USER" | "ROLE_ADMIN";
 export type Status = "ENABLED" | "DISABLED";
+
+export type Role = "ROLE_USER" | "ROLE_ADMIN";
 
 export type StudyOrderByInput =
   | "id_ASC"
@@ -596,6 +597,30 @@ export type AddressOrderByInput =
   | "updated_at_ASC"
   | "updated_at_DESC";
 
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "plainPassword_ASC"
+  | "plainPassword_DESC"
+  | "firstname_ASC"
+  | "firstname_DESC"
+  | "lastname_ASC"
+  | "lastname_DESC"
+  | "birthday_ASC"
+  | "birthday_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "role_ASC"
+  | "role_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
 export type ApplicationOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -629,30 +654,6 @@ export type PresentationPageOrderByInput =
   | "created_at_DESC"
   | "updated_at_ASC"
   | "updated_at_DESC";
-
-export type UserOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "email_ASC"
-  | "email_DESC"
-  | "password_ASC"
-  | "password_DESC"
-  | "plainPassword_ASC"
-  | "plainPassword_DESC"
-  | "firstname_ASC"
-  | "firstname_DESC"
-  | "lastname_ASC"
-  | "lastname_DESC"
-  | "birthday_ASC"
-  | "birthday_DESC"
-  | "status_ASC"
-  | "status_DESC"
-  | "role_ASC"
-  | "role_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
@@ -1132,6 +1133,7 @@ export interface OfferWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
+  employer?: Maybe<UserWhereInput>;
   tags_every?: Maybe<TagWhereInput>;
   tags_some?: Maybe<TagWhereInput>;
   tags_none?: Maybe<TagWhereInput>;
@@ -1255,8 +1257,8 @@ export interface ReportWhereInput {
   status_not_starts_with?: Maybe<String>;
   status_ends_with?: Maybe<String>;
   status_not_ends_with?: Maybe<String>;
-  reporter?: Maybe<UserWhereInput>;
   offer?: Maybe<OfferWhereInput>;
+  reporter?: Maybe<UserWhereInput>;
   userReported?: Maybe<UserWhereInput>;
   created_at?: Maybe<DateTimeInput>;
   created_at_not?: Maybe<DateTimeInput>;
@@ -1484,6 +1486,12 @@ export interface ApplicationWhereInput {
   comment_not_starts_with?: Maybe<String>;
   comment_ends_with?: Maybe<String>;
   comment_not_ends_with?: Maybe<String>;
+  offer_every?: Maybe<OfferWhereInput>;
+  offer_some?: Maybe<OfferWhereInput>;
+  offer_none?: Maybe<OfferWhereInput>;
+  applicant_every?: Maybe<UserWhereInput>;
+  applicant_some?: Maybe<UserWhereInput>;
+  applicant_none?: Maybe<UserWhereInput>;
   created_at?: Maybe<DateTimeInput>;
   created_at_not?: Maybe<DateTimeInput>;
   created_at_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1570,7 +1578,7 @@ export interface UserCreateWithoutAddressInput {
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
@@ -1632,7 +1640,7 @@ export interface UserCreateWithoutReceivedmessagesInput {
   address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
@@ -1653,12 +1661,14 @@ export interface AddressCreateWithoutUserAccountInput {
   street: String;
 }
 
-export interface OfferCreateManyInput {
-  create?: Maybe<OfferCreateInput[] | OfferCreateInput>;
+export interface OfferCreateManyWithoutEmployerInput {
+  create?: Maybe<
+    OfferCreateWithoutEmployerInput[] | OfferCreateWithoutEmployerInput
+  >;
   connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
 }
 
-export interface OfferCreateInput {
+export interface OfferCreateWithoutEmployerInput {
   id?: Maybe<ID_Input>;
   title: String;
   description: String;
@@ -1710,7 +1720,7 @@ export interface UserCreateWithoutReportsInput {
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
   presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
@@ -1747,7 +1757,7 @@ export interface UserCreateWithoutSentMessagesInput {
   address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
@@ -1794,7 +1804,60 @@ export interface OfferCreateWithoutReportsInput {
   id?: Maybe<ID_Input>;
   title: String;
   description: String;
+  employer: UserCreateOneWithoutOffersInput;
   tags?: Maybe<TagCreateManyWithoutOffersInput>;
+}
+
+export interface UserCreateOneWithoutOffersInput {
+  create?: Maybe<UserCreateWithoutOffersInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutOffersInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
+}
+
+export interface ReportCreateManyWithoutUserReportedInput {
+  create?: Maybe<
+    | ReportCreateWithoutUserReportedInput[]
+    | ReportCreateWithoutUserReportedInput
+  >;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+}
+
+export interface ReportCreateWithoutUserReportedInput {
+  id?: Maybe<ID_Input>;
+  motivation: String;
+  status: String;
+  offer?: Maybe<OfferCreateOneWithoutReportsInput>;
+  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
+}
+
+export interface PresentationPageCreateOneWithoutOwnerInput {
+  create?: Maybe<PresentationPageCreateWithoutOwnerInput>;
+  connect?: Maybe<PresentationPageWhereUniqueInput>;
+}
+
+export interface PresentationPageCreateWithoutOwnerInput {
+  id?: Maybe<ID_Input>;
+  content: String;
+  status: String;
 }
 
 export interface UserCreateOneWithoutReportedByInput {
@@ -1816,37 +1879,10 @@ export interface UserCreateWithoutReportedByInput {
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
-}
-
-export interface PresentationPageCreateOneWithoutOwnerInput {
-  create?: Maybe<PresentationPageCreateWithoutOwnerInput>;
-  connect?: Maybe<PresentationPageWhereUniqueInput>;
-}
-
-export interface PresentationPageCreateWithoutOwnerInput {
-  id?: Maybe<ID_Input>;
-  content: String;
-  status: String;
-}
-
-export interface ReportCreateManyWithoutUserReportedInput {
-  create?: Maybe<
-    | ReportCreateWithoutUserReportedInput[]
-    | ReportCreateWithoutUserReportedInput
-  >;
-  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
-}
-
-export interface ReportCreateWithoutUserReportedInput {
-  id?: Maybe<ID_Input>;
-  motivation: String;
-  status: String;
-  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
-  offer?: Maybe<OfferCreateOneWithoutReportsInput>;
 }
 
 export interface AddressUpdateInput {
@@ -1879,7 +1915,7 @@ export interface UserUpdateWithoutAddressDataInput {
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
@@ -2071,7 +2107,7 @@ export interface UserUpdateWithoutReceivedmessagesDataInput {
   address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
@@ -2100,32 +2136,34 @@ export interface AddressUpsertWithoutUserAccountInput {
   create: AddressCreateWithoutUserAccountInput;
 }
 
-export interface OfferUpdateManyInput {
-  create?: Maybe<OfferCreateInput[] | OfferCreateInput>;
-  update?: Maybe<
-    | OfferUpdateWithWhereUniqueNestedInput[]
-    | OfferUpdateWithWhereUniqueNestedInput
-  >;
-  upsert?: Maybe<
-    | OfferUpsertWithWhereUniqueNestedInput[]
-    | OfferUpsertWithWhereUniqueNestedInput
+export interface OfferUpdateManyWithoutEmployerInput {
+  create?: Maybe<
+    OfferCreateWithoutEmployerInput[] | OfferCreateWithoutEmployerInput
   >;
   delete?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
   connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
   set?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
   disconnect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  update?: Maybe<
+    | OfferUpdateWithWhereUniqueWithoutEmployerInput[]
+    | OfferUpdateWithWhereUniqueWithoutEmployerInput
+  >;
+  upsert?: Maybe<
+    | OfferUpsertWithWhereUniqueWithoutEmployerInput[]
+    | OfferUpsertWithWhereUniqueWithoutEmployerInput
+  >;
   deleteMany?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
   updateMany?: Maybe<
     OfferUpdateManyWithWhereNestedInput[] | OfferUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface OfferUpdateWithWhereUniqueNestedInput {
+export interface OfferUpdateWithWhereUniqueWithoutEmployerInput {
   where: OfferWhereUniqueInput;
-  data: OfferUpdateDataInput;
+  data: OfferUpdateWithoutEmployerDataInput;
 }
 
-export interface OfferUpdateDataInput {
+export interface OfferUpdateWithoutEmployerDataInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
   tags?: Maybe<TagUpdateManyWithoutOffersInput>;
@@ -2283,7 +2321,7 @@ export interface UserUpdateWithoutReportsDataInput {
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
   presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
@@ -2343,7 +2381,7 @@ export interface UserUpdateWithoutSentMessagesDataInput {
   address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
@@ -2543,24 +2581,18 @@ export interface OfferUpdateOneWithoutReportsInput {
 export interface OfferUpdateWithoutReportsDataInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
+  employer?: Maybe<UserUpdateOneRequiredWithoutOffersInput>;
   tags?: Maybe<TagUpdateManyWithoutOffersInput>;
 }
 
-export interface OfferUpsertWithoutReportsInput {
-  update: OfferUpdateWithoutReportsDataInput;
-  create: OfferCreateWithoutReportsInput;
-}
-
-export interface UserUpdateOneWithoutReportedByInput {
-  create?: Maybe<UserCreateWithoutReportedByInput>;
-  update?: Maybe<UserUpdateWithoutReportedByDataInput>;
-  upsert?: Maybe<UserUpsertWithoutReportedByInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
+export interface UserUpdateOneRequiredWithoutOffersInput {
+  create?: Maybe<UserCreateWithoutOffersInput>;
+  update?: Maybe<UserUpdateWithoutOffersDataInput>;
+  upsert?: Maybe<UserUpsertWithoutOffersInput>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface UserUpdateWithoutReportedByDataInput {
+export interface UserUpdateWithoutOffersDataInput {
   email?: Maybe<String>;
   password?: Maybe<String>;
   plainPassword?: Maybe<String>;
@@ -2573,40 +2605,52 @@ export interface UserUpdateWithoutReportedByDataInput {
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
   presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
 }
 
-export interface PresentationPageUpdateOneWithoutOwnerInput {
-  create?: Maybe<PresentationPageCreateWithoutOwnerInput>;
-  update?: Maybe<PresentationPageUpdateWithoutOwnerDataInput>;
-  upsert?: Maybe<PresentationPageUpsertWithoutOwnerInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<PresentationPageWhereUniqueInput>;
+export interface ReportUpdateManyWithoutUserReportedInput {
+  create?: Maybe<
+    | ReportCreateWithoutUserReportedInput[]
+    | ReportCreateWithoutUserReportedInput
+  >;
+  delete?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  set?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  disconnect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
+  update?: Maybe<
+    | ReportUpdateWithWhereUniqueWithoutUserReportedInput[]
+    | ReportUpdateWithWhereUniqueWithoutUserReportedInput
+  >;
+  upsert?: Maybe<
+    | ReportUpsertWithWhereUniqueWithoutUserReportedInput[]
+    | ReportUpsertWithWhereUniqueWithoutUserReportedInput
+  >;
+  deleteMany?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
+  updateMany?: Maybe<
+    | ReportUpdateManyWithWhereNestedInput[]
+    | ReportUpdateManyWithWhereNestedInput
+  >;
 }
 
-export interface PresentationPageUpdateWithoutOwnerDataInput {
-  content?: Maybe<String>;
-  status?: Maybe<String>;
-}
-
-export interface PresentationPageUpsertWithoutOwnerInput {
-  update: PresentationPageUpdateWithoutOwnerDataInput;
-  create: PresentationPageCreateWithoutOwnerInput;
-}
-
-export interface UserUpsertWithoutReportedByInput {
-  update: UserUpdateWithoutReportedByDataInput;
-  create: UserCreateWithoutReportedByInput;
-}
-
-export interface ReportUpsertWithWhereUniqueWithoutReporterInput {
+export interface ReportUpdateWithWhereUniqueWithoutUserReportedInput {
   where: ReportWhereUniqueInput;
-  update: ReportUpdateWithoutReporterDataInput;
-  create: ReportCreateWithoutReporterInput;
+  data: ReportUpdateWithoutUserReportedDataInput;
+}
+
+export interface ReportUpdateWithoutUserReportedDataInput {
+  motivation?: Maybe<String>;
+  status?: Maybe<String>;
+  offer?: Maybe<OfferUpdateOneWithoutReportsInput>;
+  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
+}
+
+export interface ReportUpsertWithWhereUniqueWithoutUserReportedInput {
+  where: ReportWhereUniqueInput;
+  update: ReportUpdateWithoutUserReportedDataInput;
+  create: ReportCreateWithoutUserReportedInput;
 }
 
 export interface ReportScalarWhereInput {
@@ -2683,46 +2727,72 @@ export interface ReportUpdateManyDataInput {
   status?: Maybe<String>;
 }
 
-export interface ReportUpdateManyWithoutUserReportedInput {
-  create?: Maybe<
-    | ReportCreateWithoutUserReportedInput[]
-    | ReportCreateWithoutUserReportedInput
-  >;
-  delete?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
-  connect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
-  set?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
-  disconnect?: Maybe<ReportWhereUniqueInput[] | ReportWhereUniqueInput>;
-  update?: Maybe<
-    | ReportUpdateWithWhereUniqueWithoutUserReportedInput[]
-    | ReportUpdateWithWhereUniqueWithoutUserReportedInput
-  >;
-  upsert?: Maybe<
-    | ReportUpsertWithWhereUniqueWithoutUserReportedInput[]
-    | ReportUpsertWithWhereUniqueWithoutUserReportedInput
-  >;
-  deleteMany?: Maybe<ReportScalarWhereInput[] | ReportScalarWhereInput>;
-  updateMany?: Maybe<
-    | ReportUpdateManyWithWhereNestedInput[]
-    | ReportUpdateManyWithWhereNestedInput
-  >;
+export interface PresentationPageUpdateOneWithoutOwnerInput {
+  create?: Maybe<PresentationPageCreateWithoutOwnerInput>;
+  update?: Maybe<PresentationPageUpdateWithoutOwnerDataInput>;
+  upsert?: Maybe<PresentationPageUpsertWithoutOwnerInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<PresentationPageWhereUniqueInput>;
 }
 
-export interface ReportUpdateWithWhereUniqueWithoutUserReportedInput {
-  where: ReportWhereUniqueInput;
-  data: ReportUpdateWithoutUserReportedDataInput;
-}
-
-export interface ReportUpdateWithoutUserReportedDataInput {
-  motivation?: Maybe<String>;
+export interface PresentationPageUpdateWithoutOwnerDataInput {
+  content?: Maybe<String>;
   status?: Maybe<String>;
-  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
-  offer?: Maybe<OfferUpdateOneWithoutReportsInput>;
 }
 
-export interface ReportUpsertWithWhereUniqueWithoutUserReportedInput {
+export interface PresentationPageUpsertWithoutOwnerInput {
+  update: PresentationPageUpdateWithoutOwnerDataInput;
+  create: PresentationPageCreateWithoutOwnerInput;
+}
+
+export interface UserUpsertWithoutOffersInput {
+  update: UserUpdateWithoutOffersDataInput;
+  create: UserCreateWithoutOffersInput;
+}
+
+export interface OfferUpsertWithoutReportsInput {
+  update: OfferUpdateWithoutReportsDataInput;
+  create: OfferCreateWithoutReportsInput;
+}
+
+export interface UserUpdateOneWithoutReportedByInput {
+  create?: Maybe<UserCreateWithoutReportedByInput>;
+  update?: Maybe<UserUpdateWithoutReportedByDataInput>;
+  upsert?: Maybe<UserUpsertWithoutReportedByInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutReportedByDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
+  experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface UserUpsertWithoutReportedByInput {
+  update: UserUpdateWithoutReportedByDataInput;
+  create: UserCreateWithoutReportedByInput;
+}
+
+export interface ReportUpsertWithWhereUniqueWithoutReporterInput {
   where: ReportWhereUniqueInput;
-  update: ReportUpdateWithoutUserReportedDataInput;
-  create: ReportCreateWithoutUserReportedInput;
+  update: ReportUpdateWithoutReporterDataInput;
+  create: ReportCreateWithoutReporterInput;
 }
 
 export interface UserUpsertWithoutSentMessagesInput {
@@ -2806,10 +2876,10 @@ export interface ReportUpsertWithWhereUniqueWithoutOfferInput {
   create: ReportCreateWithoutOfferInput;
 }
 
-export interface OfferUpsertWithWhereUniqueNestedInput {
+export interface OfferUpsertWithWhereUniqueWithoutEmployerInput {
   where: OfferWhereUniqueInput;
-  update: OfferUpdateDataInput;
-  create: OfferCreateInput;
+  update: OfferUpdateWithoutEmployerDataInput;
+  create: OfferCreateWithoutEmployerInput;
 }
 
 export interface OfferScalarWhereInput {
@@ -2912,13 +2982,291 @@ export interface AddressUpdateManyMutationInput {
 
 export interface ApplicationCreateInput {
   id?: Maybe<ID_Input>;
-  status: String;
+  status?: Maybe<String>;
   comment?: Maybe<String>;
+  offer?: Maybe<OfferCreateManyInput>;
+  applicant?: Maybe<UserCreateManyInput>;
+}
+
+export interface OfferCreateManyInput {
+  create?: Maybe<OfferCreateInput[] | OfferCreateInput>;
+  connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+}
+
+export interface OfferCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  description: String;
+  employer: UserCreateOneWithoutOffersInput;
+  tags?: Maybe<TagCreateManyWithoutOffersInput>;
+  reports?: Maybe<ReportCreateManyWithoutOfferInput>;
+}
+
+export interface UserCreateManyInput {
+  create?: Maybe<UserCreateInput[] | UserCreateInput>;
+  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  email: String;
+  password: String;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
+  experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
+  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
 }
 
 export interface ApplicationUpdateInput {
   status?: Maybe<String>;
   comment?: Maybe<String>;
+  offer?: Maybe<OfferUpdateManyInput>;
+  applicant?: Maybe<UserUpdateManyInput>;
+}
+
+export interface OfferUpdateManyInput {
+  create?: Maybe<OfferCreateInput[] | OfferCreateInput>;
+  update?: Maybe<
+    | OfferUpdateWithWhereUniqueNestedInput[]
+    | OfferUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | OfferUpsertWithWhereUniqueNestedInput[]
+    | OfferUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  connect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  set?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  disconnect?: Maybe<OfferWhereUniqueInput[] | OfferWhereUniqueInput>;
+  deleteMany?: Maybe<OfferScalarWhereInput[] | OfferScalarWhereInput>;
+  updateMany?: Maybe<
+    OfferUpdateManyWithWhereNestedInput[] | OfferUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface OfferUpdateWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput;
+  data: OfferUpdateDataInput;
+}
+
+export interface OfferUpdateDataInput {
+  title?: Maybe<String>;
+  description?: Maybe<String>;
+  employer?: Maybe<UserUpdateOneRequiredWithoutOffersInput>;
+  tags?: Maybe<TagUpdateManyWithoutOffersInput>;
+  reports?: Maybe<ReportUpdateManyWithoutOfferInput>;
+}
+
+export interface OfferUpsertWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput;
+  update: OfferUpdateDataInput;
+  create: OfferCreateInput;
+}
+
+export interface UserUpdateManyInput {
+  create?: Maybe<UserCreateInput[] | UserCreateInput>;
+  update?: Maybe<
+    | UserUpdateWithWhereUniqueNestedInput[]
+    | UserUpdateWithWhereUniqueNestedInput
+  >;
+  upsert?: Maybe<
+    | UserUpsertWithWhereUniqueNestedInput[]
+    | UserUpsertWithWhereUniqueNestedInput
+  >;
+  delete?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  connect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  set?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  disconnect?: Maybe<UserWhereUniqueInput[] | UserWhereUniqueInput>;
+  deleteMany?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
+  updateMany?: Maybe<
+    UserUpdateManyWithWhereNestedInput[] | UserUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput;
+  data: UserUpdateDataInput;
+}
+
+export interface UserUpdateDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
+  address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
+  studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
+  sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
+  receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
+  experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
+  reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
+  reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
+  presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
+}
+
+export interface UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput;
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface UserScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  plainPassword_not?: Maybe<String>;
+  plainPassword_in?: Maybe<String[] | String>;
+  plainPassword_not_in?: Maybe<String[] | String>;
+  plainPassword_lt?: Maybe<String>;
+  plainPassword_lte?: Maybe<String>;
+  plainPassword_gt?: Maybe<String>;
+  plainPassword_gte?: Maybe<String>;
+  plainPassword_contains?: Maybe<String>;
+  plainPassword_not_contains?: Maybe<String>;
+  plainPassword_starts_with?: Maybe<String>;
+  plainPassword_not_starts_with?: Maybe<String>;
+  plainPassword_ends_with?: Maybe<String>;
+  plainPassword_not_ends_with?: Maybe<String>;
+  firstname?: Maybe<String>;
+  firstname_not?: Maybe<String>;
+  firstname_in?: Maybe<String[] | String>;
+  firstname_not_in?: Maybe<String[] | String>;
+  firstname_lt?: Maybe<String>;
+  firstname_lte?: Maybe<String>;
+  firstname_gt?: Maybe<String>;
+  firstname_gte?: Maybe<String>;
+  firstname_contains?: Maybe<String>;
+  firstname_not_contains?: Maybe<String>;
+  firstname_starts_with?: Maybe<String>;
+  firstname_not_starts_with?: Maybe<String>;
+  firstname_ends_with?: Maybe<String>;
+  firstname_not_ends_with?: Maybe<String>;
+  lastname?: Maybe<String>;
+  lastname_not?: Maybe<String>;
+  lastname_in?: Maybe<String[] | String>;
+  lastname_not_in?: Maybe<String[] | String>;
+  lastname_lt?: Maybe<String>;
+  lastname_lte?: Maybe<String>;
+  lastname_gt?: Maybe<String>;
+  lastname_gte?: Maybe<String>;
+  lastname_contains?: Maybe<String>;
+  lastname_not_contains?: Maybe<String>;
+  lastname_starts_with?: Maybe<String>;
+  lastname_not_starts_with?: Maybe<String>;
+  lastname_ends_with?: Maybe<String>;
+  lastname_not_ends_with?: Maybe<String>;
+  birthday?: Maybe<String>;
+  birthday_not?: Maybe<String>;
+  birthday_in?: Maybe<String[] | String>;
+  birthday_not_in?: Maybe<String[] | String>;
+  birthday_lt?: Maybe<String>;
+  birthday_lte?: Maybe<String>;
+  birthday_gt?: Maybe<String>;
+  birthday_gte?: Maybe<String>;
+  birthday_contains?: Maybe<String>;
+  birthday_not_contains?: Maybe<String>;
+  birthday_starts_with?: Maybe<String>;
+  birthday_not_starts_with?: Maybe<String>;
+  birthday_ends_with?: Maybe<String>;
+  birthday_not_ends_with?: Maybe<String>;
+  status?: Maybe<Status>;
+  status_not?: Maybe<Status>;
+  status_in?: Maybe<Status[] | Status>;
+  status_not_in?: Maybe<Status[] | Status>;
+  role?: Maybe<Role>;
+  role_not?: Maybe<Role>;
+  role_in?: Maybe<Role[] | Role>;
+  role_not_in?: Maybe<Role[] | Role>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
+  OR?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
+  NOT?: Maybe<UserScalarWhereInput[] | UserScalarWhereInput>;
+}
+
+export interface UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput;
+  data: UserUpdateManyDataInput;
+}
+
+export interface UserUpdateManyDataInput {
+  email?: Maybe<String>;
+  password?: Maybe<String>;
+  plainPassword?: Maybe<String>;
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  birthday?: Maybe<String>;
+  status?: Maybe<Status>;
+  role?: Maybe<Role>;
 }
 
 export interface ApplicationUpdateManyMutationInput {
@@ -2964,7 +3312,7 @@ export interface UserCreateWithoutStudiesInput {
   address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
@@ -3030,7 +3378,7 @@ export interface UserUpdateWithoutStudiesDataInput {
   address?: Maybe<AddressUpdateOneWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
@@ -3080,7 +3428,7 @@ export interface UserCreateWithoutExperiencesInput {
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
   presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
@@ -3116,7 +3464,7 @@ export interface UserUpdateWithoutExperiencesDataInput {
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
   presentationPage?: Maybe<PresentationPageUpdateOneWithoutOwnerInput>;
@@ -3154,6 +3502,7 @@ export interface MessageUpdateManyMutationInput {
 export interface OfferUpdateInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
+  employer?: Maybe<UserUpdateOneRequiredWithoutOffersInput>;
   tags?: Maybe<TagUpdateManyWithoutOffersInput>;
   reports?: Maybe<ReportUpdateManyWithoutOfferInput>;
 }
@@ -3167,7 +3516,7 @@ export interface PresentationPageCreateInput {
   id?: Maybe<ID_Input>;
   content: String;
   status: String;
-  owner?: Maybe<UserCreateOneWithoutPresentationPageInput>;
+  owner: UserCreateOneWithoutPresentationPageInput;
 }
 
 export interface UserCreateOneWithoutPresentationPageInput {
@@ -3189,7 +3538,7 @@ export interface UserCreateWithoutPresentationPageInput {
   studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
+  offers?: Maybe<OfferCreateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportCreateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
@@ -3198,15 +3547,13 @@ export interface UserCreateWithoutPresentationPageInput {
 export interface PresentationPageUpdateInput {
   content?: Maybe<String>;
   status?: Maybe<String>;
-  owner?: Maybe<UserUpdateOneWithoutPresentationPageInput>;
+  owner?: Maybe<UserUpdateOneRequiredWithoutPresentationPageInput>;
 }
 
-export interface UserUpdateOneWithoutPresentationPageInput {
+export interface UserUpdateOneRequiredWithoutPresentationPageInput {
   create?: Maybe<UserCreateWithoutPresentationPageInput>;
   update?: Maybe<UserUpdateWithoutPresentationPageDataInput>;
   upsert?: Maybe<UserUpsertWithoutPresentationPageInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -3223,7 +3570,7 @@ export interface UserUpdateWithoutPresentationPageDataInput {
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
@@ -3243,16 +3590,16 @@ export interface ReportCreateInput {
   id?: Maybe<ID_Input>;
   motivation: String;
   status: String;
-  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
   offer?: Maybe<OfferCreateOneWithoutReportsInput>;
+  reporter?: Maybe<UserCreateOneWithoutReportsInput>;
   userReported?: Maybe<UserCreateOneWithoutReportedByInput>;
 }
 
 export interface ReportUpdateInput {
   motivation?: Maybe<String>;
   status?: Maybe<String>;
-  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
   offer?: Maybe<OfferUpdateOneWithoutReportsInput>;
+  reporter?: Maybe<UserUpdateOneWithoutReportsInput>;
   userReported?: Maybe<UserUpdateOneWithoutReportedByInput>;
 }
 
@@ -3296,6 +3643,7 @@ export interface OfferCreateWithoutTagsInput {
   id?: Maybe<ID_Input>;
   title: String;
   description: String;
+  employer: UserCreateOneWithoutOffersInput;
   reports?: Maybe<ReportCreateManyWithoutOfferInput>;
 }
 
@@ -3332,6 +3680,7 @@ export interface OfferUpdateWithWhereUniqueWithoutTagsInput {
 export interface OfferUpdateWithoutTagsDataInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
+  employer?: Maybe<UserUpdateOneRequiredWithoutOffersInput>;
   reports?: Maybe<ReportUpdateManyWithoutOfferInput>;
 }
 
@@ -3343,27 +3692,6 @@ export interface OfferUpsertWithWhereUniqueWithoutTagsInput {
 
 export interface TagUpdateManyMutationInput {
   label?: Maybe<String>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  email: String;
-  password: String;
-  plainPassword?: Maybe<String>;
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  birthday?: Maybe<String>;
-  status?: Maybe<Status>;
-  role?: Maybe<Role>;
-  address?: Maybe<AddressCreateOneWithoutUserAccountInput>;
-  studies?: Maybe<StudyCreateManyWithoutUserAccountInput>;
-  sentMessages?: Maybe<MessageCreateManyWithoutSenderInput>;
-  receivedmessages?: Maybe<MessageCreateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferCreateManyInput>;
-  experiences?: Maybe<ExperienceCreateManyWithoutUserAccountInput>;
-  reports?: Maybe<ReportCreateManyWithoutReporterInput>;
-  reportedBy?: Maybe<ReportCreateManyWithoutUserReportedInput>;
-  presentationPage?: Maybe<PresentationPageCreateOneWithoutOwnerInput>;
 }
 
 export interface UserUpdateInput {
@@ -3379,7 +3707,7 @@ export interface UserUpdateInput {
   studies?: Maybe<StudyUpdateManyWithoutUserAccountInput>;
   sentMessages?: Maybe<MessageUpdateManyWithoutSenderInput>;
   receivedmessages?: Maybe<MessageUpdateManyWithoutReceiverInput>;
-  offers?: Maybe<OfferUpdateManyInput>;
+  offers?: Maybe<OfferUpdateManyWithoutEmployerInput>;
   experiences?: Maybe<ExperienceUpdateManyWithoutUserAccountInput>;
   reports?: Maybe<ReportUpdateManyWithoutReporterInput>;
   reportedBy?: Maybe<ReportUpdateManyWithoutUserReportedInput>;
@@ -4000,6 +4328,7 @@ export interface OfferPromise extends Promise<Offer>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  employer: <T = UserPromise>() => T;
   tags: <T = FragmentableArray<Tag>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -4028,6 +4357,7 @@ export interface OfferSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  employer: <T = UserSubscription>() => T;
   tags: <T = Promise<AsyncIterator<TagSubscription>>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -4056,6 +4386,7 @@ export interface OfferNullablePromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  employer: <T = UserPromise>() => T;
   tags: <T = FragmentableArray<Tag>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -4147,8 +4478,8 @@ export interface ReportPromise extends Promise<Report>, Fragmentable {
   id: () => Promise<ID_Output>;
   motivation: () => Promise<String>;
   status: () => Promise<String>;
-  reporter: <T = UserPromise>() => T;
   offer: <T = OfferPromise>() => T;
+  reporter: <T = UserPromise>() => T;
   userReported: <T = UserPromise>() => T;
   created_at: () => Promise<DateTimeOutput>;
   updated_at: () => Promise<DateTimeOutput>;
@@ -4160,8 +4491,8 @@ export interface ReportSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   motivation: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<String>>;
-  reporter: <T = UserSubscription>() => T;
   offer: <T = OfferSubscription>() => T;
+  reporter: <T = UserSubscription>() => T;
   userReported: <T = UserSubscription>() => T;
   created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
   updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -4173,8 +4504,8 @@ export interface ReportNullablePromise
   id: () => Promise<ID_Output>;
   motivation: () => Promise<String>;
   status: () => Promise<String>;
-  reporter: <T = UserPromise>() => T;
   offer: <T = OfferPromise>() => T;
+  reporter: <T = UserPromise>() => T;
   userReported: <T = UserPromise>() => T;
   created_at: () => Promise<DateTimeOutput>;
   updated_at: () => Promise<DateTimeOutput>;
@@ -4347,7 +4678,7 @@ export interface AggregateAddressSubscription
 
 export interface Application {
   id: ID_Output;
-  status: String;
+  status?: String;
   comment?: String;
   created_at: DateTimeOutput;
   updated_at: DateTimeOutput;
@@ -4357,6 +4688,24 @@ export interface ApplicationPromise extends Promise<Application>, Fragmentable {
   id: () => Promise<ID_Output>;
   status: () => Promise<String>;
   comment: () => Promise<String>;
+  offer: <T = FragmentableArray<Offer>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  applicant: <T = FragmentableArray<User>>(args?: {
+    where?: UserWhereInput;
+    orderBy?: UserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   created_at: () => Promise<DateTimeOutput>;
   updated_at: () => Promise<DateTimeOutput>;
 }
@@ -4367,6 +4716,24 @@ export interface ApplicationSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   status: () => Promise<AsyncIterator<String>>;
   comment: () => Promise<AsyncIterator<String>>;
+  offer: <T = Promise<AsyncIterator<OfferSubscription>>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  applicant: <T = Promise<AsyncIterator<UserSubscription>>>(args?: {
+    where?: UserWhereInput;
+    orderBy?: UserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   created_at: () => Promise<AsyncIterator<DateTimeOutput>>;
   updated_at: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -4377,6 +4744,24 @@ export interface ApplicationNullablePromise
   id: () => Promise<ID_Output>;
   status: () => Promise<String>;
   comment: () => Promise<String>;
+  offer: <T = FragmentableArray<Offer>>(args?: {
+    where?: OfferWhereInput;
+    orderBy?: OfferOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+  applicant: <T = FragmentableArray<User>>(args?: {
+    where?: UserWhereInput;
+    orderBy?: UserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   created_at: () => Promise<DateTimeOutput>;
   updated_at: () => Promise<DateTimeOutput>;
 }
@@ -5032,7 +5417,7 @@ export interface ApplicationSubscriptionPayloadSubscription
 
 export interface ApplicationPreviousValues {
   id: ID_Output;
-  status: String;
+  status?: String;
   comment?: String;
   created_at: DateTimeOutput;
   updated_at: DateTimeOutput;

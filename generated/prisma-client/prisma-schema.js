@@ -294,8 +294,10 @@ type AggregateUser {
 
 type Application {
   id: ID!
-  status: String!
+  status: String
   comment: String
+  offer(where: OfferWhereInput, orderBy: OfferOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Offer!]
+  applicant(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   created_at: DateTime!
   updated_at: DateTime!
 }
@@ -308,8 +310,10 @@ type ApplicationConnection {
 
 input ApplicationCreateInput {
   id: ID
-  status: String!
+  status: String
   comment: String
+  offer: OfferCreateManyInput
+  applicant: UserCreateManyInput
 }
 
 type ApplicationEdge {
@@ -332,7 +336,7 @@ enum ApplicationOrderByInput {
 
 type ApplicationPreviousValues {
   id: ID!
-  status: String!
+  status: String
   comment: String
   created_at: DateTime!
   updated_at: DateTime!
@@ -359,6 +363,8 @@ input ApplicationSubscriptionWhereInput {
 input ApplicationUpdateInput {
   status: String
   comment: String
+  offer: OfferUpdateManyInput
+  applicant: UserUpdateManyInput
 }
 
 input ApplicationUpdateManyMutationInput {
@@ -409,6 +415,12 @@ input ApplicationWhereInput {
   comment_not_starts_with: String
   comment_ends_with: String
   comment_not_ends_with: String
+  offer_every: OfferWhereInput
+  offer_some: OfferWhereInput
+  offer_none: OfferWhereInput
+  applicant_every: UserWhereInput
+  applicant_some: UserWhereInput
+  applicant_none: UserWhereInput
   created_at: DateTime
   created_at_not: DateTime
   created_at_in: [DateTime!]
@@ -1303,6 +1315,11 @@ input OfferCreateInput {
   reports: ReportCreateManyWithoutOfferInput
 }
 
+input OfferCreateManyInput {
+  create: [OfferCreateInput!]
+  connect: [OfferWhereUniqueInput!]
+}
+
 input OfferCreateManyWithoutEmployerInput {
   create: [OfferCreateWithoutEmployerInput!]
   connect: [OfferWhereUniqueInput!]
@@ -1450,6 +1467,14 @@ input OfferSubscriptionWhereInput {
   NOT: [OfferSubscriptionWhereInput!]
 }
 
+input OfferUpdateDataInput {
+  title: String
+  description: String
+  employer: UserUpdateOneRequiredWithoutOffersInput
+  tags: TagUpdateManyWithoutOffersInput
+  reports: ReportUpdateManyWithoutOfferInput
+}
+
 input OfferUpdateInput {
   title: String
   description: String
@@ -1461,6 +1486,18 @@ input OfferUpdateInput {
 input OfferUpdateManyDataInput {
   title: String
   description: String
+}
+
+input OfferUpdateManyInput {
+  create: [OfferCreateInput!]
+  update: [OfferUpdateWithWhereUniqueNestedInput!]
+  upsert: [OfferUpsertWithWhereUniqueNestedInput!]
+  delete: [OfferWhereUniqueInput!]
+  connect: [OfferWhereUniqueInput!]
+  set: [OfferWhereUniqueInput!]
+  disconnect: [OfferWhereUniqueInput!]
+  deleteMany: [OfferScalarWhereInput!]
+  updateMany: [OfferUpdateManyWithWhereNestedInput!]
 }
 
 input OfferUpdateManyMutationInput {
@@ -1527,6 +1564,11 @@ input OfferUpdateWithoutTagsDataInput {
   reports: ReportUpdateManyWithoutOfferInput
 }
 
+input OfferUpdateWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput!
+  data: OfferUpdateDataInput!
+}
+
 input OfferUpdateWithWhereUniqueWithoutEmployerInput {
   where: OfferWhereUniqueInput!
   data: OfferUpdateWithoutEmployerDataInput!
@@ -1540,6 +1582,12 @@ input OfferUpdateWithWhereUniqueWithoutTagsInput {
 input OfferUpsertWithoutReportsInput {
   update: OfferUpdateWithoutReportsDataInput!
   create: OfferCreateWithoutReportsInput!
+}
+
+input OfferUpsertWithWhereUniqueNestedInput {
+  where: OfferWhereUniqueInput!
+  update: OfferUpdateDataInput!
+  create: OfferCreateInput!
 }
 
 input OfferUpsertWithWhereUniqueWithoutEmployerInput {
@@ -1853,8 +1901,8 @@ type Report {
   id: ID!
   motivation: String!
   status: String!
-  reporter: User
   offer: Offer
+  reporter: User
   userReported: User
   created_at: DateTime!
   updated_at: DateTime!
@@ -1870,8 +1918,8 @@ input ReportCreateInput {
   id: ID
   motivation: String!
   status: String!
-  reporter: UserCreateOneWithoutReportsInput
   offer: OfferCreateOneWithoutReportsInput
+  reporter: UserCreateOneWithoutReportsInput
   userReported: UserCreateOneWithoutReportedByInput
 }
 
@@ -1910,8 +1958,8 @@ input ReportCreateWithoutUserReportedInput {
   id: ID
   motivation: String!
   status: String!
-  reporter: UserCreateOneWithoutReportsInput
   offer: OfferCreateOneWithoutReportsInput
+  reporter: UserCreateOneWithoutReportsInput
 }
 
 type ReportEdge {
@@ -2025,8 +2073,8 @@ input ReportSubscriptionWhereInput {
 input ReportUpdateInput {
   motivation: String
   status: String
-  reporter: UserUpdateOneWithoutReportsInput
   offer: OfferUpdateOneWithoutReportsInput
+  reporter: UserUpdateOneWithoutReportsInput
   userReported: UserUpdateOneWithoutReportedByInput
 }
 
@@ -2098,8 +2146,8 @@ input ReportUpdateWithoutReporterDataInput {
 input ReportUpdateWithoutUserReportedDataInput {
   motivation: String
   status: String
-  reporter: UserUpdateOneWithoutReportsInput
   offer: OfferUpdateOneWithoutReportsInput
+  reporter: UserUpdateOneWithoutReportsInput
 }
 
 input ReportUpdateWithWhereUniqueWithoutOfferInput {
@@ -2178,8 +2226,8 @@ input ReportWhereInput {
   status_not_starts_with: String
   status_ends_with: String
   status_not_ends_with: String
-  reporter: UserWhereInput
   offer: OfferWhereInput
+  reporter: UserWhereInput
   userReported: UserWhereInput
   created_at: DateTime
   created_at_not: DateTime
@@ -2809,6 +2857,11 @@ input UserCreateInput {
   presentationPage: PresentationPageCreateOneWithoutOwnerInput
 }
 
+input UserCreateManyInput {
+  create: [UserCreateInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
 input UserCreateOneWithoutAddressInput {
   create: UserCreateWithoutAddressInput
   connect: UserWhereUniqueInput
@@ -3078,6 +3131,134 @@ type UserPreviousValues {
   updatedAt: DateTime!
 }
 
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  plainPassword: String
+  plainPassword_not: String
+  plainPassword_in: [String!]
+  plainPassword_not_in: [String!]
+  plainPassword_lt: String
+  plainPassword_lte: String
+  plainPassword_gt: String
+  plainPassword_gte: String
+  plainPassword_contains: String
+  plainPassword_not_contains: String
+  plainPassword_starts_with: String
+  plainPassword_not_starts_with: String
+  plainPassword_ends_with: String
+  plainPassword_not_ends_with: String
+  firstname: String
+  firstname_not: String
+  firstname_in: [String!]
+  firstname_not_in: [String!]
+  firstname_lt: String
+  firstname_lte: String
+  firstname_gt: String
+  firstname_gte: String
+  firstname_contains: String
+  firstname_not_contains: String
+  firstname_starts_with: String
+  firstname_not_starts_with: String
+  firstname_ends_with: String
+  firstname_not_ends_with: String
+  lastname: String
+  lastname_not: String
+  lastname_in: [String!]
+  lastname_not_in: [String!]
+  lastname_lt: String
+  lastname_lte: String
+  lastname_gt: String
+  lastname_gte: String
+  lastname_contains: String
+  lastname_not_contains: String
+  lastname_starts_with: String
+  lastname_not_starts_with: String
+  lastname_ends_with: String
+  lastname_not_ends_with: String
+  birthday: String
+  birthday_not: String
+  birthday_in: [String!]
+  birthday_not_in: [String!]
+  birthday_lt: String
+  birthday_lte: String
+  birthday_gt: String
+  birthday_gte: String
+  birthday_contains: String
+  birthday_not_contains: String
+  birthday_starts_with: String
+  birthday_not_starts_with: String
+  birthday_ends_with: String
+  birthday_not_ends_with: String
+  status: Status
+  status_not: Status
+  status_in: [Status!]
+  status_not_in: [Status!]
+  role: Role
+  role_not: Role
+  role_in: [Role!]
+  role_not_in: [Role!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+}
+
 type UserSubscriptionPayload {
   mutation: MutationType!
   node: User
@@ -3094,6 +3275,26 @@ input UserSubscriptionWhereInput {
   AND: [UserSubscriptionWhereInput!]
   OR: [UserSubscriptionWhereInput!]
   NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+  address: AddressUpdateOneWithoutUserAccountInput
+  studies: StudyUpdateManyWithoutUserAccountInput
+  sentMessages: MessageUpdateManyWithoutSenderInput
+  receivedmessages: MessageUpdateManyWithoutReceiverInput
+  offers: OfferUpdateManyWithoutEmployerInput
+  experiences: ExperienceUpdateManyWithoutUserAccountInput
+  reports: ReportUpdateManyWithoutReporterInput
+  reportedBy: ReportUpdateManyWithoutUserReportedInput
+  presentationPage: PresentationPageUpdateOneWithoutOwnerInput
 }
 
 input UserUpdateInput {
@@ -3116,6 +3317,29 @@ input UserUpdateInput {
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
 }
 
+input UserUpdateManyDataInput {
+  email: String
+  password: String
+  plainPassword: String
+  firstname: String
+  lastname: String
+  birthday: String
+  status: Status
+  role: Role
+}
+
+input UserUpdateManyInput {
+  create: [UserCreateInput!]
+  update: [UserUpdateWithWhereUniqueNestedInput!]
+  upsert: [UserUpsertWithWhereUniqueNestedInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
 input UserUpdateManyMutationInput {
   email: String
   password: String
@@ -3125,6 +3349,11 @@ input UserUpdateManyMutationInput {
   birthday: String
   status: Status
   role: Role
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
 }
 
 input UserUpdateOneRequiredWithoutOffersInput {
@@ -3375,6 +3604,11 @@ input UserUpdateWithoutStudiesDataInput {
   presentationPage: PresentationPageUpdateOneWithoutOwnerInput
 }
 
+input UserUpdateWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateDataInput!
+}
+
 input UserUpsertWithoutAddressInput {
   update: UserUpdateWithoutAddressDataInput!
   create: UserCreateWithoutAddressInput!
@@ -3418,6 +3652,12 @@ input UserUpsertWithoutSentMessagesInput {
 input UserUpsertWithoutStudiesInput {
   update: UserUpdateWithoutStudiesDataInput!
   create: UserCreateWithoutStudiesInput!
+}
+
+input UserUpsertWithWhereUniqueNestedInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {

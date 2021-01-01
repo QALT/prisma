@@ -35,8 +35,10 @@ type Address {
 
 type Application {
 	id: ID! @id
-	status: String!
+	status: String
 	comment: String
+	offer: [Offer] @relation(name: "Offer")
+	applicant: [User] @relation(name: "Applicant")
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
 }
