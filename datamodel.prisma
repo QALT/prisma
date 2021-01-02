@@ -35,7 +35,7 @@ type Address {
 
 type Application {
 	id: ID! @id
-	status: Status @default(value:APPLIED)
+	status: Status @default(value:SUBMITTED)
 	comment: String
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
@@ -122,10 +122,13 @@ type Experience {
 enum Status {
 	ENABLED
 	DISABLED
-	APPLIED
 	ONLINE
 	CREATED
 	SUBMITTED
+	REFUSED
+	ACCEPTED
+	OFFLINE
+	REVIEWED
 }
 enum Role {
 	ROLE_USER
