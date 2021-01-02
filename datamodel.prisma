@@ -16,6 +16,7 @@ type User {
 	experiences: [Experience]
 	reports: [Report] @relation(name: "Reports")
 	reportedBy: [Report] @relation(name: "ReportedBy")
+	applications: [Application]
 	presentationPage: PresentationPage @relation(link: INLINE)
 	createdAt: DateTime! @createdAt
 	updatedAt: DateTime! @updatedAt
@@ -37,8 +38,8 @@ type Application {
 	id: ID! @id
 	status: String
 	comment: String
-	offer: [Offer] @relation(name: "Offer")
-	applicant: [User] @relation(name: "Applicant")
+	offer: [Offer] @relation
+	applicant: [User] @relation
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
 }
@@ -67,6 +68,7 @@ type Offer {
 	employer: User!
 	tags: [Tag]
 	reports: [Report] 
+	applications: [Application]
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
 }
