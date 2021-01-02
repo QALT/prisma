@@ -38,8 +38,8 @@ type Application {
 	id: ID! @id
 	status: String
 	comment: String
-	offer: [Offer]
-	applicant: [User]
+	offer: Offer!
+	applicant: User!
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
 }
