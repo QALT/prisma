@@ -28,6 +28,12 @@ You wan to look in the .env of your api-platform repository to find the JWT_PASS
 $ npm install
 ```
 
+## Prisma Deploy
+
+```console
+$ npx prisma1 deploy
+```
+
 ## Start
 
 ```console
