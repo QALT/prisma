@@ -11,6 +11,7 @@ async function signup (_, args, context, info) {
             data: {
                 email: args.email,
                 password: password,
+                role: args.role
             },
         }
     )
@@ -18,11 +19,11 @@ async function signup (_, args, context, info) {
     const exp = new Date();
     exp.setHours(exp.getHours() + 1)
 
-    return generateToken(user.id, args.firstname, args.lastname)
+    return generateToken(user.id, args.firstname, args.lastname, args.role)
 }
 
 async function login (parent, {email, password}, ctx, info) {
-    const user = await ctx.prisma.query.user({ where: { email } }, '{ id email password lastname firstname }')
+    const user = await ctx.prisma.query.user({ where: { email } }, '{ id email password lastname firstname role }')
     
     if (!user) {
         throw new Error(`No such user found for email: ${email}`)
@@ -33,10 +34,10 @@ async function login (parent, {email, password}, ctx, info) {
         throw new Error('Invalid password')
     }
 
-    return generateToken(user.id, user.firstname, user.lastname, user.email)
+    return generateToken(user.id, user.firstname, user.lastname, user.email, user.role)
 }
 
-const generateToken = (userId, firstname, lastname, email) => {
+const generateToken = (userId, firstname, lastname, email, role) => {
     const privateKey = fs.readFileSync('./src/jwt/private.pem');
 
     return {
@@ -44,7 +45,8 @@ const generateToken = (userId, firstname, lastname, email) => {
             id: userId,
             firstname: firstname ?? null,
             lastname: lastname ?? null,
-            email: email
+            email: email,
+            roles: [role]
         }, {
             key: privateKey,
             passphrase: process.env.JWT_PASSPHRASE
