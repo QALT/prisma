@@ -1,4 +1,4 @@
-.PHONY: start stop restart install deploy run fixtures generate
+.PHONY: start stop restart install deploy run fixtures generate lint fix
 
 start:
 	docker-compose up --detach
@@ -22,3 +22,9 @@ fixtures:
 
 generate:
 	docker-compose run --rm npm run generate
+
+lint:
+	docker-compose run --rm npm run lint
+
+fix:
+	docker-compose run --rm npm run fix

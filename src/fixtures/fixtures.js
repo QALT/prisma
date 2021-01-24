@@ -1,11 +1,11 @@
 const {Prisma} = require("prisma-binding");
-const bcrypt = require('bcryptjs')
+const bcrypt = require("bcryptjs");
 
 const main = async () => {
     console.log("Starting generating data fixtures...");
 
     const prisma = new Prisma({
-        typeDefs: './src/generated/prisma.graphql',
+        typeDefs: "./src/generated/prisma.graphql",
         endpoint: "http://prisma:4466"
     });
 
