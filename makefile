@@ -1,6 +1,6 @@
 .PHONY: start stop restart install deploy run fixtures generate lint fix
 
-DOCKER_COMPOSE_RUN_OPTIONS=--rm --service-ports
+DOCKER_COMPOSE_RUN_OPTIONS=--rm
 
 ifeq (${CI},true)
 	DOCKER_COMPOSE_RUN_OPTIONS=--rm --service-ports --user root -T
