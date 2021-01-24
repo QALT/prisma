@@ -11,6 +11,8 @@ async function signup (_, args, context, info) {
             data: {
                 email: args.email,
                 password: password,
+                lastname: args.lastname,
+                firstname: args.firstname,
                 role: args.role
             },
         }
