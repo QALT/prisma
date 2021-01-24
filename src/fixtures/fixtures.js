@@ -32,6 +32,7 @@ const main = async () => {
 
     await prisma.mutation.createUser({data: {email: "employee@gmail.com", plainPassword: "", password, firstname: "John", lastname: "Doe", role: "ROLE_EMPLOYEE", status: "ENABLED"}});
     await prisma.mutation.createUser({data: {email: "employer@gmail.com", plainPassword: "", password, firstname: "John", lastname: "Doe", role: "ROLE_EMPLOYER", status: "ENABLED"}});
+    await prisma.mutation.createUser({data: {email: "admin@gmail.com", plainPassword: "", password, firstname: "John", lastname: "Doe", role: "ROLE_ADMIN", status: "ENABLED"}});
 
     console.log("Successfully generated data fixtures.");
 };
