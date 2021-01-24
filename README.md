@@ -1,5 +1,7 @@
 # prisma
 
+![Code Style](https://github.com/QALT/prisma/workflows/Code%20Style/badge.svg)
+
 ## Requirements
 
 - [Git](https://git-scm.com/)
