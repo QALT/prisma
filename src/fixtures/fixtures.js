@@ -11,9 +11,6 @@ const main = async () => {
 
     const password = await bcrypt.hash("Password", 10);
 
-    await prisma.mutation.createUser({data: { email: "user@esgi.fr", password, role: "ROLE_USER"}});
-    await prisma.mutation.createUser({data: { email: "admin@esgi.fr", password, role: "ROLE_ADMIN"}});
-
     await prisma.mutation.createDegree({data: {label: "Baccalauréat"}});
     await prisma.mutation.createDegree({data: {label: "BTS"}});
     await prisma.mutation.createDegree({data: {label: "License"}});

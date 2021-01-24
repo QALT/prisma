@@ -11,7 +11,7 @@
     "start": "nodemon -e js,graphql src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
