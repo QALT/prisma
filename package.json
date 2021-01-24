@@ -1,15 +1,16 @@
 {
-  "name": "prisma_course",
+  "name": "qalt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "fix": "eslint --fix .",
+    "lint": "eslint .",
     "generate": "prisma1 generate",
     "fixtures": "node ./src/fixtures/fixtures.js",
     "start": "nodemon -e js,graphql src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "RobinTHOREL",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,5 +21,8 @@
     "nodemon": "^2.0.4",
     "prisma-binding": "^2.3.16",
     "prisma1": "^1.34.11"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0"
   }
 }
