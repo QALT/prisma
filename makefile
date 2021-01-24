@@ -1,4 +1,4 @@
-.PHONY: start stop restart install deploy run
+.PHONY: start stop restart install deploy run fixtures generate
 
 start:
 	docker-compose up --detach
@@ -16,3 +16,9 @@ deploy:
 
 run:
 	docker-compose run --rm --service-ports npm run start
+
+fixtures:
+	docker-compose run --rm npm run fixtures
+
+generate:
+	docker-compose run --rm npm run generate

@@ -28,17 +28,34 @@ You wan to look in the .env of your api-platform repository to find the JWT_PASS
 $ npm install
 ```
 
+## Prisma Client Generation
+
+```console
+$ make generate
+```
+
 ## Prisma Deploy
 
 ```console
-$ npx prisma1 deploy
+$ make deploy
 ```
 
 ## Start
 
 ```console
 $ make start
-$ npm start
+$ make run
+```
+
+## Fixtures
+
+```console
+$ make stop
+$ sudo rm -rf postgres
+$ make start
+$ make deploy
+$ make run
+$ make fixtures
 ```
 
 ## TODO
