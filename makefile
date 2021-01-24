@@ -1,5 +1,11 @@
 .PHONY: start stop restart install deploy run fixtures generate lint fix
 
+DOCKER_COMPOSE_RUN_OPTIONS=--rm --service-ports
+
+ifeq (${CI},true)
+	DOCKER_COMPOSE_RUN_OPTIONS=--rm --service-ports --user root -T
+endif
+
 start:
 	docker-compose up --detach
 
@@ -9,22 +15,22 @@ stop:
 restart: stop start
 
 install:
-	docker-compose run --rm npm install
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) npm install
 
 deploy:
-	docker-compose run --rm npx prisma1 deploy
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) npx prisma1 deploy
 
 run:
-	docker-compose run --rm --service-ports npm run start
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) --service-ports npm run start
 
 fixtures:
-	docker-compose run --rm npm run fixtures
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) npm run fixtures
 
 generate:
-	docker-compose run --rm npm run generate
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) npm run generate
 
 lint:
-	docker-compose run --rm npm run lint
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) npm run lint
 
 fix:
-	docker-compose run --rm npm run fix
+	docker-compose run $(DOCKER_COMPOSE_RUN_OPTIONS) npm run fix
