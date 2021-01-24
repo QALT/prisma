@@ -514,7 +514,11 @@ export type Status =
   | "OFFLINE"
   | "REVIEWED";
 
-export type Role = "ROLE_USER" | "ROLE_ADMIN";
+export type Role =
+  | "ROLE_USER"
+  | "ROLE_EMPLOYEE"
+  | "ROLE_EMPLOYER"
+  | "ROLE_ADMIN";
 
 export type StudyOrderByInput =
   | "id_ASC"

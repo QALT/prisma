@@ -37,3 +37,21 @@ services:
         ports:
             - 8090:8080
 
+
+    npm:
+        image: node:14.0.0-alpine
+        user: node
+        entrypoint: npm
+        working_dir: /home/node/app
+        ports:
+            - 4000:4000
+        volumes:
+            - .:/home/node/app
+
+    npx:
+        image: node:14.0.0-alpine
+        user: node
+        entrypoint: npx
+        working_dir: /home/node/app
+        volumes:
+            - .:/home/node/app
