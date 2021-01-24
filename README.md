@@ -40,3 +40,11 @@ $ npx prisma1 deploy
 $ make start
 $ npm start
 ```
+
+## TODO
+
+### Deploy the Prisma DB
+
+```
+$ npx prisma1 deploy
+```
