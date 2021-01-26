@@ -69,7 +69,7 @@ type Offer {
 	status: Status @default(value:CREATED)
 	tags: [Tag]
 	reports: [Report] 
-	applications: [Application]
+	applications: [Application] @relation(onDelete: CASCADE)
 	created_at: DateTime! @createdAt
 	updated_at: DateTime! @updatedAt
 }
